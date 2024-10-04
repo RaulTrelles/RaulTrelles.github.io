@@ -39,7 +39,15 @@ cards.forEach((card, index) => {
         <div class="tecnologias_card">
         <i class="fa-solid fa-user-tie"></i>
         <h3>Bizagi</h3>
-        </div>            
+        </div>    
+        <div class="tecnologias_card">
+        <i class="fa-brands fa-trello"></i>
+        <h3>Trello</h3>
+        </div>  
+        <div class="tecnologias_card">
+        <i class="fa-brands fa-jira"></i>
+        <h3>Jira</h3>
+        </div>          
           `;
         break;
       case 1:
