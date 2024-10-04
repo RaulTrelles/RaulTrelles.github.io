@@ -33,11 +33,11 @@ cards.forEach((card, index) => {
       case 0:
         content = `
         <div class="tecnologias_card">
-        <i class="fa-brands fa-figma"></i>
+        <i class="fa-solid fa-diagram-project"></i>
         <h3>Bonita</h3>
         </div>
         <div class="tecnologias_card">
-        <i class="fa-brands fa-figma"></i>
+        <i class="fa-solid fa-user-tie"></i>
         <h3>Bizagi</h3>
         </div>            
           `;
@@ -52,6 +52,10 @@ cards.forEach((card, index) => {
          <div class="tecnologias_card">
          <i class="fa-solid fa-database"></i>
          <h3>SQL </h3>
+         </div> 
+         <div class="tecnologias_card">
+         <i class="fa-brands fa-r-project"></i>
+         <h3>R </h3>
          </div> 
         
                     `;
