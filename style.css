@@ -816,5 +816,11 @@ div.projects{
     }
 }
 
+.icon-disabled {
+    color: gray; /* Cambia el color a gris */
+    opacity: 0.5; /* Hace que el ícono sea más tenue */
+    pointer-events: none; /* Desactiva cualquier evento de clic */
+    cursor: not-allowed; /* Cambia el cursor a "no permitido" */
+}
 
  

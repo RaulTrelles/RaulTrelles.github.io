@@ -12,14 +12,15 @@
         <input type="checkbox" class="checkbox" id="check">
         <h1 class="nav_head">Raúl</h1>
         <ul>
-            <li><a href="#home">Inicio</a></li>
+            <li><a href="./index.html">Inicio</a></li>
             <li><a href="#about">Acerca de</a></li>
             <!-- <li><a href="#service">Servicios</a></li>  -->
             <li><a href="#tecnologias">Tecnologías</a></li>
             <li><a href="#portafolio">Portafolio</a></li>
             <!-- <li><a href="#contact">Contactame</a></li> -->
+            <!-- <li><a href="./modelo.html">Modelo</a></li> -->
 
-            <a href="#contact"><button class="contact_btn">Contactame</button></a>
+            <a href="./contactame.html"><button class="contact_btn">Contactame</button></a>
         </ul>
 
         <label for="check" class="checkbtn">
@@ -34,14 +35,17 @@
             <h2><span>Ingeniero de Sistemas... </span></h2>
             <P>Un apasionado por la tecnología, disfruto buscando e implementando soluciones que ayuden a generar valor, ahorro y oportunidades en las organizaciones, haciendo uso de la tecnología .</P>
             <div class="font">
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-instagram icon-disabled"></i>
+                <i class="fa-brands fa-facebook icon-disabled"></i>
 
+           <!--      <a href="https://www.facebook.com/raul.trelles" target="_blank" rel="noopener noreferrer">
+                    <i class="a-brands fa-facebook-f"></i>
+                </a> -->
                 <a href="https://www.linkedin.com/in/raultrelles/" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-linkedin-in"></i>
                 </a>
 
-                <i class="fas fa-phone"></i>
+                <!-- <i class="fas fa-phone"></i> -->
             </div>
 
             <button id="downloadBtn" class="form_btn">Download CV</button>
@@ -142,31 +146,40 @@
         </div>
     </section> 
  -->
+ 
 
     <section id="portafolio" class="portafolio">
         <h1 class="port_section"><span>Trabajos</span> Recientes</h1>
         <div class="projects">
-            <div class="port_card">
-                <img src="./img/erp.png" alt="" width="400px" height="350px">
-                <div class="content">
-                    <h1>Implementador ERP's</h1>
-                    <p>Desarrollo una metodología que asegura que tú implementación tenga el exito deseado, brindando un escenario en donde la alta gerencia obtiene los indicadores deseados y los usuarios están felices.....</p>
+            <a href="./erps.html">
+                <div class="port_card">
+                    <img src="./img/erp.png" alt="" width="400px" height="350px">
+                    <div class="content">
+                        <h1>Implementador ERP's</h1>
+                        <p>Desarrollo una metodología que asegura que tu implementación tenga el éxito deseado, brindando un escenario en donde la alta gerencia obtiene los indicadores deseados y los usuarios están felices...</p>
+                    </div>
                 </div>
-            </div>
-            <div class="port_card">
+            </a>
+            
+            <a href="./fullstack.html">
+            <div class="port_card">                
                 <img src="./img/developer.png" alt="" width="400px" height="350px">
                 <div class="content">
                     <h1>Full Stack Developer</h1>
                     <p>El conocer tecnologías de BackEnd y FrontEnd me permiten afrontar un proyecto integralmente complementando además el diseño, para lograr un proyecto ideal, te invito a conocer mis últimos proyectos...</p>
                 </div>
             </div>
+            </a>
+            <a href="./analitica.html">
             <div class="port_card">
                 <img src="./img/analytics.png" alt="" width="400px" height="350px">
                 <div class="content">
-                    <h1>Analitica de Datos</h1>
+                    <h1>Analítica de Datos</h1>
                     <p>Los datos son unos de los ingrediente más valisos de una organización, por ello necesitamos darle la atención adecuada, conoce mis últimos proyectos...</p>
                 </div>
             </div>
+            </a>
+            <a href="./ia.html">
             <div class="port_card">
                 <img src="./img/Power BI.png" alt="" width="400px" height="350px">
                 <div class="content">
@@ -174,25 +187,24 @@
                     <p>Una herramienta importante en estos timpos en las organizaciones, el manejar indicadores y dashboard nos ayudan a tener una visión rápidamente de mi organización, conoce algunos de mis proyectos...</p>
                 </div>
             </div>
+            </a>
         </div>
 
     </section>
-
+<!-- 
     <section id="contact" class="contact">
-        
         <div class="form">
             <h1><span>Contactame</span></h1>
-            <form action="#home">
-                <input type="text" name="name" placeholder="Ingrese su nombre" required> <br>
-                <input type="email" name="email" placeholder="Ingrese su email" required> <br>
-                <input type="number" name="mno" placeholder="Ingrese su número de Celular" required> <br>
-                <textarea name="msg" id="msg" cols="20" rows="6" placeholder="Ingrese su Mensaje" required></textarea> <br>
-                <button class="form_btn">Enviar</button>
+            <form id="contact-form">
+                <input type="text" id="name" placeholder="Ingrese su nombre" required> <br>
+                <input type="email" id="email" placeholder="Ingrese su email" required> <br>
+                <input type="number" id="phone" placeholder="Ingrese su número de Celular" required> <br>
+                <textarea id="message" cols="20" rows="6" placeholder="Ingrese su Mensaje" required></textarea> <br>
+                <button type="submit" class="form_btn">Enviar</button>
             </form>
-
         </div>
-
     </section>
+     -->
     <div class="footer">
         <p><i class="fa-solid fa-copyright"></i>Raúl Trelles. || All Right Reserved... </p>
     </div>

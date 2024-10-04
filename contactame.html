@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <title>Portafolio Personal</title>
+</head>
+<body>
+    <nav>
+        <input type="checkbox" class="checkbox" id="check">
+        <h1 class="nav_head">Raúl</h1>
+        <ul>
+            <li><a href="./index.html">Inicio</a></li>
+            <li><a href="./index.html#about">Acerca de</a></li>
+            <!-- <li><a href="#service">Servicios</a></li>  -->
+            <li><a href="./index.html#tecnologias">Tecnologías</a></li>
+            <li><a href="./index.html#portafolio">Portafolio</a></li>
+
+            <a href="./contactame.html"><button class="contact_btn">Contactame</button></a>
+        </ul>
+
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+    </nav>
+
+
+    <section id="contact" class="contact">
+        <div class="form">
+            <h1><span>Contactame</span></h1>
+            <form id="contact-form">
+                <input type="text" id="name" placeholder="Ingrese su nombre" required> <br>
+                <input type="email" id="email" placeholder="Ingrese su email" required> <br>
+                <input type="number" id="phone" placeholder="Ingrese su número de Celular" required> <br>
+                <textarea id="message" cols="20" rows="6" placeholder="Ingrese su Mensaje" required></textarea> <br>
+                <button type="submit" class="form_btn">Enviar</button>
+            </form>
+        </div>
+    </section>
+    
+    
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/6278516bb0d10b6f3e713476/1g2ivs3n6';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+    
+<!--      envio de correo desde la páguina -->
+
+<script type="text/javascript">
+    (function() {
+        emailjs.init("7kOlWNhTdSmV3AjRT");  // Coloca aquí tu User ID de EmailJS
+    })();
+
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Recoge los datos del formulario
+        var templateParams = {
+            from_name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            phone_number: document.getElementById('mno').value,
+            message: document.getElementById('msg').value
+        };
+
+        // Envía el correo usando EmailJS
+        emailjs.send('service_nxbvx2e', 'template_tlz40ym', templateParams)
+            .then(function(response) {
+               alert('Correo enviado correctamente!', response.status, response.text);
+            }, function(error) {
+               alert('Error al enviar el correo', error);
+            });
+    });
+</script>
+
+<!-- Incluye el script de EmailJS -->
+<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+
+</body>
+</html>
