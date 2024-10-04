@@ -38,7 +38,7 @@ cards.forEach((card, index) => {
         </div>
         <div class="tecnologias_card">
         <i class="fa-brands fa-figma"></i>
-        <h3>bizagi</h3>
+        <h3>Bizagi</h3>
         </div>            
           `;
         break;
