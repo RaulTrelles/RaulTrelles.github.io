@@ -1,0 +1,302 @@
+/* Color que define el Portal!!!! */
+/* *,
+*::after,
+*::before, */
+
+:root {
+    --main-color:  #ff9800;  /* rgb(218, 165, 32); */
+    --secundary-color: #b6a508;  
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+}
+
+body {
+    background-color: rgb(21, 21, 21); /* Color de fondo en caso de que la imagen no cargue */
+    /*background-image: url('/img/windows_background.jpg'); *//* Ruta de la imagen de fondo */
+
+}
+/* navbar section */
+nav{
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    top: 0;
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    overflow: hidden;
+    padding: 10px;
+    position: fixed;
+    z-index: 1000;
+}
+
+.nav_head{
+    font-size: 35px;
+    letter-spacing: 1px;
+}
+li{
+    display: flex;
+    float: inline-start;
+    overflow: hidden;
+}
+li a{
+    padding: 15px;
+    display: block;
+    color: white;
+}
+li a:hover{
+    color: var(--main-color);
+}
+.contact_btn{
+    padding: 10px 30px;
+    color: black;
+    margin-left: 8rem;
+    background-color: var(--main-color);
+    border-radius: 30px;
+    font-size: large;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+
+}
+.contact_btn:hover{
+    color: white;
+    border: 3px solid var(--main-color);
+    background: transparent;
+}
+.checkbtn{
+    font-size: 20px;
+    float: right;
+    margin-right: 30px;
+    cursor: pointer;
+    display: none;
+}
+.checkbox{
+    display: none;
+
+}
+/* responsive navbar */
+@media screen and (max-width:952px) {
+    .nav_head {
+        font-size: 30px;
+    }
+    nav li a {
+        font-size: 20px;
+    }
+    nav .contact_btn {
+        margin-left: 20px;
+    }
+}
+
+@media screen and (max-width:820px) {
+    .checkbtn {
+        display: block;
+        margin-left: 150px;
+    }
+    .nav_head {
+        padding-left: 10px;
+    }
+    nav ul {
+        z-index: 1000;
+        position: fixed;
+        width: 80%;
+        height: 50vh;
+        background-color: black;
+        top: 50px;
+        right: -100%;
+        padding: 10px;
+        transition: all .5s;
+    }
+    nav li {
+        text-align: center;
+        display: block;
+        float: left;
+        width: 350px;
+        height: 60px;
+        padding: 5px;
+    }
+    nav .contact_btn {
+        width: 80%;
+        margin-top: 15px;
+    }
+    nav li a {
+        font-size: 20px;
+        color: white;
+    }
+    .checkbox:checked ~ ul {
+        right: 0;
+    }
+}
+
+/* main{
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    perspective: 2px;
+
+} 
+
+section{
+    transform-style: preserve-3d;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+section h1{
+    text-align: center;
+    font-size: 4rem;
+    font-family: sans-serif;
+}
+.no-paralax {
+    background-color: #ff9800;
+    z-index: 999;
+}
+.paralax h1 {
+    width: 60%;
+    font-size: 2rem;
+}
+.paralax::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: translateZ(-1px) scale(1.5);
+    background-size: 100%;
+    z-index: -1;
+}
+.bg::after{
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(/img/courrier/1.jpg);
+    background-size: cover;
+} */
+
+ section{
+   padding-top: 80px;
+    width: 100%;
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
+    position: relative; /* Necesario para posicionar el contenido dentro */
+
+}
+section:nth-of-type(2){
+    height: 270vh;
+}
+
+
+section h1 {
+    text-align: center;
+    color: var(--main-color);
+}
+
+section:nth-of-type(1){
+    
+    background-image: url(/img/Talonario/1.jpg);
+    height: 60vh;
+}
+section:nth-of-type(3){
+    background-image: url(/img/courrier/1.jpg);
+    height: 60vh;
+}
+section:nth-of-type(5){
+    background-image: url(/img/seace/Mockup/1.svg);
+    height: 60vh;
+} 
+
+.overlay {
+    position: absolute;
+    top: 80%;
+    left: 8%;
+   /* transform: translate(-50%, -50%);*/
+    text-align: left;
+    color: var(--main-color) /* Color del texto */
+}
+
+.overlay h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+h1 {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+section .texto p {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 650px ;
+    gap: 60px;
+    padding-top: 10px;
+    color: white;
+    font-size: 1.5em;
+}
+
+.branding-imagenes{
+    margin-top: 50px;
+    display: flex;
+    justify-content: start;
+   /* margin: 50px 50px ;*/
+   border: 2px;
+   border-color: red;
+}
+
+section .texto .branding p {
+    margin: 10px 300px ;
+    width: 500px; 
+    padding-top: 10px;
+    color: white;
+    font-size: 1.5em;
+
+}
+.branding-imagenes img{
+   /* background-color: var(--main-color);*/
+   /* padding: 10px;*/
+    border-radius: 50%;
+    box-shadow: 0px 0px 30px var(--main-color);
+    filter: brightness(1.1);
+    transition: .4s ease-in-out;
+    animation: animate 3.5s ease-in-out forwards infinite;
+}
+
+section .texto .colores img {
+    margin: 80px 590px;
+    background-color: var(--main-color);
+
+   /* padding: 10px;*/
+   /* border-radius: 50%;*/
+    box-shadow: 0px 0px 30px var(--main-color);
+    filter: brightness(1.1);
+    transition: .4s ease-in-out;
+    animation: animate 3.5s ease-in-out forwards infinite;
+}
+
+
+
+section .texto .diseno img {
+    margin: 80px 540px;
+    /*background-color: var(--main-color);*/
+
+   /* padding: 10px;*/
+   /* border-radius: 50%;*/
+    box-shadow: 0px 0px 30px var(--main-color);
+    filter: brightness(1.1);
+    transition: .4s ease-in-out;
+    animation: animate 3.5s ease-in-out forwards infinite;
+}
+
+

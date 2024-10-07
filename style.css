@@ -210,15 +210,16 @@ li a:hover{
 }
 
 .description p{
-    width: 300px;
-    margin-top: 20px;    
+    margin-top: 20px; 
+    width: 500px;   
+    font-size: 20px;
 }
 .font i{
     margin: 25px 8px;
     border: 2px solid var(--main-color);
     border-radius: 50%;
     padding: 13px;
-    font-size: 20px;
+    font-size: 40px;
     cursor: pointer;
     transition: .4s ease-in-out;
 }
@@ -321,6 +322,7 @@ li a:hover{
         transform: translateY(0px)
     }
 }
+
 .about_section{
     margin-bottom: 30px;
 }
@@ -335,6 +337,8 @@ li a:hover{
 }
 .about_section p{
     margin-top: 15px;
+    /*width: 500px; */  
+    font-size: 20px;
 }
 .about_btn{
     padding: 13px 25px;
@@ -470,7 +474,7 @@ h1.tecnologias_section{
     margin-bottom: 2.5rem;
     color: white;
     font-size: 50px;
-    padding-top: 100px;
+    padding-top: 300px;
     text-align: center;
 
 }
@@ -675,6 +679,134 @@ div.projects{
         color: white
     }
 }
+
+/*Seccion de Experimientos*/
+div.exper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 60px;
+/*     perspective: 400px;
+    position: relative;
+    left: 400px;
+    height: 550px; */
+   /* width: 400px;*/
+}
+
+.exper_card{
+    object-fit: cover;
+    overflow: hidden;
+    box-sizing: border-box;
+/*     position: absolute;
+    animation: Carrucel 20s linear infinite; */
+
+
+}
+/* @keyframes Carrucel 
+{
+    from{
+        transform:  rotateY(360deg) translateZ(100px);
+        z-index: 10;
+        opacity: 0.9;      
+
+    }
+    50%{
+        z-index: -10;
+
+    }
+    to{
+        transform: rotateX(0deg) translateZ(100px)
+    }
+}
+ */
+
+h1.exper_section{
+    margin-top:180px ;
+    text-align: center;
+    color: white;
+    font-size: 45px;
+    padding-top: 40px;
+}
+h1.exper_section span{
+    color: var(--main-color);
+}
+
+.exper_card img{
+    transition: .4s ease-in-out;
+    border-radius: 20px;
+    cursor: pointer; 
+}
+.exper_card img:hover{
+    transform: translateY(-20px) scale(1.1);
+    
+
+}
+
+.exper_card .content{
+    border-image: fill 0 linear-gradient(#0001, var(--main-color));
+    position: relative;
+    bottom: 185px;
+    height: 200px;
+    text-align: center;
+    color: white;
+    padding-top: 50px;
+}
+.content h1{
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+.content p{
+    width: 350px;
+
+}
+
+/* responsive portafolio */
+@media screen and (max-width: 820px) {
+    h1.exper_section {
+        font-size: 35px;
+    }
+
+    .exper {
+        display: flex;
+        flex-direction: column; /* Alinear verticalmente */
+        gap: 5px; /* Espaciado de 50px entre cada tarjeta */
+        align-items: center; /* Centrar las tarjetas */
+        margin-bottom: 50px;
+    }
+
+    .exper_card {
+        width: 100%; /* Asegurar que las tarjetas ocupen todo el ancho del contenedor */
+        max-width: 400px; /* Limitar el ancho máximo */
+        margin-bottom: -150px;
+        border-radius: 20px;
+        border: none;
+        cursor: pointer; 
+
+    }
+
+    .exper_card img {
+        width: 100%; /* Asegurar que las imágenes ocupen todo el ancho de la tarjeta */
+        height: auto; /* Mantener la proporción */
+    }
+
+    .content {
+        text-align: center; /* Alinear el contenido al centro */
+        padding: 10px;
+    }
+
+    .content h1 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .content p {
+        font-size: 16px;
+        color: white
+    }
+}
+
+
 /* contact section*/
 .form {
     width: 100%;
