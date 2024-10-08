@@ -134,54 +134,6 @@ li a:hover{
     }
 }
 
-/* main{
-    width: 100%;
-    height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
-    perspective: 2px;
-
-} 
-
-section{
-    transform-style: preserve-3d;
-    position: relative;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-}
-
-section h1{
-    text-align: center;
-    font-size: 4rem;
-    font-family: sans-serif;
-}
-.no-paralax {
-    background-color: #ff9800;
-    z-index: 999;
-}
-.paralax h1 {
-    width: 60%;
-    font-size: 2rem;
-}
-.paralax::after{
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    transform: translateZ(-1px) scale(1.5);
-    background-size: 100%;
-    z-index: -1;
-}
-.bg::after{
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(/img/courrier/1.jpg);
-    background-size: cover;
-} */
-
  section{
    padding-top: 80px;
     width: 100%;
@@ -193,10 +145,6 @@ section h1{
     position: relative; /* Necesario para posicionar el contenido dentro */
 
 }
-section:nth-of-type(2){
-    height: 270vh;
-}
-
 
 section h1 {
     text-align: center;
@@ -205,13 +153,20 @@ section h1 {
 
 section:nth-of-type(1){
     
-    background-image: url(/img/Talonario/1.jpg);
+    background-image: url(/img/Talonario/0.jpg) ;
     height: 60vh;
+
+}
+section:nth-of-type(2){
+    height: 120vh;
 }
 section:nth-of-type(3){
     background-image: url(/img/courrier/1.jpg);
     height: 60vh;
 }
+/* section:nth-of-type(4){
+    height: 120vh;
+} */
 section:nth-of-type(5){
     background-image: url(/img/seace/Mockup/1.svg);
     height: 60vh;
@@ -256,8 +211,8 @@ section .texto p {
 }
 
 section .texto .branding p {
-    margin: 10px 300px ;
-    width: 500px; 
+    margin: -10px 300px ;
+    width: 900px; 
     padding-top: 10px;
     color: white;
     font-size: 1.5em;
@@ -284,9 +239,6 @@ section .texto .colores img {
     transition: .4s ease-in-out;
     animation: animate 3.5s ease-in-out forwards infinite;
 }
-
-
-
 section .texto .diseno img {
     margin: 80px 540px;
     /*background-color: var(--main-color);*/
@@ -299,4 +251,146 @@ section .texto .diseno img {
     animation: animate 3.5s ease-in-out forwards infinite;
 }
 
+/*
+slides carrucel talonario......
+*/
+.diseno-contenedor{
+    position: absolute;
+    top: 55%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    border-radius: 12px;
+    width: 800px;
+    height: 700px;
+    background: transparent; /*#f5f5f5;*/
+    box-shadow: 0 3 0px 50px #dbdbdb;
+    /* overflow: hidden; */
+}
 
+.diseno-contenedor .slide .item{
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    top: 70%;
+    transform: translate(0, -40%);
+    border-radius: 20px;
+    box-shadow: 0 30px 50px #505050;
+    background-position: 50% 50%;
+    background-size: cover;
+    display: inline-block;
+    transition: 0.5s;
+}
+
+
+.slide .item:nth-child(1),
+.slide .item:nth-child(2){
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+.slide .item:nth-child(3){
+    left: 50%;
+}
+.slide .item:nth-child(4){
+    left: calc(50% + 220px);
+}
+.slide .item:nth-child(5){
+    left: calc(50% + 440px);
+}
+
+/* here n = 0, 1, 2, 3,... */
+.slide .item:nth-child(n + 6){
+    left: calc(50% + 660px);
+    opacity: 0;
+}
+
+
+
+.item .content{
+    position: absolute;
+    top: 50%;
+    left: 100px;
+    width: 300px;
+    text-align: left;
+    color: #eee;
+    transform: translate(0, -50%);
+    font-family: system-ui;
+    display: none;
+}
+
+
+.slide .item:nth-child(2) .content{
+    display: block;
+}
+
+
+.content .name{
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+    opacity: 0;
+    animation: animate 1s ease-in-out 1 forwards;
+}
+
+.content .des{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: animate 1s ease-in-out 0.3s 1 forwards;
+}
+
+.content button{
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    animation: animate 1s ease-in-out 0.6s 1 forwards;
+}
+
+
+@keyframes animate {
+    from{
+        opacity: 0;
+        transform: translate(0, 100px);
+        filter: blur(33px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translate(0);
+        filter: blur(0);
+    }
+}
+
+.button{
+    width: 100%;
+    text-align: center;
+    padding-left: 100px;
+    position: absolute;
+    bottom: 20px;
+}
+
+.button button{
+    width: 40px;
+    height: 35px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+    border: 1px solid #000;
+    transition: 0.3s;
+}
+
+.button button:hover{
+    background: #ababab;
+    color: var(--main-color)
+}
+
+/*
+fin del carrucel de talonario
+*/
