@@ -131,6 +131,7 @@ li a:hover{
 }
 
 
+
 /*
 sección de desarrollo de etxto de cada sección
 */
@@ -153,7 +154,7 @@ section{
  
  section:nth-of-type(1){
      
-     background-image: url(/img/Talonario/0.jpg) ;
+     background-image: url(/img/inteligencianegocios/Screenshot_0.png) ;
      height: 60vh;
  
  }
@@ -410,4 +411,5 @@ section{
  fin del carrucel de talonario
  */
  
+
 
