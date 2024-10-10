@@ -498,6 +498,10 @@ div.card_tec{
     border: 1px solid var(--main-color);
     margin-top: 5px;
     margin-bottom: 5px;
+    max-width: 100%;
+    height: auto; /* Mantiene la proporción de la imagen */
+    object-fit: contain; /* Asegura que la imagen se ajuste dentro del contenedor */
+    display: block; /* Asegura que la imagen no tenga márgenes o espacios blancos alrededor */
 
 }
 
@@ -544,6 +548,15 @@ div.card_tec{
         flex-basis: calc(50% - 10px); /* Ajusta para dos columnas */
         max-width: calc(50% - 10px); /* Asegura que haya espacio entre las tarjetas */
         margin-bottom: 10px; /* Espacio entre filas de tarjetas */
+        height: auto; /* Ajusta la altura del contenedor automáticamente */
+
+    }
+
+    .tecnologias_card img {
+        width: 100%; /* Haz que la imagen ocupe el 100% del ancho de su contenedor */
+        height: 150px; /* Establece una altura fija para todas las imágenes */
+        object-fit: contain; /* Ajusta la imagen para cubrir el área sin distorsionar */
+        display: block; /* Elimina márgenes o espacios adicionales alrededor de la imagen */
     }
 }
 

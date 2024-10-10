@@ -47,7 +47,12 @@ cards.forEach((card, index) => {
         <div class="tecnologias_card">
         <i class="fa-brands fa-jira"></i>
         <h3>Jira</h3>
-        </div>          
+        </div>     
+        <div class="tecnologias_card">
+        <i class="fa-brands fa-windows"></i>
+        <h3>Microsoft Project</h3>
+        </div>           
+        
           `;
         break;
       case 1:
@@ -65,7 +70,10 @@ cards.forEach((card, index) => {
          <i class="fa-brands fa-r-project"></i>
          <h3>R </h3>
          </div> 
-        
+         <div class="tecnologias_card">
+         <i class="fa-brands fa-windows"></i>
+         <h3>Power BI </h3>
+         </div> 
                     `;
         break;
       case 2:

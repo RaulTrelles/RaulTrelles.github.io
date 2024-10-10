@@ -144,25 +144,25 @@
 
                     </div>
 
-                    <div class="diseno-contenedor">
+                    <div class="diseno-contenedor-c">
 
-                        <div class="slide">
+                        <div class="slide-c">
 
-                            <div class="item" style="background-image: url(/img/courrier/1.jpg);">
+                            <div class="item-c" style="background-image: url(/img/courrier/1.jpg);">
                             </div>
-                            <div class="item" style="background-image: url(/img/courrier/2.jpg);">
+                            <div class="item-c" style="background-image: url(/img/courrier/2.jpg);">
                             </div>
-                            <div class="item" style="background-image: url(/img/courrier/3.jpg);">
+                            <div class="item-c" style="background-image: url(/img/courrier/3.jpg);">
                             </div>
-                            <div class="item" style="background-image: url(/img/courrier/4.jpg);">
+                            <div class="item-c" style="background-image: url(/img/courrier/4.jpg);">
                             </div>
-                            <div class="item" style="background-image: url(/img/courrier/5.jpg);">
+                            <div class="item-c" style="background-image: url(/img/courrier/5.jpg);">
                             </div>
-                            <div class="item" style="background-image: url(/img/courrier/6.jpg);">
+                            <div class="item-c" style="background-image: url(/img/courrier/6.jpg);">
                             </div>
-                            <div class="item" style="background-image: url(/img/courrier/7.jpg);">
+                            <div class="item-c" style="background-image: url(/img/courrier/7.jpg);">
                             </div>
-                            <div class="item" style="background-image: url(/img/courrier/8.png);">
+                            <div class="item-c" style="background-image: url(/img/courrier/8.png);">
                             </div>
                         </div>
                         <div class="button">
@@ -202,21 +202,21 @@
 
                     </div>
 
-                    <div class="diseno-contenedor">
+                    <div class="diseno-contenedor-ws">
 
-                        <div class="slide">
+                        <div class="slide-ws">
 
-                            <div class="item" style="background-image: url(/img/seace/1.png);">
+                            <div class="item-ws" style="background-image: url(/img/seace/1.png);">
                             </div>
-                            <div class="item" style="background-image: url(/img/seace/2.png);">
+                            <div class="item-ws" style="background-image: url(/img/seace/2.png);">
                             </div>
-                            <div class="item" style="background-image: url(/img/seace/3.png);">
+                            <div class="item-ws" style="background-image: url(/img/seace/3.png);">
                             </div>
-                            <div class="item" style="background-image: url(/img/seace/4.png);">
+                            <div class="item-ws" style="background-image: url(/img/seace/4.png);">
                             </div>
-                            <div class="item" style="background-image: url(/img/seace/5.png);">
+                            <div class="item-ws" style="background-image: url(/img/seace/5.png);">
                             </div>
-                            <div class="item" style="background-image: url(/img/seace/6.png);">
+                            <div class="item-ws" style="background-image: url(/img/seace/6.png);">
                             </div>
    
                         </div>
@@ -270,13 +270,13 @@
     let prevc = document.querySelector('.prevc')
 
     nextc.addEventListener('click', function () {
-        let items = document.querySelectorAll('.item')
-        document.querySelector('.slide').appendChild(items[0])
+        let items = document.querySelectorAll('.item-c')
+        document.querySelector('.slide-c').appendChild(items[0])
     })
 
     prevc.addEventListener('click', function () {
-        let items = document.querySelectorAll('.item')
-        document.querySelector('.slide').prepend(items[items.length - 1]) // here the length of items = 6
+        let items = document.querySelectorAll('.item-c')
+        document.querySelector('.slide-c').prepend(items[items.length - 1]) // here the length of items = 6
     })
 </script>
 
@@ -285,13 +285,13 @@
     let prevw = document.querySelector('.prevw')
 
     nextw.addEventListener('click', function () {
-        let items = document.querySelectorAll('.item')
-        document.querySelector('.slide').appendChild(items[0])
+        let items = document.querySelectorAll('.item-ws')
+        document.querySelector('.slide-ws').appendChild(items[0])
     })
 
     prevw.addEventListener('click', function () {
-        let items = document.querySelectorAll('.item')
-        document.querySelector('.slide').prepend(items[items.length - 1]) // here the length of items = 6
+        let items = document.querySelectorAll('.item-ws')
+        document.querySelector('.slide-ws').prepend(items[items.length - 1]) // here the length of items = 6
     })
 </script>
 
