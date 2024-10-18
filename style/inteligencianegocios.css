@@ -1,7 +1,8 @@
 
 :root {
     --main-color:  #ff9800;  /* rgb(218, 165, 32); */
-    --secundary-color: #b6a508;  
+    --secundary-color: #4e4813;  
+    
 }
 
 *{
@@ -154,35 +155,22 @@ section{
  
  section:nth-of-type(1){
      
-     background-image: url(/img/inteligencianegocios/Screenshot_0.png) ;
-     height: 60vh;
+    background-image: url(/img/inteligencianegocios/Recaudacion.png);
+   /*  background-position: top center; */ /* Coloca la parte superior de la imagen centrada */
+   /*  background-size:cover; */ /* Asegura que la imagen cubra todo el ancho de la sección */
+    height: 60vh; /* Altura de la sección */
+    /* background-repeat: no-repeat; */ /* Evita que la imagen se repita */
  
  }
  section:nth-of-type(2){
      height: 120vh;
  
  }
-/*  section:nth-of-type(3){
-     background-image: url(/img/courrier/1.jpg);
-     height: 60vh;
- }
-  section:nth-of-type(4){
-     height: 120vh;
- } 
- 
- section:nth-of-type(5){
-     background-image: url(/img/seace/Mockup/1.svg);
-     height: 60vh;
- } 
- 
- section:nth-of-type(6){
-     height: 120vh;
- }  */
  
  
  .overlay {
      position: absolute;
-     top: 80%;
+     top: 92%;
      left: 8%;
     /* transform: translate(-50%, -50%);*/
      text-align: left;
@@ -202,15 +190,15 @@ section{
  section .texto p {
      display: flex;
      justify-content: space-around;
-     margin: 10px 650px ;
+     margin: 10px 550px ;
      gap: 60px;
      padding-top: 10px;
      color: white;
-     font-size: 1.5em;
+     font-size: 1.3em;
  }
  
  .branding-imagenes{
-     margin-top: 50px;
+     margin-top: 40px;
      display: flex;
      justify-content: start;
     /* margin: 50px 50px ;*/
@@ -219,11 +207,12 @@ section{
  }
  /* Texto de la seccion par o escrita  */
  section .texto .branding p {
-     margin: -20px 100px ;
-     width: 800px; 
-     padding-top: 10px;
-     color: white;
-     font-size: 1.5em;
+    margin: -20px 100px; /* Centra el texto con márgenes automáticos */
+    width: 35%; 
+    padding-top: 20px;
+    color: white;
+    font-size: 1.3em;
+    text-align: justify;
  
  }
  .branding-imagenes img{
@@ -261,27 +250,19 @@ section{
  
  
  
- 
- /*
- slides carrucel talonario......
- 
- sin - es para el primero o modelo, Talonasrio
- -ws --> para webscraping
- 
- */
- 
- .diseno-contenedor{
-     position: absolute;
-     top: 58%;
-     left: 63%;
-     transform: translate(-50%, -50%);
-     border-radius: 12px;
-     width: 1100px;
-     height: 800px;
-     background: transparent; /*#f5f5f5;*/
-     box-shadow: 0 3 0px 50px #dbdbdb;
-     /* overflow: hidden; */
- }
+ .diseno-contenedor {
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    width: 1200px;
+    height: 600px; /* Ajustar la altura */
+    background: transparent;
+    display: flex; /* Usar Flexbox */
+    justify-content: space-around; /* Distribuir los items equitativamente */
+    align-items: center;
+    padding: 20px;
+}
  
  .diseno-contenedor .slide .item{
      width: 200px;
@@ -325,7 +306,27 @@ section{
      opacity: 0;
  }
  
- 
+ .slide {
+    display: flex;
+    gap: 20px; /* Separación entre items */
+    justify-content: center;
+    align-items: center;
+}
+
+.item {
+    width: 300px; /* Ajustar el tamaño de los items */
+    height: 400px;
+    background-position: center;
+    background-size: cover; /* Ajustar las imágenes */
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+}
+
+.item:hover {
+    transform: scale(1.05); /* Efecto hover */
+}
  
  .item .content{
      position: absolute;
@@ -333,8 +334,9 @@ section{
      left: 50px;
      width: 300px;
      text-align: left;
-     color: var(--main-color); /* #eee; */
+     color:  var(--secundary-color); 
      transform: translate(0, -50%);
+     font-weight: bold;
      font-family: system-ui;
      display: none;
  }
@@ -410,6 +412,11 @@ section{
  /*
  fin del carrucel de talonario
  */
- 
+
+ /*
+inicio para adaptarlo a movil y tablet
+ */
+
+
 
 
