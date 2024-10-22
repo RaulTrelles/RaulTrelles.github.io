@@ -153,7 +153,7 @@ section{
  
  section:nth-of-type(1){
      
-     background-image: url(/img/erp/Rectangle\ 1.svg) ;
+     background-image: url(/img/erp/Ofisis/0.svg) ;
      height: 60vh;
  
  }
@@ -178,10 +178,10 @@ section{
      height: 120vh;
  }  */
  
- 
+ /* seccion de texto de la imagen principal */
  .overlay {
      position: absolute;
-     top: 80%;
+     top: 70%;
      left: 8%;
     /* transform: translate(-50%, -50%);*/
      text-align: left;
