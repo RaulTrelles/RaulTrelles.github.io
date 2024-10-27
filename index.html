@@ -31,10 +31,10 @@
     </nav>
 
     <section id="home" class="home">
-        <img src="./img/raul2.jpg" alt="" width="550px" height="450px">
+        <img src="./img/ratv.svg" alt="" width="550px" height="450px">
         <div class="description">
             <h1>Hola, te saluda <br><span> Raúl Trelles </span></h1>
-            <h2><span>Ingeniero de Sistemas... </span></h2>
+            <h2><span>Hagamos que los datos y los sistemas hablen ... </span></h2>
             <P>Un apasionado por la tecnología, disfruto implementando soluciones que ayuden a generar valor,
                 ahorro y oportunidades en las organizaciones, haciendo uso de la tecnología .</P>
             <div class="font">
@@ -54,7 +54,8 @@
             <button id="downloadBtn" class="form_btn">Download CV</button>
 
             <script>
-                document.getElementById('downloadBtn').addEventListener('click', function () {
+                document.getElementById('downloadBtn').addEventListener('click', function () {                    
+                    
                     window.open('https://drive.google.com/file/d/16kCg0tOBKmcj3Zp8NE6DafUZjQYY1A28/view?usp=sharing', '_blank');  // Cambia 'ruta/al/archivo.pdf' por la URL del PDF
                 });
             </script>
@@ -79,18 +80,19 @@
 
 
 
-            <button id="downloadBtnabout" class="about_btn">Leer más...</button>
+            <button id="downloadBtnabout" class="about_btn">Portafolio...</button>
 
             <script>
                 document.getElementById('downloadBtnabout').addEventListener('click', function () {
-                    window.open('https://drive.google.com/file/d/16kCg0tOBKmcj3Zp8NE6DafUZjQYY1A28/view?usp=sharing', '_blank');  // Cambia 'ruta/al/archivo.pdf' por la URL del PDF
+                    location.href = '#portafolio';
+                    /* window.open('https://drive.google.com/file/d/16kCg0tOBKmcj3Zp8NE6DafUZjQYY1A28/view?usp=sharing', '_blank');   */// Cambia 'ruta/al/archivo.pdf' por la URL del PDF
                 });
             </script>
 
 
         </div>
         <div class="about_photo">
-            <img src="./img/raul2.jpg" alt="" width="400" height="300">
+            <img src="./img/ratv.svg" alt="" width="400" height="300">
         </div>
     </section>
     <section id="tecnologias" class="tecnologias">
@@ -120,7 +122,6 @@
         </div>
 
     </section>
-
 
     <!-- 
      <section id="service" class="service">

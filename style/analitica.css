@@ -15,7 +15,8 @@
 body {
     background-color: rgb(21, 21, 21); /* Color de fondo en caso de que la imagen no cargue */
     /*background-image: url('/img/windows_background.jpg'); *//* Ruta de la imagen de fondo */
-
+    overflow-x: hidden; /* Previene desbordamiento horizontal */
+    overflow-y: auto; /* Permite scroll vertical si es necesario */
 }
 /* navbar section */
 nav{

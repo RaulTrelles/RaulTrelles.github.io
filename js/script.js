@@ -81,7 +81,20 @@ cards.forEach((card, index) => {
         <div class="tecnologias_card">
         <i class="fa-brands fa-figma"></i>
         <h3>Figma</h3>
-        </div>  `;
+        </div> 
+        <div class="tecnologias_card">
+        <i class="fa-brands fa-html5"></i>
+        <h3>HTML</h3>
+        </div>
+        <div class="tecnologias_card">
+        <i class="fa-brands fa-css3"></i>
+        <h3>CSS3 </h3>
+        </div> 
+        <div class="tecnologias_card">
+        <i class="fa-brands fa-js"></i>
+        <h3>JavaScript </h3>
+        </div>  
+        `;
         break;
       case 3:
         content = `
