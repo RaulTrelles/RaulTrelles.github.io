@@ -51,14 +51,15 @@
                 <!-- <i class="fas fa-phone"></i> -->
             </div>
 
-            <button id="downloadBtn" class="form_btn">Download CV</button>
+            <button id="downloadBtnabout" class="form_btn">Portafolio...</button>
 
             <script>
-                document.getElementById('downloadBtn').addEventListener('click', function () {                    
-                    
-                    window.open('https://drive.google.com/file/d/16kCg0tOBKmcj3Zp8NE6DafUZjQYY1A28/view?usp=sharing', '_blank');  // Cambia 'ruta/al/archivo.pdf' por la URL del PDF
+                document.getElementById('downloadBtnabout').addEventListener('click', function () {
+                    location.href = '#portafolio';
+                    /* window.open('https://drive.google.com/file/d/16kCg0tOBKmcj3Zp8NE6DafUZjQYY1A28/view?usp=sharing', '_blank');   */// Cambia 'ruta/al/archivo.pdf' por la URL del PDF
                 });
             </script>
+
 
 
         </div>
@@ -79,15 +80,16 @@
 
 
 
+                <button id="downloadBtn" class="about_btn">Download CV</button>
 
-            <button id="downloadBtnabout" class="about_btn">Portafolio...</button>
+                <script>
+                    document.getElementById('downloadBtn').addEventListener('click', function () {                    
+                        
+                        window.open('https://drive.google.com/file/d/16kCg0tOBKmcj3Zp8NE6DafUZjQYY1A28/view?usp=sharing', '_blank');  // Cambia 'ruta/al/archivo.pdf' por la URL del PDF
+                    });
+                </script>
+    
 
-            <script>
-                document.getElementById('downloadBtnabout').addEventListener('click', function () {
-                    location.href = '#portafolio';
-                    /* window.open('https://drive.google.com/file/d/16kCg0tOBKmcj3Zp8NE6DafUZjQYY1A28/view?usp=sharing', '_blank');   */// Cambia 'ruta/al/archivo.pdf' por la URL del PDF
-                });
-            </script>
 
 
         </div>
@@ -122,40 +124,6 @@
         </div>
 
     </section>
-
-    <!-- 
-     <section id="service" class="service">
-        <h1 class="service_section">Mis <span>Servicios</span></h1>
-        <div class="card">
-            <div class="service_card">
-                <i class="fas fa-house-laptop"></i>
-                <h2>Implementador y Administrador de ERP's</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam quia architecto  quaerat quis? Minus, qui. Modi quo fugiat aperiam omnis minus.</p>
-                <a href="#">Leer más...</a>
-            </div>
-            <div class="service_card">
-                <i class="fas fa-laptop-code"></i>
-                <h2>Full Stack Developer</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam quia architecto  quaerat quis? Minus, qui. Modi quo fugiat aperiam omnis minus.</p>
-                <a href="#">Leer más...</a>
-            </div>
-
-            <div class="service_card">
-                <i class="fas fa-chart-pie"></i>
-                <h2>Analítica de Datos</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam quia architecto quaerat quis? Minus, qui. Modi quo fugiat aperiam omnis minus.</p>
-                <a href="#">Leer más...</a>
-            </div>
-            <div class="service_card">
-                <i class="fas fa-magnifying-glass-chart"></i>
-                <h2>Inteligencia de Negocios</h2>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam quia architecto  quaerat quis? Minus, qui. Modi quo fugiat aperiam omnis minus.</p>
-                <a href="#">Leer más...</a>
-            </div>            
-        </div>
-    </section> 
- -->
-
     <section id="portafolio" class="portafolio">
         <h1 class="port_section"><span>Trabajos</span> Recientes</h1>
         <div class="projects">
@@ -256,20 +224,6 @@
         </div>
 
     </section>
-    <!-- 
-    <section id="contact" class="contact">
-        <div class="form">
-            <h1><span>Contactame</span></h1>
-            <form id="contact-form">
-                <input type="text" id="name" placeholder="Ingrese su nombre" required> <br>
-                <input type="email" id="email" placeholder="Ingrese su email" required> <br>
-                <input type="number" id="phone" placeholder="Ingrese su número de Celular" required> <br>
-                <textarea id="message" cols="20" rows="6" placeholder="Ingrese su Mensaje" required></textarea> <br>
-                <button type="submit" class="form_btn">Enviar</button>
-            </form>
-        </div>
-    </section>
-     -->
     <div class="footer">
         <p><i class="fa-solid fa-copyright"></i>Raúl Trelles. || All Right Reserved... </p>
     </div>
@@ -283,7 +237,7 @@
     </div>
     <script src="./js/script.js"></script>
     <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
+<!--     <script type="text/javascript">
         var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
         (function () {
             var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
@@ -293,7 +247,7 @@
             s1.setAttribute('crossorigin', '*');
             s0.parentNode.insertBefore(s1, s0);
         })();
-    </script>
+    </script> -->
     <!--End of Tawk.to Script-->
 
 </body>
