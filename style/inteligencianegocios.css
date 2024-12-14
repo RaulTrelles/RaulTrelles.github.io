@@ -38,7 +38,7 @@ nav{
     overflow: hidden;
     padding: 10px;
     position: fixed;
-    z-index: 1000;
+    z-index: 1;
 }
 
 
@@ -97,7 +97,7 @@ li a:hover{
     }
 
     nav ul {
-        z-index: 1000;
+        z-index: 1;
         position: fixed;
         width: 66%;
         height: var(--menu-height-mobile);
@@ -160,7 +160,7 @@ li a:hover{
     }
 
     nav ul {
-        z-index: 1000;
+        z-index: 1;
         position: fixed;
         width: 80%;
         height: var(--menu-height-tablet);
@@ -235,7 +235,7 @@ section{
  
 /* Ajustes para la sección y el slide */
 section:nth-of-type(1) {
-    background-image: url(/img/inteligencianegocios/modelo/img5.jpg);
+    background-image: url(/img/inteligencianegocios/modelo/img3.jpg);
     background-position: center; /* Centrar la imagen */
     background-size: cover; /* Asegura que la imagen cubra el contenedor */
     height: 80vh; /* Altura adaptable */
@@ -367,7 +367,8 @@ section:nth-of-type(1) {
 
  /* Estilo del slider */
 .slide {
-    display: flex;
+    
+    z-index: 1; /* Un valor más bajo para quedar debajo del boton_menu */
     gap: 20px; /* Espacio entre los ítems */
     justify-content: center;
     align-items: center;

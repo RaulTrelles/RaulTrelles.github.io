@@ -1,0 +1,67 @@
+:root {
+    --main-color: #ff9800; 
+    --secundary-color: #b6a508;
+    --main-negro: #000000;
+}
+.boton_menu {
+    position: fixed; /* Mantener la posición fija */
+    bottom: 300px; /* Ajustar según lo que necesites */
+    left: 20px; /* Ajustar para la ubicación horizontal */
+    z-index: 800; /* Asegurar que esté por encima de otros elementos */
+}
+
+#btn-mas {
+    display: none;
+    
+}
+
+.listaProyectos a, .btn-mas{
+    display: block;
+    text-decoration: none;
+    background: var(--main-color);
+    color: var(--main-negro);
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    border-radius: 50%;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
+    transition: all 500ms ease;
+}
+
+.btn-mas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.listaProyectos a:hover {
+    background: var(--main-negro);
+    color: var(--main-color);
+}
+
+.listaProyectos a{
+    margin-bottom: -15px;
+    opacity: 0;
+    visibility: hidden;
+}
+#btn-mas:checked~ .listaProyectos a{
+    margin-bottom: 10px;
+    opacity: 1;
+    visibility: visible;
+}
+
+.btn-mas {
+    cursor: pointer;
+}
+
+.fa-plus {
+    cursor: pointer;
+    background: var(--main-color);
+    font-size: 23px;
+}
+
+#btn-mas:checked ~ .btn-mas .fa-plus {
+    transform: rotate(137deg);
+    font-size: 25px;
+}
