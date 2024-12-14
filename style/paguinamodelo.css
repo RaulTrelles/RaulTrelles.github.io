@@ -1,0 +1,125 @@
+@import url('../style/fondo.css');
+@import url('../style/menu.css');
+
+
+/*
+ *******************  sección de desarrollo de etxto de cada sección ***********
+*/
+
+section{
+    padding-top: 80px;
+     width: 100%;
+     height: 100vh;
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size:cover;
+     background-attachment: fixed;
+     position: relative; /* Necesario para posicionar el contenido dentro */
+ 
+ }
+ 
+ section h1 {
+     text-align: center;
+     color: var(--main-color);
+ }
+ 
+/* Ajustes para la sección y el slide */
+section:nth-of-type(1) {
+    background-image: url(/img/erp/Ofisis/0.svg);
+    background-position: center; /* Centrar la imagen */
+    background-size: cover; /* Asegura que la imagen cubra el contenedor */
+    height: 80vh; /* Altura adaptable */
+    display: flex; /* Para alinear el contenido interno si es necesario */
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Cambiar de fixed a relative */
+    z-index: 0; /* Asegura que los elementos hijos no sobresalgan */
+}
+
+/* 
+ section:nth-of-type(2){
+     height: 120vh;
+ 
+ }
+  */
+ 
+ .overlay {
+     position: absolute;
+     top: 92%;
+     left: 8%;
+    /* transform: translate(-50%, -50%);*/
+     text-align: left;
+     color: var(--main-color) /* Color del texto */
+ }
+ 
+ .overlay h1 {
+     font-size: 2.5em;
+     margin: 0;
+ }
+ 
+ h1 {
+     font-size: 1.5em;
+     margin: 0;
+ }
+ 
+ section .texto p {
+     display: flex;
+     justify-content: space-around;
+     margin: 10px 250px ;
+     gap: 60px;
+     padding-top: 10px;
+     color: white;
+     font-size: 1.3em;
+ }
+ 
+ .branding-imagenes{
+     margin-top: 40px;
+     display: flex;
+     justify-content: start;
+    /* margin: 50px 50px ;*/
+    border: 2px;
+    border-color: var(--main-color);
+ }
+ /* Texto de la seccion par o escrita  */
+ section .texto .branding p {
+    margin: -20px 100px; /* Centra el texto con márgenes automáticos */
+    width: 35%; 
+    padding-top: 20px;
+    color: white;
+    font-size: 1.3em;
+    text-align: justify;
+ 
+ }
+ .branding-imagenes img{
+    /* background-color: var(--main-color);*/
+    /* padding: 10px;*/
+     border-radius: 50%;
+     box-shadow: 0px 0px 30px var(--main-color);
+     filter: brightness(1.1);
+     transition: .4s ease-in-out;
+     animation: animate 3.5s ease-in-out forwards infinite;
+ }
+ 
+ section .texto .colores img {
+     margin: 80px 590px;
+     background-color: var(--main-color);
+ 
+    /* padding: 10px;*/
+    /* border-radius: 50%;*/
+     box-shadow: 0px 0px 30px var(--main-color);
+     filter: brightness(1.1);
+     transition: .4s ease-in-out;
+     animation: animate 3.5s ease-in-out forwards infinite;
+ }
+ section .texto .diseno img {
+     margin: 80px 540px;
+     /*background-color: var(--main-color);*/
+ 
+    /* padding: 10px;*/
+    /* border-radius: 50%;*/
+     box-shadow: 0px 0px 30px var(--main-color);
+     filter: brightness(1.1);
+     transition: .4s ease-in-out;
+     animation: animate 3.5s ease-in-out forwards infinite;
+ }
+ 

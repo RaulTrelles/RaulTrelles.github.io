@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/PortalProyectos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <title>Portafolio Personal</title>
+</head>
+<body>
+    <nav>
+        <input type="checkbox" class="checkbox" id="check">
+        <h1 class="nav_head">Implementaciones de Inteligencia de Negocios</h1>
+        <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../index.html#about">Acerca de</a></li>
+            <!-- <li><a href="#service">Servicios</a></li>  -->
+            <li><a href="../index.html#tecnologias">Tecnologías</a></li>
+            <li><a href="../index.html#portafolio">Portafolio</a></li>
+
+
+            <a href="./contactame.html"><button class="contact_btn">Contactame</button></a>
+        </ul>
+
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+    </nav>
+
+ 
+    <div class="diseno-contenedor">
+
+        <div class="slide">
+
+            <div class="item" style="background-image: url(/img/inteligencianegocios/modelo/img1.jpg);">
+                <div class="content">
+                    <div class="name">Consorcio Tránsito Ciudadano</div>
+                    <div class="des">Permite visualizar las cobranzas realizadas en el tiempo, ya sea acumulada o por día</div>
+                    <a href="./paguinamodelo.html"><button class="contact_btn">Ver Proyecto</button></a>
+               </div>  
+
+            </div>
+            <div class="item" style="background-image: url(/img/inteligencianegocios/modelo/img2.jpg);">
+
+                <div class="content">
+                    <div class="name">Portal SIS</div>
+                    <div class="des">Permite visualizar la evolución de las atenciones en el Sistema Integral de Salud</div>
+                    <a href="./paguinamodelo.html"><button class="contact_btn">Ver Proyecto</button></a>
+               </div> 
+        
+            </div>
+            <div class="item" style="background-image: url(/img/inteligencianegocios/modelo/img3.jpg);">
+
+                <div class="content">
+                    <div class="name">Sistema Aeropuertuario</div>
+                    <div class="des">Permite visualizar las cobranzas realizadas en el tiempo, ya sea acumulada o por día</div>
+                    <a href="./paguinamodelo.html"><button class="contact_btn">Ver Proyecto</button></a>
+               </div> 
+
+            </div>
+            <div class="item" style="background-image: url(/img/inteligencianegocios/modelo/img4.jpg);">
+
+                <div class="content">
+                    <div class="name">Coelvisac</div>
+                    <div class="des">Permite visualizar los consumos de electricidad de los clientes</div>
+                    <a href="./paguinamodelo.html"><button class="contact_btn">Ver Proyecto</button></a>
+               </div> 
+
+            </div>
+            <div class="item" style="background-image: url(/img/inteligencianegocios/modelo/img5.jpg);">
+
+                <div class="content">
+                    <div class="name">Uso del Tren en Lima</div>
+                    <div class="des">Permite visualizar las cobranzas realizadas en el tiempo, ya sea acumulada o por día</div>
+                    <a href="./paguinamodelo.html"><button class="contact_btn">Ver Proyecto</button></a>
+               </div> 
+
+            </div>
+        </div>
+        <div class="button">
+            <button class="next"><i class="fa-solid fa-arrow-left"></i></button>
+            <button class="prev"><i class="fa-solid fa-arrow-right"></i></button>
+        </div> 
+
+    </div>
+    
+    <script>
+        let next = document.querySelector('.next')
+        let prev = document.querySelector('.prev')
+
+        next.addEventListener('click', function () {
+            let items = document.querySelectorAll('.item')
+            document.querySelector('.slide').appendChild(items[0])
+        })
+
+        prev.addEventListener('click', function () {
+            let items = document.querySelectorAll('.item')
+            document.querySelector('.slide').prepend(items[items.length - 1]) // here the length of items = 6
+        })
+    </script>
+
+
+</body>
+</html>

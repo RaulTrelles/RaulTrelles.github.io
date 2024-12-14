@@ -7,7 +7,7 @@
     position: fixed; /* Mantener la posición fija */
     bottom: 300px; /* Ajustar según lo que necesites */
     left: 20px; /* Ajustar para la ubicación horizontal */
-    z-index: 800; /* Asegurar que esté por encima de otros elementos */
+    z-index: 8000; /* Asegurar que esté por encima de otros elementos */
 }
 
 #btn-mas {
