@@ -65,3 +65,26 @@
     transform: rotate(137deg);
     font-size: 25px;
 }
+
+
+/*  responsibe para table barra superior*/
+@media screen and (max-width: 540px) {
+    
+    .boton_menu {
+        position: fixed; /* Mantener la posición fija */
+        bottom: 10px; /* Ajustar según lo que necesites */
+        left: 20px; /* Ajustar para la ubicación horizontal */
+        z-index: 8000; /* Asegurar que esté por encima de otros elementos */
+    }
+
+}
+
+/* responsive para tablet barra superior*/ 
+@media screen and (min-width: 541px) and (max-width: 820px) {
+   .boton_menu {
+    position: fixed; /* Mantener la posición fija */
+    bottom: 10px; /* Ajustar según lo que necesites */
+    left: 20px; /* Ajustar para la ubicación horizontal */
+    z-index: 8000; /* Asegurar que esté por encima de otros elementos */
+}
+}

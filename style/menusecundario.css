@@ -9,7 +9,7 @@ nav{
     top: 0;
     width: 100%;
     color: white;
-    font-size: 18px;
+    font-size: 10px;
     overflow: hidden;
     padding: 10px;
     position: fixed;
@@ -27,6 +27,8 @@ li{
     float: inline-start;
     overflow: hidden;
 }
+
+
 li a{
     padding: 15px;
     display: block;

@@ -36,7 +36,7 @@
 }
 
 .description h1 {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 700;
 }
 
@@ -47,7 +47,7 @@
 
 .description h2 {
     margin-top: 20px;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 900;
 }
 
@@ -82,7 +82,7 @@
 .description p {
     margin-top: 20px;
     width: 500px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .font i {
@@ -90,7 +90,7 @@
     border: 2px solid var(--main-color);
     border-radius: 50%;
     padding: 13px;
-    font-size: 40px;
+    font-size: 30px;
     cursor: pointer;
     transition: .4s ease-in-out;
 }
@@ -243,7 +243,7 @@
 }
 .about_section p {
     margin-top: 15px;
-    font-size: 20px;
+    font-size: 18px;
 }
 .about_btn {
     padding: 13px 25px;
