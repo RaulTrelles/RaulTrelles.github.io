@@ -55,10 +55,12 @@ section:nth-of-type(1) {
   margin: 0;
 }
 
+/* Titulo de la paguina (de la imagen) */
 h1 {
   font-size: 1.5em;
   margin: 0;
 }
+
 
 section .texto p {
   display: flex;
