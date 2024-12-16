@@ -1,4 +1,5 @@
 @import url('../style/fondo.css');
+
 /* navbar section */
 nav{
     background-color: black;
@@ -27,7 +28,9 @@ li a{
     padding: 15px;
     display: block;
     color: white;
+
 }
+
 li a:hover{
     color: var(--main-color);
 }

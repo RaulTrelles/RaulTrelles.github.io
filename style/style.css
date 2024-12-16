@@ -2,7 +2,22 @@
 @import url('../style/fondo.css');
 @import url('../style/menuprincipal.css');
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sigmar+One&display=swap');
 
+
+
+body {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;  
+
+   /*  font-family: "Sigmar One";
+    font-weight: 400;
+    font-style: normal;  */
+} 
+ 
 
 /* ******************************** Sección home ************************************* */
 .home {
@@ -234,9 +249,11 @@
 }
 .about_section h1 {
     font-size: 50px;
+    font-family: "Montserrat", sans-serif;
 }
 .about_section h2 {
     margin-top: 10px;
+    font-family: "Montserrat", sans-serif;
 }
 .about_section span {
     color: var(--main-color);

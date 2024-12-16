@@ -41,6 +41,7 @@
   padding-top: 10px;
   color: white !important; /* Sobrescribe estilos conflictivos */
   font-size: 0.9em; 
+  font-family: "Montserrat";
 }
 
 .radio-group {
