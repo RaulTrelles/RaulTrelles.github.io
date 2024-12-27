@@ -1,29 +1,16 @@
-@import url("../style/fondo.css");
+/* @import url('../style/fondo.css');
+@import url('../style/menusecundario.css');
+ */
 
-@import url("../style/menusecundario.css");
-
-:root {
-  --main-color: #ff9800;
-  --secundary-color: #b6a508;
-  --main-negro: #000000;
-}
-/*Contenedor padre*/
 .container {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 140vh; /* Ajusta al 90% del ancho del viewport */
-  height: 90vh; /* Ajusta al 90% de la altura del viewport */
-  overflow: hidden;
+  width: 1440px;
+  height: 90vh;
   background: #f5f5f5;
   box-shadow: 0 30px 50px #dbdbdb;
-}
-
-.slide {
-  display: flex;
-  overflow-x: auto; /* Permite scroll horizontal si hay demasiados ítems */
-  scroll-snap-type: x mandatory; /* Mejora la experiencia de scroll */
 }
 
 .container .slide .item {
@@ -42,12 +29,12 @@
 
 .slide .item:nth-child(1),
 .slide .item:nth-child(2) {
-  top: 40px;
+  top: 0;
   left: 0;
   transform: translate(0, 0);
   border-radius: 0;
-  width: 160vh; /* ajusto el ancho de la imagen central del carrucel*/
-  height: 100%; /* ajusto el alto de la imagen central del carrucel*/
+  width: 100%;
+  height: 100%;
 }
 
 .slide .item:nth-child(3) {
@@ -67,7 +54,7 @@
 }
 
 .item .content {
-  position: relative;
+  position: absolute;
   top: 72%;
   left: 40px;
   width: 300px;
@@ -83,48 +70,27 @@
 }
 
 .content .name {
-  font-size: 25px;
+  font-size: 40px;
   text-transform: uppercase;
   font-weight: bold;
-  background-color: var(--main-color);
-  opacity: 0.5; /* Opacidad del 50% */
-  border-radius: 8px;
-  padding: 10px 20px;
+  opacity: 0;
   animation: animate 1s ease-in-out 1 forwards;
 }
 
 .content .des {
   margin-top: 10px;
-  margin-bottom: 30px;
-  background-color: var(--main-color);
-  opacity: 0.5; /* Opacidad del 50% */
-  border-radius: 8px;
-  padding: 10px 10px;
+  margin-bottom: 20px;
+  opacity: 0;
   animation: animate 1s ease-in-out 0.3s 1 forwards;
 }
 
 .content button {
   padding: 10px 20px;
   margin-left: 6px;
-  background-color: var(--main-color);
-  border-radius: 8px;
+  border: none;
   cursor: pointer;
-  color: #eee;
   opacity: 0;
   animation: animate 1s ease-in-out 0.6s 1 forwards;
-}
-
-/* Estilo para el botón desactivado */
-.contact_btn:disabled {
-  background-color: gray;
-  color: white;
-  cursor: not-allowed;
-  opacity: 0.6; /* Indica visualmente que está desactivado */
-}
-
-/* Desactiva completamente la interacción del enlace */
-.disabled-link {
-  pointer-events: none;
 }
 
 @keyframes animate {
@@ -167,34 +133,17 @@
 /* Ajustes para dispositivos móviles */
 @media screen and (max-width: 540px) {
   .container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100vw; /* Ajusta al 90% del ancho del viewport */
-    height: 90vh; /* Ajusta al 90% de la altura del viewport */
-    overflow: hidden;
-    background: #f5f5f5;
-    box-shadow: 0 30px 50px #dbdbdb;
-  }
-
-  .slide {
-    gap: 15px; /* Espacio más pequeño entre los ítems */
+    height: 95vh; /* Ajustar la altura para móviles */
     display: flex;
-    overflow-x: auto; /* Permite scroll horizontal si hay demasiados ítems */
-    scroll-snap-type: x mandatory; /* Mejora la experiencia de scroll */
-    font-size: 20px;
-  }
-
-  .slide .item {
-    width: 80%; /* Dos ítems por fila en tablet */
-    height: 98vh; /* Ajustar la altura */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .item .content {
-    position: relative;
-    top: 40%;
-    left: 20px;
+    position: absolute;
+    top: 30%;
+    left: 50px;
     width: 300px;
     text-align: left;
     color: #eee;
@@ -203,8 +152,20 @@
     display: none;
   }
 
+  .slide {
+    gap: 20px;
+    overflow-x: auto; /* Desplazamiento horizontal si es necesario */
+    width: 80%;
+    padding: 0 10px;
+  }
+
+  .slide .item {
+    width: 80%; /* Asegura que los ítems ocupen un 80% del contenedor */
+    height: 50vh; /* Ajustar la altura de los ítems para que se vean bien en móviles */
+  }
+
   .button button {
-    font-size: 0.75rem; /* Ajustar el tamaño de los botones en tablet */
+    font-size: 1.2rem; /* Ajustar el tamaño de los botones en móviles */
   }
 
   .slide .item:nth-child(1),
@@ -214,28 +175,27 @@
     transform: translate(0, 0);
     border-radius: 0;
     width: 100%;
-    height: 90vh;
+    height: 100%;
   }
 
   .slide .item:nth-child(3) {
-    left: 40%;
+    left: 10%;
   }
-
   .slide .item:nth-child(4) {
-    left: calc(40% + 220px);
+    left: calc(10% + 220px);
   }
   .slide .item:nth-child(5) {
-    left: calc(40% + 440px);
+    left: calc(10% + 440px);
   }
 
   /* here n = 0, 1, 2, 3,... */
   .slide .item:nth-child(n + 6) {
-    left: calc(40% + 660px);
+    left: calc(10% + 660px);
     opacity: 0;
   }
 
   .content .name {
-    font-size: 16px;
+    font-size: 20px;
     text-transform: uppercase;
     font-weight: bold;
     opacity: 0;
@@ -243,10 +203,8 @@
   }
 
   .content .des {
-    margin-top: 14px;
+    margin-top: 10px;
     margin-bottom: 20px;
-    font-size: 14px;
-
     opacity: 0;
     animation: animate 1s ease-in-out 0.3s 1 forwards;
   }
@@ -254,7 +212,6 @@
   .content button {
     padding: 10px 20px;
     margin-left: 6px;
-    font-size: 14px;
     border: none;
     cursor: pointer;
     opacity: 0;
@@ -265,32 +222,21 @@
 /* Ajustes para dispositivos tablet */
 @media screen and (min-width: 541px) and (max-width: 820px) {
   .container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100vw; /* Ajusta al 90% del ancho del viewport */
-    height: 90vh; /* Ajusta al 90% de la altura del viewport */
-    overflow: hidden;
-    background: #f5f5f5;
-    box-shadow: 0 30px 50px #dbdbdb;
+    height: 90vh; /* Ajustar la altura para tabletas */
   }
 
   .slide {
     gap: 15px; /* Espacio más pequeño entre los ítems */
-    display: flex;
-    overflow-x: auto; /* Permite scroll horizontal si hay demasiados ítems */
-    scroll-snap-type: x mandatory; /* Mejora la experiencia de scroll */
   }
 
   .slide .item {
-    width: 80%; /* Dos ítems por fila en tablet */
-    height: 98vh; /* Ajustar la altura */
+    width: 40%; /* Dos ítems por fila en tablet */
+    height: 150px; /* Ajustar la altura */
   }
 
   .item .content {
-    position: relative;
-    top: 50%;
+    position: absolute;
+    top: 40%;
     left: 50px;
     width: 300px;
     text-align: left;
@@ -311,28 +257,26 @@
     transform: translate(0, 0);
     border-radius: 0;
     width: 100%;
-    height: 90vh;
+    height: 100%;
   }
 
   .slide .item:nth-child(3) {
-    left: 40%;
+    left: 30%;
   }
-
   .slide .item:nth-child(4) {
-    left: calc(40% + 220px);
+    left: calc(30% + 220px);
   }
   .slide .item:nth-child(5) {
-    left: calc(40% + 440px);
+    left: calc(30% + 440px);
   }
 
   /* here n = 0, 1, 2, 3,... */
   .slide .item:nth-child(n + 6) {
-    left: calc(40% + 660px);
+    left: calc(30% + 660px);
     opacity: 0;
   }
-
   .content .name {
-    font-size: 25px;
+    font-size: 40px;
     text-transform: uppercase;
     font-weight: bold;
     opacity: 0;
@@ -342,8 +286,6 @@
   .content .des {
     margin-top: 10px;
     margin-bottom: 20px;
-    font-size: 18px;
-
     opacity: 0;
     animation: animate 1s ease-in-out 0.3s 1 forwards;
   }
@@ -351,8 +293,6 @@
   .content button {
     padding: 10px 20px;
     margin-left: 6px;
-    font-size: 18px;
-
     border: none;
     cursor: pointer;
     opacity: 0;
