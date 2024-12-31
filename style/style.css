@@ -170,6 +170,13 @@ body {
     width: 100%;
     font-size: 23px;
   }
+
+  .description h2 span::after {
+    height: 30px;
+    border-left: 3px solid var(--main-color);
+    background-color: rgba(21, 21, 21);
+    animation: text 10s infinite backwards steps(10);
+  }
 }
 
 /* Ajustes para celulares */
@@ -203,6 +210,13 @@ body {
 
   .description h2 {
     font-size: 14px;
+  }
+
+  .description h2 span::after {
+    height: 16px;
+    border-left: 3px solid var(--main-color);
+    background-color: rgba(21, 21, 21);
+    animation: text 10s infinite backwards steps(10);
   }
 
   .description p {
