@@ -67,6 +67,7 @@ li a:hover {
   .checkbtn {
     display: block;
     margin-left: 150px;
+    margin-top: -60px;
   }
   .nav_head {
     padding-left: 10px;
@@ -77,7 +78,7 @@ li a:hover {
     width: 50%;
     height: auto; /* Ajustar la altura automáticamente */
     background-color: black;
-    top: 50px;
+    top: 40px;
     right: -100%;
     padding: 0; /* Eliminar padding */
     transition: all 0.5s;
@@ -110,6 +111,20 @@ li a:hover {
   }
   .checkbox:checked ~ ul {
     right: 0;
+  }
+
+  /* Oculta el icono de cerrar por defecto */
+  #close-icon {
+    display: none;
+  }
+
+  /* Muestra el icono de cerrar cuando el checkbox está marcado */
+  .checkbox:checked ~ .checkbtn #menu-icon {
+    display: none;
+  }
+
+  .checkbox:checked ~ .checkbtn #close-icon {
+    display: inline;
   }
 }
 
@@ -151,5 +166,19 @@ li a:hover {
   }
   .checkbox:checked ~ ul {
     right: 0;
+  }
+
+  /* Oculta el icono de cerrar por defecto */
+  #close-icon {
+    display: none;
+  }
+
+  /* Muestra el icono de cerrar cuando el checkbox está marcado */
+  .checkbox:checked ~ .checkbtn #menu-icon {
+    display: none;
+  }
+
+  .checkbox:checked ~ .checkbtn #close-icon {
+    display: inline;
   }
 }
