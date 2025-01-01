@@ -1,42 +1,43 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sigmar+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Charmonman:wght@400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sigmar+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Charmonman:wght@400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 /* Color que define el Portal!!!! */
 :root {
-    --main-color: #ff9800; /* rgb(218, 165, 32); */
-    --secundary-color: #b6a508; 
+  --main-color: #ff9800; /* rgb(218, 165, 32); */
+  --secundary-color: #b6a508;
 
-    --menu-font-size-mobile: 14px; /* Tamaño de letra para móvil */
-    --menu-font-size-tablet: 16px; /* Tamaño de letra para tablet */
-    --menu-height-mobile: auto;   /* Altura del menú para móvil */
-    --menu-height-tablet: 28vh;   /* Altura del menú para tablet */
-    --button-width: 50%;          /* Ancho del botón "Contáctame" */
-
+  --menu-font-size-mobile: 14px; /* Tamaño de letra para móvil */
+  --menu-font-size-tablet: 16px; /* Tamaño de letra para tablet */
+  --menu-height-mobile: auto; /* Altura del menú para móvil */
+  --menu-height-tablet: 28vh; /* Altura del menú para tablet */
+  --button-width: 50%; /* Ancho del botón "Contáctame" */
 }
-*{
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-    text-decoration: none;
-    scroll-behavior: smooth;
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  scroll-behavior: smooth;
 }
 body {
-    background-color: rgba(21, 21, 21); /* Color de fondo en caso de que la imagen no cargue */
-    /*background-image: url('/img/windows_background.jpg'); *//* Ruta de la imagen de fondo */
-    background-size: cover; /* Ajusta la imagen para que cubra todo el fondo */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
+  background-color: rgba(
+    0,
+    0,
+    0
+  ); /* rgba(21, 21, 21); */ /* Color de fondo en caso de que la imagen no cargue */
+  /*background-image: url('/img/windows_background.jpg'); */ /* Ruta de la imagen de fondo */
+  background-size: cover; /* Ajusta la imagen para que cubra todo el fondo */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
 
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto; 
-    font-weight: 400;
-    font-style:normal;   
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 
- /*    font-family: "Sigmar One";
+  /*    font-family: "Sigmar One";
     font-weight: 400;
     font-style: normal;   */
 }
