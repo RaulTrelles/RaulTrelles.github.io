@@ -75,7 +75,7 @@ body {
   right: 0px;
   height: 40px;
   border-left: 3px solid var(--main-color);
-  background-color: rgba(21, 21, 21);
+  background-color: rgba(0, 0, 0);
   animation: text 10s infinite backwards steps(10);
 }
 
@@ -174,7 +174,7 @@ body {
   .description h2 span::after {
     height: 30px;
     border-left: 3px solid var(--main-color);
-    background-color: rgba(21, 21, 21);
+    background-color: rgba(0, 0, 0);
     animation: text 10s infinite backwards steps(10);
   }
 }
@@ -215,7 +215,7 @@ body {
   .description h2 span::after {
     height: 16px;
     border-left: 3px solid var(--main-color);
-    background-color: rgba(21, 21, 21);
+    background-color: rgba(0, 0, 0);
     animation: text 10s infinite backwards steps(10);
   }
 
@@ -925,12 +925,13 @@ textarea {
   cursor: not-allowed; /* Cambia el cursor a "no permitido" */
 }
 
-/* .footer {
+.footer {
   background-color: black;
   color: white;
   padding: 20px;
   font-size: 15px;
   text-align: center;
   display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
 }
- */
