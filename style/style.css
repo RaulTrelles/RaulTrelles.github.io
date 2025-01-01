@@ -870,15 +870,6 @@ textarea {
   }
 }
 
-.footer {
-  margin-top: 10px;
-  background-color: black;
-  color: white;
-  padding: 20px;
-  font-size: 15px;
-  text-align: center;
-}
-
 *::selection {
   background-color: var(--main-color);
 }
@@ -934,49 +925,12 @@ textarea {
   cursor: not-allowed; /* Cambia el cursor a "no permitido" */
 }
 
-/* responsive navbar */
-/* Media Queries para ajustar el diseño en pantallas más pequeñas */
-/* @media (max-width: 1200px) {
-    .modal-content {
-        background-color:  rgb(80, 46, 13);        
-    }
-}
-
-@media (max-width: 768px) {
-    .modal-content {
-        background-color:  rgb(80, 46, 13);
-}
-}
-
-@media (max-width: 480px) {
-    .modal-content{
-        background-color:  rgb(80, 46, 13);
-    }
-} */
-
-/* @keyframes Carrucel 
-{
-    from{
-        transform:  rotateY(360deg) translateZ(100px);
-        z-index: 10;
-        opacity: 0.9;      
-
-    }
-    50%{
-        z-index: -10;
-
-    }
-    to{
-        transform: rotateX(0deg) translateZ(100px)
-    }
+/* .footer {
+  background-color: black;
+  color: white;
+  padding: 20px;
+  font-size: 15px;
+  text-align: center;
+  display: flex;
 }
  */
-
-/* Responsive para pantallas muy pequeñas (una columna) */
-
-/* @media (max-width: 480px) {
-    .tecnologias_card {
-        flex-basis: 100%;
-        max-width: 100%; 
-    }
-} */
