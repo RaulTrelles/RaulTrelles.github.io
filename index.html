@@ -17,6 +17,10 @@
         gtag('config', 'G-K9XLGD2PPM');
     </script>
 
+    <script>
+        document.cookie = "key=value; SameSite=None; Secure";
+    </script>
+
 
     <title>Portafolio Personal</title>
 </head>
@@ -245,8 +249,10 @@
     </div>
     <script src="./js/script.js"></script>
     <!--Start of Tawk.to Script-->
+    <script src="config.js"></script>
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
 
-    <!--    <script type="text/javascript">
+    <!--     <script type="text/javascript">
         var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
         (function () {
             var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
@@ -268,16 +274,41 @@
                 closeIcon.style.display = 'none';
             }
         });
-
-
     </script> -->
 
 
-    <!--End of Tawk.to Script-->
 
+    <!--     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2025/01/14/04/20250114041029-9C0WY3HO.js"></script>
+ -->
 
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2025/01/14/04/20250114041029-9C0WY3HO.js"></script>
+
+    <script type="text/javascript">
+        // Escucha el evento de cuando el Webchat está listo
+        window.addEventListener('webchat:ready', function () {
+            // Forzar la apertura del chat después de que esté listo
+            setTimeout(function () {
+                window.botpressWebChat.sendEvent({
+                    type: 'show'
+                });
+            }, 1000); // Opcional: Abre el chat después de 1 segundo
+        });
+
+        // Alternativa: Simular clic al ícono del chat si el método anterior no funciona
+        function simulateClickOnChatIcon() {
+            const chatIcon = document.querySelector('.bp-widget-launcher'); // Clase del ícono de Botpress
+            if (chatIcon) {
+                chatIcon.click(); // Simula un clic en el ícono
+            } else {
+                console.error('No se encontró el ícono del chat.');
+            }
+        }
+
+        // Ejecuta la función de simulación si es necesario
+        setTimeout(simulateClickOnChatIcon, 2000); // Simula el clic después de 2 segundos
+    </script>
 
 
 </body>
