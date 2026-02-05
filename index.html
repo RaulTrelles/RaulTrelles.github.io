@@ -13,7 +13,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-K9XLGD2PPM');
     </script>
 
@@ -21,6 +20,61 @@
         document.cookie = "key=value; SameSite=None; Secure";
     </script>
 
+    <!-- CONFIGURACIÓN BOTPRESS MÁS SIMPLE Y EFECTIVA -->
+    <script>
+        // Configuración mínima pero efectiva
+        window.botpressWebChatInit = {
+            botId: "9c0wy3ho",
+            hostUrl: "https://cdn.botpress.cloud/webchat/v2.2",
+            clientId: "9c0wy3ho",
+
+            // ESTO ES LO MÁS IMPORTANTE - Configurar para que inicie ABIERTO
+            layout: {
+                initialOpen: true,  // Iniciar abierto
+                isOpen: true        // Estado abierto
+            },
+
+            // Configuración del comportamiento
+            hideWidget: false,
+            showConversationsButton: false,
+
+            // Callback cuando se carga - ESTO ES CLAVE
+            onLoad: function (bp) {
+                console.log('🔵 Botpress cargado, API disponible');
+
+                // Guardar la instancia para uso global
+                window.botpressInstance = bp;
+
+                // Forzar que el chat esté abierto
+                setTimeout(function () {
+                    console.log('🔄 Forzando apertura del chat...');
+
+                    // Método 1: Usar el método open si existe
+                    if (typeof bp.open === 'function') {
+                        bp.open();
+                        console.log('✅ Chat abierto usando bp.open()');
+                    }
+                    // Método 2: Usar sendEvent
+                    else if (bp.webchat && typeof bp.webchat.sendEvent === 'function') {
+                        bp.webchat.sendEvent({ type: 'show' });
+                        console.log('✅ Chat abierto usando sendEvent');
+                    }
+                    // Método 3: Configurar estado directamente
+                    else {
+                        console.log('⚠️ Usando método alternativo');
+                        try {
+                            // Intentar modificar el estado directamente
+                            if (bp.config) {
+                                bp.config.layout.isOpen = true;
+                            }
+                        } catch (e) {
+                            console.log('Error:', e);
+                        }
+                    }
+                }, 1000); // Esperar 1 segundo para asegurar carga completa
+            }
+        };
+    </script>
 
     <title>Portafolio Personal</title>
 </head>
@@ -32,12 +86,9 @@
         <ul>
             <li><a href="#home">Inicio</a></li>
             <li><a href="#about">Acerca de</a></li>
-            <!-- <li><a href="#service">Servicios</a></li>  -->
             <li><a href="#tecnologias">Tecnologías</a></li>
             <li><a href="#portafolio">Portafolio</a></li>
             <li><a href="#experimentos">Experimentos</a></li>
-            <!-- <li><a href="./modelo.html">Modelo</a></li> -->
-
             <a href="./paginas/contactame.html"><button class="contact_btn">Contactame</button></a>
         </ul>
 
@@ -57,15 +108,9 @@
             <div class="font">
                 <i class="fa-brands fa-instagram icon-disabled"></i>
                 <i class="fa-brands fa-facebook icon-disabled"></i>
-
-                <!--      <a href="https://www.facebook.com/raul.trelles" target="_blank" rel="noopener noreferrer">
-                    <i class="a-brands fa-facebook-f"></i>
-                </a> -->
                 <a href="https://www.linkedin.com/in/raultrelles/" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-linkedin-in"></i>
                 </a>
-
-                <!-- <i class="fas fa-phone"></i> -->
             </div>
 
             <button id="downloadBtnabout" class="form_btn">Portafolio...</button>
@@ -73,15 +118,10 @@
             <script>
                 document.getElementById('downloadBtnabout').addEventListener('click', function () {
                     location.href = '#portafolio';
-                    /* window.open('https://drive.google.com/file/d/16kCg0tOBKmcj3Zp8NE6DafUZjQYY1A28/view?usp=sharing', '_blank');   */// Cambia 'ruta/al/archivo.pdf' por la URL del PDF
                 });
             </script>
 
-
-
         </div>
-
-
     </section>
     <section id="about" class="about">
         <div class="about_section">
@@ -95,19 +135,13 @@
                 datos e inteligencia de negocios. Apasionado por crear soluciones que generen valor, optimización y
                 oportunidades en las organizaciones a través de la tecnología...</p> <br>
 
-
-
             <button id="downloadBtn" class="about_btn">Download CV</button>
 
             <script>
                 document.getElementById('downloadBtn').addEventListener('click', function () {
-
-                    window.open('https://drive.google.com/file/d/16kCg0tOBKmcj3Zp8NE6DafUZjQYY1A28/view?usp=sharing', '_blank');  // Cambia 'ruta/al/archivo.pdf' por la URL del PDF
+                    window.open('https://drive.google.com/file/d/16kCg0tOBKmcj3Zp8NE6DafUZjQYY1A28/view?usp=sharing', '_blank');
                 });
             </script>
-
-
-
 
         </div>
         <div class="about_photo">
@@ -193,7 +227,6 @@
                     <img src="./img/experimentos/experimento1.png" alt="" width="400px" height="350px">
                     <div class="content">
                         <h1>Carrucel CCS3 y JS</h1>
-                        <!--  <p>Desarrollo una metodología que asegura que tu implementación tenga el éxito deseado, brindando un escenario en donde la alta gerencia obtiene los indicadores deseados y los usuarios están felices...</p> -->
                     </div>
                 </a>
             </div>
@@ -210,27 +243,6 @@
                 </a>
             </div>
 
-            <!--             <div class="exper_card" id="3">
-                <a href="https://codepen.io/CreativeCoder111/pen/XWyjBab" target="_blank" rel="noopener noreferrer">
-                    <img src="./img/experimentos/experimento3.png" alt="" width="400px" height="350px">
-                    <div class="content">
-                        <h1>Automatización con IA</h1>
-
-                    </div>
-                </a>
-            </div> -->
-
-            <!--             <div class="exper_card" id="4">
-                <a href="https://codepen.io/CreativeCoder111/pen/XWyjBab" target="_blank" rel="noopener noreferrer">
-                    <img src="./img/experimentos/experimento4.png" alt="" width="400px" height="350px">
-                    <div class="content">
-                        <h1>Micro Desarrollo</h1>
-                        <p>Una herramienta importante en estos timpos en las organizaciones, el manejar indicadores y
-                            dashboard nos ayudan a tener una visión rápidamente de mi organización, conoce algunos de
-                            mis proyectos...</p>
-                    </div>
-                </a>
-            </div> -->
         </div>
 
     </section>
@@ -248,21 +260,153 @@
         </div>
     </div>
     <script src="./js/script.js"></script>
-    <!--Start of Tawk.to Script-->
-    <script src="config.js"></script>
+
+    <!-- Cargar Botpress -->
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2025/01/14/04/20250114041029-9C0WY3HO.js"></script>
 
-    <!--     <script type="text/javascript">
-        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-        (function () {
-            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = 'https://embed.tawk.to/6278516bb0d10b6f3e713476/1g2ivs3n6';
-            s1.charset = 'UTF-8';
-            s1.setAttribute('crossorigin', '*');
-            s0.parentNode.insertBefore(s1, s0);
-        })();
+    <!-- SOLUCIÓN FINAL - SIN POSTMESSAGE -->
+    <script type="text/javascript">
+        console.log('=== SOLUCIÓN FINAL SIN POSTMESSAGE ===');
 
+        // Variable para controlar si ya se abrió
+        let chatOpened = false;
+
+        // Función simple y directa para abrir el chat
+        function openChatSimple() {
+            if (chatOpened) return;
+
+            console.log('🔓 Intentando abrir chat de forma simple...');
+
+            // MÉTODO PRINCIPAL: Usar window.botpressWebChatInit.onLoad callback
+            if (window.botpressInstance) {
+                console.log('✅ Usando botpressInstance del callback');
+                try {
+                    // Método preferido: bp.open()
+                    if (typeof window.botpressInstance.open === 'function') {
+                        window.botpressInstance.open();
+                        chatOpened = true;
+                        console.log('🎉 Chat abierto usando botpressInstance.open()');
+                        return true;
+                    }
+                    // Método alternativo: webchat.sendEvent
+                    else if (window.botpressInstance.webchat &&
+                        typeof window.botpressInstance.webchat.sendEvent === 'function') {
+                        window.botpressInstance.webchat.sendEvent({ type: 'show' });
+                        chatOpened = true;
+                        console.log('🎉 Chat abierto usando webchat.sendEvent');
+                        return true;
+                    }
+                } catch (e) {
+                    console.log('❌ Error con botpressInstance:', e);
+                }
+            }
+
+            // MÉTODO ALTERNATIVO: Buscar el iframe del webchat y modificar sus clases
+            console.log('🔄 Intentando método alternativo...');
+            const webchatIframe = document.querySelector('iframe.bpWebchat');
+
+            if (webchatIframe) {
+                console.log('✅ Encontrado iframe bpWebchat');
+
+                // Remover clase que lo oculta (bpClose)
+                if (webchatIframe.classList.contains('bpClose')) {
+                    webchatIframe.classList.remove('bpClose');
+                    console.log('📌 Clase bpClose removida');
+                }
+
+                // Asegurar que esté visible
+                webchatIframe.style.display = 'block';
+                webchatIframe.style.visibility = 'visible';
+                webchatIframe.style.opacity = '1';
+                webchatIframe.style.zIndex = '999999';
+
+                chatOpened = true;
+                console.log('🎨 Chat forzado a ser visible mediante CSS');
+                return true;
+            }
+
+            console.log('⚠️ No se pudo abrir el chat en este intento');
+            return false;
+        }
+
+        // Función para verificar el estado actual
+        function checkCurrentStatus() {
+            console.log('📊 Estado actual:');
+
+            // Verificar instancia
+            console.log('- window.botpressInstance:', !!window.botpressInstance);
+
+            // Verificar iframes
+            const iframes = document.querySelectorAll('iframe');
+            console.log('- Total iframes:', iframes.length);
+
+            iframes.forEach((iframe, i) => {
+                console.log(`  Iframe ${i}: ${iframe.className} ${iframe.classList.contains('bpClose') ? '(cerrado)' : '(abierto)'}`);
+            });
+
+            // Verificar chat abierto
+            const webchatIframe = document.querySelector('iframe.bpWebchat:not(.bpClose)');
+            console.log('- Chat visible:', !!webchatIframe);
+
+            return {
+                instance: !!window.botpressInstance,
+                chatVisible: !!webchatIframe,
+                iframes: iframes.length
+            };
+        }
+
+        // Iniciar proceso de apertura automática
+        function startAutoOpenProcess() {
+            console.log('🚀 Iniciando proceso de auto-apertura');
+
+            // Verificar estado inicial
+            checkCurrentStatus();
+
+            // Intentar abrir inmediatamente
+            setTimeout(openChatSimple, 500);
+
+            // Intentar varias veces (estrategia agresiva pero necesaria)
+            const attempts = [1000, 1500, 2000, 3000, 5000, 8000, 12000, 20000];
+
+            attempts.forEach((delay, index) => {
+                setTimeout(() => {
+                    if (!chatOpened) {
+                        console.log(`🔄 Intento ${index + 2} (${delay}ms)`);
+                        openChatSimple();
+                    }
+                }, delay);
+            });
+
+            // Verificación final
+            setTimeout(() => {
+                if (!chatOpened) {
+                    console.log('⏰ Verificación final después de 25 segundos');
+                    const status = checkCurrentStatus();
+
+                    if (!status.chatVisible) {
+                        console.log('⚠️ EL CHAT NO SE ABRIÓ AUTOMÁTICAMENTE');
+                        console.log('💡 Posibles soluciones:');
+                        console.log('   1. Verifica la configuración en botpress.cloud');
+                        console.log('   2. Asegúrate de que el bot esté publicado');
+                        console.log('   3. Revisa la consola de errores');
+                    }
+                }
+            }, 25000);
+        }
+
+        // Iniciar cuando el DOM esté listo
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function () {
+                console.log('📄 DOM cargado, iniciando en 1 segundo...');
+                setTimeout(startAutoOpenProcess, 1000);
+            });
+        } else {
+            console.log('📄 DOM ya cargado, iniciando en 1 segundo...');
+            setTimeout(startAutoOpenProcess, 1000);
+        }
+
+        // Manejar el menú responsive
         document.getElementById('check').addEventListener('change', function () {
             const menuIcon = document.getElementById('menu-icon');
             const closeIcon = document.getElementById('close-icon');
@@ -274,61 +418,40 @@
                 closeIcon.style.display = 'none';
             }
         });
-    </script> -->
 
+        // Exponer funciones útiles para depuración
+        window.openChatManual = openChatSimple;
+        window.checkStatus = checkCurrentStatus;
+        window.forceOpen = function () {
+            console.log('🛠️ Forzando apertura manual...');
+            chatOpened = false;
+            openChatSimple();
+        };
 
+        console.log('🔧 Comandos disponibles en consola:');
+        console.log('   openChatManual() - Abrir chat manualmente');
+        console.log('   checkStatus() - Verificar estado actual');
+        console.log('   forceOpen() - Forzar apertura (reinicia intento)');
 
-    <!--     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-    <script src="https://files.bpcontent.cloud/2025/01/14/04/20250114041029-9C0WY3HO.js"></script>
- -->
+        // Si el callback onLoad no se ejecuta, intentar detectar Botpress de otra forma
+        setTimeout(function () {
+            if (!window.botpressInstance) {
+                console.log('🕵️‍♂️ Buscando Botpress de forma alternativa...');
 
-    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-    <script src="https://files.bpcontent.cloud/2025/01/14/04/20250114041029-9C0WY3HO.js"></script>
-
-    <script type="text/javascript">
-        // Depuración: confirmar si el Webchat está cargado
-        console.log('Iniciando el script para el Webchat.');
-
-        // Escucha el evento de cuando el Webchat está listo
-        window.addEventListener('webchat:ready', function () {
-            console.log('Webchat está listo.');
-            // Forzar la apertura del chat después de que esté listo
-            setTimeout(function () {
-                try {
-                    window.botpressWebChat.sendEvent({
-                        type: 'show'
-                    });
-                    console.log('Se envió el evento para mostrar el chat.');
-                } catch (error) {
-                    console.error('Error al intentar mostrar el chat:', error);
+                // Verificar si window.botpress existe
+                if (window.botpress) {
+                    console.log('✅ Encontrado window.botpress');
+                    window.botpressInstance = window.botpress;
+                    openChatSimple();
                 }
-            }, 1000); // Abre el chat después de 1 segundo
-        });
-
-        // Alternativa: Simular clic al ícono del chat si el método anterior no funciona
-        function simulateClickOnChatIcon() {
-            const chatIcon = document.querySelector('.bp-widget-launcher'); // Clase del ícono de Botpress
-            if (chatIcon) {
-                chatIcon.click(); // Simula un clic en el ícono
-                console.log('Se simuló un clic en el ícono del chat.');
-            } else {
-                console.error('No se encontró el ícono del chat.');
+                // Verificar si hay algún iframe de Botpress
+                else if (document.querySelector('iframe[class*="bp"]')) {
+                    console.log('✅ Iframes de Botpress detectados');
+                    openChatSimple();
+                }
             }
-        }
-
-        // Usar un intervalo para verificar si el ícono aparece en el DOM
-        const interval = setInterval(function () {
-            const chatIcon = document.querySelector('.bp-widget-launcher');
-            if (chatIcon) {
-                chatIcon.click(); // Simula un clic en el ícono
-                console.log('Se simuló un clic en el ícono del chat.');
-                clearInterval(interval); // Detenemos el intervalo una vez que encontramos el ícono
-            }
-        }, 500); // Verifica cada 500ms si el ícono está presente
+        }, 3000);
     </script>
-
-
-
 
 </body>
 
