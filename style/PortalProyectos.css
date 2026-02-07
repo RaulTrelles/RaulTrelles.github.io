@@ -82,6 +82,7 @@
 }
 
 .slide .item:nth-child(2) .content {
+  margin-right: auto;
   display: block;
 }
 
