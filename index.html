@@ -464,7 +464,7 @@
       });
     </script>
 
-    <!-- SÍNTESIS DE VOZ PARA BIENVENIDA (CON INTERACCIÓN DEL USUARIO) -->
+    <!-- SÍNTESIS DE VOZ PARA BIENVENIDA CON AUTOPLAY -->
     <script>
       (function () {
         "use strict";
@@ -478,15 +478,18 @@
 
         let utterance = null;
         let isSpeaking = false;
-        let hasStarted = false; // controla si ya se inició la voz
+        let autoPlayAttempted = false;
         const voiceControlBtn = document.getElementById("voiceControlBtn");
 
+        // Función para hablar
         function speakMessage(text, callback) {
           if (!window.speechSynthesis) {
             console.warn("Síntesis de voz no soportada.");
             if (callback) callback(false);
             return;
           }
+
+          // Cancelar cualquier voz anterior
           window.speechSynthesis.cancel();
 
           utterance = new SpeechSynthesisUtterance(text);
@@ -494,6 +497,7 @@
           utterance.rate = 1.0;
           utterance.pitch = 1.0;
 
+          // Seleccionar voz en español
           const voices = window.speechSynthesis.getVoices();
           const spanishVoice = voices.find((v) => v.lang.startsWith("es"));
           if (spanishVoice) utterance.voice = spanishVoice;
@@ -502,29 +506,40 @@
             isSpeaking = true;
             voiceControlBtn.innerHTML = '<i class="fas fa-stop"></i>';
             voiceControlBtn.title = "Detener presentación";
+            voiceControlBtn.style.backgroundColor = "#dc3545"; // rojo
           };
 
           utterance.onend = function () {
             isSpeaking = false;
             voiceControlBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
             voiceControlBtn.title = "Escuchar presentación";
+            voiceControlBtn.style.backgroundColor = "#007bff"; // azul original
             if (callback) callback(true);
           };
 
           utterance.onerror = function (e) {
-            // Solo mostramos errores que no sean 'not-allowed' (bloqueo de autoplay)
-            if (e.error !== "not-allowed") {
+            // Solo silenciar el error 'not-allowed' (autoplay bloqueado)
+            if (e.error === "not-allowed") {
+              console.log(
+                "🔇 Autoplay bloqueado por el navegador. El usuario debe iniciar manualmente.",
+              );
+              // Mostrar el botón si no está visible
+              voiceControlBtn.style.display = "flex";
+            } else {
               console.error("Error en síntesis:", e);
             }
+
             isSpeaking = false;
             voiceControlBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
             voiceControlBtn.title = "Escuchar presentación";
+            voiceControlBtn.style.backgroundColor = "#007bff";
             if (callback) callback(false);
           };
 
           window.speechSynthesis.speak(utterance);
         }
 
+        // Función para detener
         function stopSpeaking() {
           if (window.speechSynthesis) {
             window.speechSynthesis.cancel();
@@ -532,48 +547,73 @@
           isSpeaking = false;
           voiceControlBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
           voiceControlBtn.title = "Escuchar presentación";
+          voiceControlBtn.style.backgroundColor = "#007bff";
         }
 
+        // Alternar entre hablar y detener
         function toggleVoice() {
           if (isSpeaking) {
             stopSpeaking();
           } else {
             speakMessage(mensajeCompleto);
           }
-          hasStarted = true;
         }
 
-        // Primer clic en la página → inicia la voz
-        function handleFirstClick() {
-          if (!hasStarted && !isSpeaking) {
-            speakMessage(mensajeCompleto);
-            hasStarted = true;
+        // Intentar autoplay al cargar la página
+        function attemptAutoPlay() {
+          if (autoPlayAttempted) return;
+          autoPlayAttempted = true;
+
+          // Verificar si las voces están cargadas
+          const trySpeak = function () {
+            speakMessage(mensajeCompleto, function (success) {
+              if (success) {
+                console.log("🔊 Autoplay exitoso");
+                // El botón ya está visible, pero aseguramos que se vea
+                voiceControlBtn.style.display = "flex";
+              } else {
+                // El error ya fue manejado en onerror
+                console.log(
+                  "⏳ Esperando interacción del usuario para iniciar voz",
+                );
+              }
+            });
+          };
+
+          if (
+            window.speechSynthesis &&
+            window.speechSynthesis.getVoices().length > 0
+          ) {
+            trySpeak();
+          } else {
+            window.speechSynthesis.onvoiceschanged = function () {
+              trySpeak();
+              window.speechSynthesis.onvoiceschanged = null;
+            };
           }
-          // Removemos los listeners para que no se vuelvan a ejecutar
-          document.removeEventListener("click", handleFirstClick);
-          document.removeEventListener("touchstart", handleFirstClick);
         }
 
+        // Inicializar el botón de voz
         function initVoiceControl() {
           if (!voiceControlBtn) {
             console.warn("Botón de control de voz no encontrado.");
             return;
           }
 
-          // Clic en el botón → alternar voz (sin disparar el primer clic)
+          // Configurar evento de clic
           voiceControlBtn.addEventListener("click", function (e) {
             e.stopPropagation();
             toggleVoice();
           });
 
-          // Mostrar el botón siempre
+          // Mostrar el botón siempre (visible)
           voiceControlBtn.style.display = "flex";
 
-          // Esperar el primer clic o toque del usuario
-          document.addEventListener("click", handleFirstClick);
-          document.addEventListener("touchstart", handleFirstClick);
+          // Intentar autoplay después de 1 segundo (para asegurar que todo esté cargado)
+          setTimeout(attemptAutoPlay, 1500);
         }
 
+        // Inicializar cuando el DOM esté listo
         if (document.readyState === "loading") {
           document.addEventListener("DOMContentLoaded", initVoiceControl);
         } else {
