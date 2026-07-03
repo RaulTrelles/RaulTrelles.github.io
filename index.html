@@ -133,11 +133,11 @@
         <p>
           Ingeniero de Sistemas y Cómputo, MBA con énfasis en Business
           Intelligence y Big Data, Certificado en Scrum Master e ITIL y
-          especialista en Gestión de Proyectos TI, con más de 10 años de
-          experiencia en sectores como Servicios, Legal, Gobierno, Industria,
-          Logístico, Alimentario, Aduanero, Comercio Exterior, Energía, he
-          liderado proyectos de desarrollo, implementaciones de sistemas CRM y
-          ERP. Desarrollador Full Stack y Científico de Datos con experiencia en
+          especialista en Gestión de Proyectos TI, con más de 20 años de
+          experiencia en sectores como Tecnología, Servicios, Legal, Gobierno,
+          Industria, Logístico, Alimentario, Aduanero, Comercio Exterior,
+          Energía, he liderado proyectos de desarrollo, implementaciones de
+          sistemas CRM, Saas, ERP y Desarrollador Full Stack con experiencia en
           desarrollo web y móvil, análisis de datos e inteligencia de negocios.
           Apasionado por crear soluciones que generen valor, optimización y
           oportunidades en las organizaciones a través de la tecnología...
@@ -464,7 +464,7 @@
       });
     </script>
 
-    <!-- SÍNTESIS DE VOZ PARA BIENVENIDA -->
+    <!-- SÍNTESIS DE VOZ PARA BIENVENIDA (CON INTERACCIÓN DEL USUARIO) -->
     <script>
       (function () {
         "use strict";
@@ -478,6 +478,7 @@
 
         let utterance = null;
         let isSpeaking = false;
+        let hasStarted = false; // controla si ya se inició la voz
         const voiceControlBtn = document.getElementById("voiceControlBtn");
 
         function speakMessage(text, callback) {
@@ -511,7 +512,10 @@
           };
 
           utterance.onerror = function (e) {
-            console.error("Error en síntesis:", e);
+            // Solo mostramos errores que no sean 'not-allowed' (bloqueo de autoplay)
+            if (e.error !== "not-allowed") {
+              console.error("Error en síntesis:", e);
+            }
             isSpeaking = false;
             voiceControlBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
             voiceControlBtn.title = "Escuchar presentación";
@@ -536,33 +540,18 @@
           } else {
             speakMessage(mensajeCompleto);
           }
+          hasStarted = true;
         }
 
-        function autoStart() {
-          if (isSpeaking) return;
-          const tryAuto = function () {
-            speakMessage(mensajeCompleto, function (success) {
-              if (!success) {
-                voiceControlBtn.style.display = "flex";
-                console.log("🔊 Autoplay bloqueado. Botón de voz visible.");
-              } else {
-                voiceControlBtn.style.display = "flex";
-                console.log("🔊 Presentación iniciada automáticamente.");
-              }
-            });
-          };
-
-          if (
-            window.speechSynthesis &&
-            window.speechSynthesis.getVoices().length > 0
-          ) {
-            tryAuto();
-          } else {
-            window.speechSynthesis.onvoiceschanged = function () {
-              tryAuto();
-              window.speechSynthesis.onvoiceschanged = null;
-            };
+        // Primer clic en la página → inicia la voz
+        function handleFirstClick() {
+          if (!hasStarted && !isSpeaking) {
+            speakMessage(mensajeCompleto);
+            hasStarted = true;
           }
+          // Removemos los listeners para que no se vuelvan a ejecutar
+          document.removeEventListener("click", handleFirstClick);
+          document.removeEventListener("touchstart", handleFirstClick);
         }
 
         function initVoiceControl() {
@@ -570,9 +559,19 @@
             console.warn("Botón de control de voz no encontrado.");
             return;
           }
-          voiceControlBtn.addEventListener("click", toggleVoice);
+
+          // Clic en el botón → alternar voz (sin disparar el primer clic)
+          voiceControlBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            toggleVoice();
+          });
+
+          // Mostrar el botón siempre
           voiceControlBtn.style.display = "flex";
-          setTimeout(autoStart, 3000);
+
+          // Esperar el primer clic o toque del usuario
+          document.addEventListener("click", handleFirstClick);
+          document.addEventListener("touchstart", handleFirstClick);
         }
 
         if (document.readyState === "loading") {
