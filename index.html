@@ -331,6 +331,94 @@
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2025/01/14/04/20250114041029-9C0WY3HO.js"></script>
 
+    <!-- ========== OCULTAR WIDGET POR DEFECTO DE BOTPRESS ========== -->
+    <script>
+      (function () {
+        var ocultado = false;
+
+        function hideBotpressWidget() {
+          if (ocultado) return;
+
+          // Selectores del widget
+          var selectores = [
+            ".bp-widget-webchat",
+            ".bp-widget",
+            ".bpFab",
+            ".bp-launcher",
+            ".bpWebchatLauncher",
+            'button[class*="bp-launcher"]',
+            'div[class*="bp-launcher"]',
+            'div[class*="bp-fab"]',
+            ".bp-fab",
+            ".bp-floating-button",
+            'div[class*="bp-floating"]',
+            ".bpWebchatWidget",
+            ".bpWidget",
+          ];
+
+          var encontrado = false;
+
+          // Buscar y ocultar
+          for (var i = 0; i < selectores.length; i++) {
+            var elementos = document.querySelectorAll(selectores[i]);
+            if (elementos.length > 0) {
+              encontrado = true;
+              for (var j = 0; j < elementos.length; j++) {
+                elementos[j].style.cssText =
+                  "display:none !important;visibility:hidden !important;opacity:0 !important;width:0 !important;height:0 !important;pointer-events:none !important;position:absolute !important;top:-9999px !important;left:-9999px !important;";
+              }
+            }
+          }
+
+          // Buscar elementos con clases relacionadas
+          var todos = document.querySelectorAll("*");
+          for (var k = 0; k < todos.length; k++) {
+            var el = todos[k];
+            if (el.className && typeof el.className === "string") {
+              var cls = el.className.toLowerCase();
+              if (
+                cls.indexOf("bp-widget") !== -1 ||
+                cls.indexOf("bp-fab") !== -1 ||
+                cls.indexOf("bp-launcher") !== -1 ||
+                cls.indexOf("bp-webchat") !== -1 ||
+                cls.indexOf("bp-floating") !== -1 ||
+                cls.indexOf("bpFab") !== -1
+              ) {
+                encontrado = true;
+                el.style.cssText =
+                  "display:none !important;visibility:hidden !important;opacity:0 !important;width:0 !important;height:0 !important;pointer-events:none !important;position:absolute !important;top:-9999px !important;left:-9999px !important;";
+              }
+            }
+          }
+
+          if (encontrado) {
+            ocultado = true;
+            console.log("✅ Widget de Botpress ocultado");
+          }
+        }
+
+        // Ejecutar solo 3 veces con delays
+        setTimeout(hideBotpressWidget, 500);
+        setTimeout(hideBotpressWidget, 1500);
+        setTimeout(hideBotpressWidget, 3000);
+
+        // Observer que NO causa bucles
+        var observer = new MutationObserver(function () {
+          if (!ocultado) {
+            hideBotpressWidget();
+          }
+        });
+
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+          attributes: false,
+        });
+
+        console.log("🔍 Observador de widget activado");
+      })();
+    </script>
+
     <!-- CONTROL DEL CHATBOT -->
     <script type="text/javascript">
       // Inyectar estilos para permitir interacción con el chat

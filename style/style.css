@@ -10,11 +10,7 @@ body {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  cursor: auto; /* Restaurar cursor normal para permitir interacción */
-
-  /*  font-family: "Sigmar One";
-    font-weight: 400;
-    font-style: normal;  */
+  cursor: auto;
 }
 
 /* ================ EFECTO CURSOR TRAIL ================ */
@@ -61,9 +57,9 @@ body {
   font-size: 24px;
   box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
   transition: all 0.3s ease;
-  z-index: 9999999; /* Muy alto para estar sobre el chat y permitir clic */
+  z-index: 9999999;
   color: white;
-  pointer-events: auto; /* Asegurar que recibe eventos */
+  pointer-events: auto;
 }
 
 .chat-minimize-btn:hover {
@@ -77,6 +73,40 @@ body {
 
 .chat-minimize-btn.show {
   display: flex;
+}
+
+/* ================ BOTÓN CONTROL DE VOZ ================ */
+.voice-control-btn {
+  position: fixed;
+  bottom: 90px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  transition: all 0.3s ease;
+}
+
+.voice-control-btn:hover {
+  transform: scale(1.1);
+  background-color: #0056b3;
+}
+
+.voice-control-btn i {
+  pointer-events: none;
+}
+
+.voice-control-btn.speaking {
+  background-color: #dc3545;
 }
 
 /* ******************************** Sección home ************************************* */
@@ -197,7 +227,7 @@ body {
   }
 }
 
-/* Ajustes para tabletas  home */
+/* ================ Ajustes para tabletas home ================ */
 @media screen and (min-width: 541px) and (max-width: 820px) {
   .home {
     flex-direction: column;
@@ -242,7 +272,7 @@ body {
   }
 }
 
-/* Ajustes para celulares */
+/* ================ Ajustes para celulares - CORREGIDO ================ */
 @media screen and (max-width: 520px) {
   .home {
     flex-direction: column;
@@ -255,35 +285,58 @@ body {
     width: 200px;
     height: 200px;
     margin-bottom: 20px;
-    margin-top: 60px; /* Añadir margen superior para separar del nav */
+    margin-top: 60px;
   }
 
   .description {
     text-align: center;
     padding-top: 0;
+    width: 100%;
   }
 
   .description h1 {
-    font-size: 16px;
+    font-size: 20px;
   }
 
   .description h1 span {
-    font-size: 16px;
+    font-size: 24px;
   }
 
   .description h2 {
-    font-size: 14px;
+    font-size: 16px;
+    white-space: normal;
+    overflow: visible;
+    min-height: 30px;
+    line-height: 1.4;
   }
 
+  .description h2 span {
+    display: inline-block;
+    max-width: 100%;
+    position: relative;
+    color: var(--main-color);
+  }
+
+  /* Eliminar el efecto de máquina de escribir en móvil */
   .description h2 span::after {
-    height: 16px;
-    border-left: 3px solid var(--main-color);
-    background-color: rgba(0, 0, 0);
-    animation: text 10s infinite backwards steps(10);
+    display: none !important;
+    content: none !important;
   }
 
   .description p {
     width: 100%;
+    font-size: 14px;
+    padding: 0 5px;
+  }
+
+  .font i {
+    margin: 15px 5px;
+    padding: 10px;
+    font-size: 20px;
+  }
+
+  .description button {
+    padding: 10px 15px;
     font-size: 16px;
   }
 }
@@ -305,7 +358,7 @@ body {
   box-shadow: 0px 0px 30px var(--main-color);
   filter: brightness(1.1);
   animation: animate_about 3.5s ease-in-out forwards infinite;
-  object-fit: cover; /* Mantiene la proporción y llena todo el espacio */
+  object-fit: cover;
 }
 @keyframes animate_about {
   0% {
@@ -346,6 +399,7 @@ body {
   border: none;
   cursor: pointer;
 }
+
 /* Ajustes para tabletas about */
 @media screen and (min-width: 541px) and (max-width: 820px) {
   .about {
@@ -353,8 +407,8 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 0 20px;
-    padding-top: 50px; /* Reducir el padding superior */
-    padding-bottom: 10px; /* Reducir el padding inferior */
+    padding-top: 50px;
+    padding-bottom: 10px;
   }
 
   .about_section {
@@ -387,7 +441,7 @@ body {
   }
 
   .tecnologias {
-    margin-top: 10px; /* Reducir el margen superior */
+    margin-top: 10px;
   }
 }
 
@@ -398,8 +452,8 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 0 10px;
-    padding-top: 30px; /* Reducir el padding superior */
-    padding-bottom: 20px; /* Reducir el padding inferior */
+    padding-top: 30px;
+    padding-bottom: 20px;
   }
 
   .about_section {
@@ -432,19 +486,18 @@ body {
   }
 
   .tecnologias {
-    margin-top: 20px; /* Reducir el margen superior */
+    margin-top: 20px;
   }
 }
 
 /* ***********************************tecnologias section ******************************************** */
 h1.tecnologias_section {
   margin-top: 2rem;
-  /*margin-bottom: 2.5rem;*/
   color: white;
   font-size: 45px;
   padding-top: 100px;
   text-align: center;
-  margin-bottom: 20px; /* Ajusta el valor para controlar la separación */
+  margin-bottom: 20px;
 }
 h1.tecnologias_section span {
   color: var(--main-color);
@@ -453,8 +506,7 @@ div.card_tec {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px; /* Espacio entre las tarjetas */
-  /* margin-left: 240px;*/
+  gap: 10px;
   color: white;
 }
 .tecnologias_card {
@@ -467,9 +519,9 @@ div.card_tec {
   margin-top: 50px;
   margin-bottom: 5px;
   max-width: 100%;
-  height: auto; /* Mantiene la proporción de la imagen */
-  object-fit: contain; /* Asegura que la imagen se ajuste dentro del contenedor */
-  display: block; /* Asegura que la imagen no tenga márgenes o espacios blancos alrededor */
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 
 .tecnologias_card:hover {
@@ -495,15 +547,16 @@ div.card_tec {
   font-size: large;
   color: var(--main-color);
 }
-/* responsive tecnología  */
+
+/* responsive tecnología */
 @media screen and (max-width: 540px) {
   .tecnologias {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra las tarjetas y el título horizontalmente */
-    justify-content: center; /* Centra el contenido verticalmente */
-    text-align: center; /* Asegura que el texto también esté centrado */
-    padding: 0 10px; /* Agrega un pequeño margen para que el contenido no toque los bordes de la pantalla */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 10px;
     width: 100%;
     margin-bottom: 10px;
     margin-top: 10px;
@@ -517,13 +570,13 @@ div.card_tec {
 
   .card_tec {
     display: flex;
-    flex-direction: column; /* Asegura que las tarjetas se apilen verticalmente */
-    align-items: center; /* Centra las tarjetas horizontalmente */
+    flex-direction: column;
+    align-items: center;
   }
 
   .tecnologias_card {
     margin-top: 60px;
-    width: 100%; /* Ajusta el ancho de las tarjetas */
+    width: 100%;
   }
 
   .tecnologias_card h3 {
@@ -531,15 +584,14 @@ div.card_tec {
   }
 }
 
-/* Personalización tecnologias para pantallas tablet */
 @media screen and (min-width: 541px) and (max-width: 820px) {
   .tecnologias {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra las tarjetas y el título horizontalmente */
-    justify-content: center; /* Centra el contenido verticalmente */
-    text-align: center; /* Asegura que el texto también esté centrado */
-    padding: 0 10px; /* Agrega un pequeño margen para que el contenido no toque los bordes de la pantalla */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 10px;
     width: 100%;
   }
 
@@ -551,13 +603,13 @@ div.card_tec {
 
   .card_tec {
     display: flex;
-    flex-direction: column; /* Asegura que las tarjetas se apilen verticalmente */
-    align-items: center; /* Centra las tarjetas horizontalmente */
+    flex-direction: column;
+    align-items: center;
   }
 
   .tecnologias_card {
     margin-top: 50px;
-    width: 100%; /* Ajusta el ancho de las tarjetas */
+    width: 100%;
   }
 
   .tecnologias_card h3 {
@@ -586,8 +638,6 @@ div.projects {
 .port_card img {
   transition: 0.4s ease-in-out;
   border-radius: 20px;
-  /*border: none;
-    box-shadow: 0px 0px 15px var(--main-color);*/
   cursor: pointer;
 }
 .port_card img:hover {
@@ -615,7 +665,6 @@ div.projects {
   width: 350px;
 }
 
-/* responsive portafolio */
 @media screen and (min-width: 541px) and (max-width: 820px) {
   h1.port_section {
     font-size: 35px;
@@ -623,15 +672,15 @@ div.projects {
 
   .projects {
     display: flex;
-    flex-direction: column; /* Alinear verticalmente */
-    gap: 5px; /* Espaciado de 50px entre cada tarjeta */
-    align-items: center; /* Centrar las tarjetas */
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
     margin-bottom: 50px;
   }
 
   .port_card {
-    width: 100%; /* Asegurar que las tarjetas ocupen todo el ancho del contenedor */
-    max-width: 400px; /* Limitar el ancho máximo */
+    width: 100%;
+    max-width: 400px;
     margin-bottom: -150px;
     border-radius: 20px;
     border: none;
@@ -639,12 +688,12 @@ div.projects {
   }
 
   .port_card img {
-    width: 100%; /* Asegurar que las imágenes ocupen todo el ancho de la tarjeta */
-    height: auto; /* Mantener la proporción */
+    width: 100%;
+    height: auto;
   }
 
   .content {
-    text-align: center; /* Alinear el contenido al centro */
+    text-align: center;
     padding: 10px;
   }
 
@@ -658,7 +707,7 @@ div.projects {
     color: white;
   }
 }
-/* responsive portafolio */
+
 @media screen and (max-width: 540px) {
   h1.port_section {
     font-size: 26px;
@@ -668,15 +717,15 @@ div.projects {
 
   .projects {
     display: flex;
-    flex-direction: column; /* Alinear verticalmente */
-    gap: 5px; /* Espaciado de 5px entre cada tarjeta */
-    align-items: center; /* Centrar las tarjetas */
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
     margin-bottom: 10px;
   }
 
   .port_card {
-    width: 100%; /* Asegurar que las tarjetas ocupen todo el ancho del contenedor */
-    max-width: 400px; /* Limitar el ancho máximo */
+    width: 100%;
+    max-width: 400px;
     margin-bottom: -150px;
     border-radius: 20px;
     border: none;
@@ -684,12 +733,12 @@ div.projects {
   }
 
   .port_card img {
-    width: 100%; /* Asegurar que las imágenes ocupen todo el ancho de la tarjeta */
-    height: auto; /* Mantener la proporción */
+    width: 100%;
+    height: auto;
   }
 
   .content {
-    text-align: center; /* Alinear el contenido al centro */
+    text-align: center;
     padding: 10px;
   }
 
@@ -702,11 +751,6 @@ div.projects {
     font-size: 16px;
     color: white;
   }
-
-  /* Agregar margen inferior a las secciones en pantallas pequeñas */
-  /* .tecnologias, .portafolio {
-        margin-bottom: 20px; 
-   / } */
 }
 
 /*  ******************************************** Seccion de Experimientos  ******************************************* */
@@ -716,19 +760,12 @@ div.exper {
   justify-content: center;
   gap: 30px;
   margin-top: 60px;
-  /*     perspective: 400px;
-    position: relative;
-    left: 400px;
-    height: 550px; */
-  /* width: 400px;*/
 }
 
 .exper_card {
   object-fit: cover;
   overflow: hidden;
   box-sizing: border-box;
-  /*     position: absolute;
-    animation: Carrucel 20s linear infinite; */
 }
 
 h1.exper_section {
@@ -768,20 +805,17 @@ h1.exper_section span {
   width: 350px;
 }
 
-/* Estilo para el botón desactivado */
 .contact_btn:disabled {
   background-color: gray;
   color: white;
   cursor: not-allowed;
-  opacity: 0.6; /* Indica visualmente que está desactivado */
+  opacity: 0.6;
 }
 
-/* Desactiva completamente la interacción del enlace */
 .disabled-link {
   pointer-events: none;
 }
 
-/* responsive Experimientos tablet */
 @media screen and (max-width: 820px) {
   h1.exper_section {
     font-size: 26px;
@@ -789,15 +823,15 @@ h1.exper_section span {
 
   .exper {
     display: flex;
-    flex-direction: column; /* Alinear verticalmente */
-    gap: 5px; /* Espaciado de 50px entre cada tarjeta */
-    align-items: center; /* Centrar las tarjetas */
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
     margin-bottom: 50px;
   }
 
   .exper_card {
-    width: 100%; /* Asegurar que las tarjetas ocupen todo el ancho del contenedor */
-    max-width: 400px; /* Limitar el ancho máximo */
+    width: 100%;
+    max-width: 400px;
     margin-bottom: -150px;
     border-radius: 20px;
     border: none;
@@ -805,12 +839,12 @@ h1.exper_section span {
   }
 
   .exper_card img {
-    width: 100%; /* Asegurar que las imágenes ocupen todo el ancho de la tarjeta */
-    height: auto; /* Mantener la proporción */
+    width: 100%;
+    height: auto;
   }
 
   .content {
-    text-align: center; /* Alinear el contenido al centro */
+    text-align: center;
     padding: 10px;
   }
 
@@ -825,7 +859,6 @@ h1.exper_section span {
   }
 }
 
-/* responsive Experimientos */
 @media screen and (min-width: 541px) and (max-width: 820px) {
   h1.exper_section {
     font-size: 26px;
@@ -833,15 +866,15 @@ h1.exper_section span {
 
   .exper {
     display: flex;
-    flex-direction: column; /* Alinear verticalmente */
-    gap: 5px; /* Espaciado de 50px entre cada tarjeta */
-    align-items: center; /* Centrar las tarjetas */
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
     margin-bottom: 50px;
   }
 
   .exper_card {
-    width: 100%; /* Asegurar que las tarjetas ocupen todo el ancho del contenedor */
-    max-width: 400px; /* Limitar el ancho máximo */
+    width: 100%;
+    max-width: 400px;
     margin-bottom: -150px;
     border-radius: 20px;
     border: none;
@@ -849,12 +882,12 @@ h1.exper_section span {
   }
 
   .exper_card img {
-    width: 100%; /* Asegurar que las imágenes ocupen todo el ancho de la tarjeta */
-    height: auto; /* Mantener la proporción */
+    width: 100%;
+    height: auto;
   }
 
   .content {
-    text-align: center; /* Alinear el contenido al centro */
+    text-align: center;
     padding: 10px;
   }
 
@@ -872,7 +905,7 @@ h1.exper_section span {
 /* ***************************************** contact section ******************************* */
 .form {
   width: 100%;
-  text-align: center; /* Opcional: Esto también puede ayudar a centrar el contenido dentro del contenedor */
+  text-align: center;
 }
 
 .form h1 {
@@ -917,18 +950,17 @@ textarea {
   color: white;
 }
 
-/*  responsibe  contact section*/
 @media (max-width: 820px) {
   .form input,
   textarea {
-    width: 100%; /* Ocupa casi todo el ancho de la pantalla en móviles */
-    max-width: 100%; /* Asegura que no haya un límite de ancho */
+    width: 100%;
+    max-width: 100%;
   }
 
   .form .form_btn {
-    width: 100%; /* El botón ocupa todo el ancho disponible */
-    max-width: 300px; /* O cualquier valor adecuado para móviles */
-    font-size: 18px; /* Ajusta el tamaño del texto en pantallas pequeñas */
+    width: 100%;
+    max-width: 300px;
+    font-size: 18px;
     max-width: 100%;
   }
 }
@@ -937,37 +969,34 @@ textarea {
   background-color: var(--main-color);
 }
 
-/* Estilo general del modal */
 .modal {
-  display: none; /* Oculto por defecto */
-  position: fixed; /* Posición fija en la pantalla */
-  z-index: 1; /* Asegura que esté por encima de otros elementos */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto; /* Añade scroll si es necesario */
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* Contenido del modal */
 .modal-content {
   background-color: rgb(80, 46, 13);
-  margin: 10% auto; /* Centrar el modal en la pantalla */
+  margin: 10% auto;
   padding: 30px;
   border: 1px solid var(--main-color);
-  width: 90%; /* Puedes ajustar el tamaño */
+  width: 90%;
   max-width: 700px;
   border-radius: 10px;
   color: white;
-  position: relative; /* Necesario para que el botón cierre se posicione dentro */
+  position: relative;
 }
 
-/* Botón para cerrar el modal */
 .close {
-  position: absolute; /* Posiciona el botón en relación al contenedor del modal */
-  top: 5px; /* Separación desde la parte superior */
-  right: 5px; /* Separación desde la parte derecha */
+  position: absolute;
+  top: 5px;
+  right: 5px;
   color: #aaa;
   font-size: 28px;
   font-weight: bold;
@@ -982,10 +1011,10 @@ textarea {
 }
 
 .icon-disabled {
-  color: gray; /* Cambia el color a gris */
-  opacity: 0.5; /* Hace que el ícono sea más tenue */
-  pointer-events: none; /* Desactiva cualquier evento de clic */
-  cursor: not-allowed; /* Cambia el cursor a "no permitido" */
+  color: gray;
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .footer {
@@ -995,43 +1024,22 @@ textarea {
   font-size: 15px;
   text-align: center;
   display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
+  justify-content: center;
+  align-items: center;
 }
 
-/* ================ BOTÓN CONTROL DE VOZ ================ */
-.voice-control-btn {
-  position: fixed;
-  bottom: 90px;
-  right: 35px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  display: none; /* Se muestra mediante JS cuando sea necesario */
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  z-index: 9999;
-  transition: all 0.3s ease;
-}
-.voice-control-btn:hover {
-  transform: scale(1.1);
-  background-color: #0056b3;
-}
-.voice-control-btn i {
-  pointer-events: none;
-}
-.voice-control-btn.speaking {
-  background-color: #dc3545; /* Cambia a rojo cuando está hablando */
-}
+/* ================ RESPONSIVE MÓVIL ================ */
 @media (max-width: 768px) {
+  .chat-minimize-btn {
+    bottom: 30px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+  }
+
   .voice-control-btn {
-    bottom: 90px;
+    bottom: 85px;
     right: 30px;
     width: 45px;
     height: 45px;
@@ -1039,41 +1047,26 @@ textarea {
   }
 }
 
-/* ================ RESPONSIVE MÓVIL ================ */
-@media (max-width: 768px) {
-  .floating-controls {
-    right: 15px;
-    bottom: 20px;
-    gap: 10px;
-  }
-
-  .chat-minimize-btn,
-  .voice-control-btn {
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-  }
-}
-
 @media (max-width: 480px) {
-  .floating-controls {
-    right: 12px;
-    bottom: 15px;
-    gap: 8px;
+  .chat-minimize-btn {
+    bottom: 25px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
   }
 
-  .chat-minimize-btn,
   .voice-control-btn {
-    width: 46px;
-    height: 46px;
+    bottom: 75px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
     font-size: 18px;
   }
 }
 
 /* ================ POSICIONAR CHAT EN MÓVIL ================ */
 @media (max-width: 768px) {
-  /* Forzar el chat a la posición inferior derecha */
   iframe.bpWebchat,
   iframe[class*="bp"],
   div#bp-widget,
@@ -1085,7 +1078,7 @@ textarea {
     left: auto !important;
     width: 85vw !important;
     max-width: 380px !important;
-    height: 200vh !important;
+    height: 65vh !important;
     max-height: 550px !important;
     border-radius: 16px !important;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
@@ -1123,7 +1116,7 @@ textarea {
     right: 10px !important;
     width: 92vw !important;
     max-width: 92vw !important;
-    height: 800vh !important;
+    height: 60vh !important;
     max-height: 450px !important;
     border-radius: 12px !important;
   }
