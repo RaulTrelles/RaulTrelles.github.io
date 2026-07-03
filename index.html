@@ -1,268 +1,328 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K9XLGD2PPM"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-K9XLGD2PPM"
+    ></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-K9XLGD2PPM');
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-K9XLGD2PPM");
     </script>
 
     <script>
-        document.cookie = "key=value; SameSite=None; Secure";
+      document.cookie = "key=value; SameSite=None; Secure";
     </script>
 
-    <!-- CONFIGURACIÓN BOTPRESS MÁS SIMPLE Y EFECTIVA -->
+    <!-- CONFIGURACIÓN BOTPRESS -->
     <script>
-        // Configuración mínima pero efectiva
-        window.botpressWebChatInit = {
-            botId: "9c0wy3ho",
-            hostUrl: "https://cdn.botpress.cloud/webchat/v2.2",
-            clientId: "9c0wy3ho",
-
-            // ESTO ES LO MÁS IMPORTANTE - Configurar para que inicie ABIERTO
-            layout: {
-                initialOpen: true,  // Iniciar abierto
-                isOpen: true        // Estado abierto
-            },
-
-            // Configuración del comportamiento
-            hideWidget: false,
-            showConversationsButton: false,
-
-            // Callback cuando se carga - ESTO ES CLAVE
-            onLoad: function (bp) {
-                console.log('🔵 Botpress cargado, API disponible');
-
-                // Guardar la instancia para uso global
-                window.botpressInstance = bp;
-
-                // Forzar que el chat esté abierto
-                setTimeout(function () {
-                    console.log('🔄 Forzando apertura del chat...');
-
-                    // Método 1: Usar el método open si existe
-                    if (typeof bp.open === 'function') {
-                        bp.open();
-                        console.log('✅ Chat abierto usando bp.open()');
-                    }
-                    // Método 2: Usar sendEvent
-                    else if (bp.webchat && typeof bp.webchat.sendEvent === 'function') {
-                        bp.webchat.sendEvent({ type: 'show' });
-                        console.log('✅ Chat abierto usando sendEvent');
-                    }
-                    // Método 3: Configurar estado directamente
-                    else {
-                        console.log('⚠️ Usando método alternativo');
-                        try {
-                            // Intentar modificar el estado directamente
-                            if (bp.config) {
-                                bp.config.layout.isOpen = true;
-                            }
-                        } catch (e) {
-                            console.log('Error:', e);
-                        }
-                    }
-                }, 1000); // Esperar 1 segundo para asegurar carga completa
+      window.botpressWebChatInit = {
+        botId: "9c0wy3ho",
+        hostUrl: "https://cdn.botpress.cloud/webchat/v2.2",
+        clientId: "9c0wy3ho",
+        layout: {
+          initialOpen: true,
+          isOpen: true,
+        },
+        hideWidget: false,
+        showConversationsButton: false,
+        onLoad: function (bp) {
+          console.log("🔵 Botpress cargado, API disponible");
+          window.botpressInstance = bp;
+          setTimeout(function () {
+            console.log("🔄 Forzando apertura del chat...");
+            if (typeof bp.open === "function") {
+              bp.open();
+              console.log("✅ Chat abierto usando bp.open()");
+            } else if (
+              bp.webchat &&
+              typeof bp.webchat.sendEvent === "function"
+            ) {
+              bp.webchat.sendEvent({ type: "show" });
+              console.log("✅ Chat abierto usando sendEvent");
+            } else {
+              console.log("⚠️ Usando método alternativo");
+              try {
+                if (bp.config) {
+                  bp.config.layout.isOpen = true;
+                }
+              } catch (e) {
+                console.log("Error:", e);
+              }
             }
-        };
+          }, 1000);
+        },
+      };
     </script>
 
     <title>Portafolio Personal</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <nav>
-        <input type="checkbox" class="checkbox" id="check">
-        <h1 class="nav_head">Raúl</h1>
-        <ul>
-            <li><a href="#home">Inicio</a></li>
-            <li><a href="#about">Acerca de</a></li>
-            <li><a href="#tecnologias">Tecnologías</a></li>
-            <li><a href="#portafolio">Portafolio</a></li>
-            <li><a href="#experimentos">Experimentos</a></li>
-            <a href="./paginas/contactame.html" class="contact_btn">Contactame</a>
-        </ul>
+      <input type="checkbox" class="checkbox" id="check" />
+      <h1 class="nav_head">Raúl</h1>
+      <ul>
+        <li><a href="#home">Inicio</a></li>
+        <li><a href="#about">Acerca de</a></li>
+        <li><a href="#tecnologias">Tecnologías</a></li>
+        <li><a href="#portafolio">Portafolio</a></li>
+        <li><a href="#experimentos">Experimentos</a></li>
+        <a href="./paginas/contactame.html" class="contact_btn">Contactame</a>
+      </ul>
 
-        <label for="check" class="checkbtn">
-            <i class="fas fa-bars" id="menu-icon"></i>
-            <i class="fas fa-times" id="close-icon" style="display: none;"></i>
-        </label>
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars" id="menu-icon"></i>
+        <i class="fas fa-times" id="close-icon" style="display: none"></i>
+      </label>
     </nav>
 
     <section id="home" class="home">
-        <img src="./img/ratv.svg" alt="" width="550px" height="450px">
-        <div class="description">
-            <h1>Hola, Soy <br><span> Raúl Trelles </span></h1>
-            <h2><span>Hagamos que los datos y los sistemas hablen ... </span></h2>
-            <P>Un apasionado por la tecnología, disfruto implementando soluciones que ayuden a generar valor,
-                ahorro y oportunidades en las organizaciones, haciendo uso de la tecnología .</P>
-            <div class="font">
-                <i class="fa-brands fa-instagram icon-disabled"></i>
-                <i class="fa-brands fa-facebook icon-disabled"></i>
-                <a href="https://www.linkedin.com/in/raultrelles/" target="_blank" rel="noopener noreferrer">
-                    <i class="fa-brands fa-linkedin-in"></i>
-                </a>
-            </div>
-
-            <button id="downloadBtnabout" class="form_btn">Portafolio...</button>
-
-            <script>
-                document.getElementById('downloadBtnabout').addEventListener('click', function () {
-                    location.href = '#portafolio';
-                });
-            </script>
-
+      <img src="./img/ratv.svg" alt="" width="550px" height="450px" />
+      <div class="description">
+        <h1>Hola, Soy <br /><span> Raúl Trelles </span></h1>
+        <h2><span>Hagamos que los datos y los sistemas hablen ... </span></h2>
+        <p>
+          Un apasionado por la tecnología, disfruto implementando soluciones que
+          ayuden a generar valor, ahorro y oportunidades en las organizaciones,
+          haciendo uso de la tecnología .
+        </p>
+        <div class="font">
+          <i class="fa-brands fa-instagram icon-disabled"></i>
+          <i class="fa-brands fa-facebook icon-disabled"></i>
+          <a
+            href="https://www.linkedin.com/in/raultrelles/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
         </div>
+
+        <button id="downloadBtnabout" class="form_btn">Portafolio...</button>
+
+        <script>
+          document
+            .getElementById("downloadBtnabout")
+            .addEventListener("click", function () {
+              location.href = "#portafolio";
+            });
+        </script>
+      </div>
     </section>
     <section id="about" class="about">
-        <div class="about_section">
-            <h1>Acerca <span>de mi</span></h1>
-            <h2>Soy un Especialista en Desarrollo e Implementación de Sistemas y <span>Analítica de Datos</span></h2>
-            <p>Ingeniero de Sistemas y Cómputo, MBA con énfasis en Business Intelligence y Big Data, Certificado en
-                Scrum Master e ITIL y especialista en Gestión de Proyectos TI, con más de 10 años de experiencia en
-                sectores como Servicios, Legal, Gobierno, Industria, Logístico, Alimentario, Aduanero, Comercio
-                Exterior, Energía, he liderado proyectos de desarrollo, implementaciones de sistemas CRM y ERP.
-                Desarrollador Full Stack y Científico de Datos con experiencia en desarrollo web y móvil, análisis de
-                datos e inteligencia de negocios. Apasionado por crear soluciones que generen valor, optimización y
-                oportunidades en las organizaciones a través de la tecnología...</p> <br>
+      <div class="about_section">
+        <h1>Acerca <span>de mi</span></h1>
+        <h2>
+          Soy un Especialista en Desarrollo e Implementación de Sistemas y
+          <span>Analítica de Datos</span>
+        </h2>
+        <p>
+          Ingeniero de Sistemas y Cómputo, MBA con énfasis en Business
+          Intelligence y Big Data, Certificado en Scrum Master e ITIL y
+          especialista en Gestión de Proyectos TI, con más de 10 años de
+          experiencia en sectores como Servicios, Legal, Gobierno, Industria,
+          Logístico, Alimentario, Aduanero, Comercio Exterior, Energía, he
+          liderado proyectos de desarrollo, implementaciones de sistemas CRM y
+          ERP. Desarrollador Full Stack y Científico de Datos con experiencia en
+          desarrollo web y móvil, análisis de datos e inteligencia de negocios.
+          Apasionado por crear soluciones que generen valor, optimización y
+          oportunidades en las organizaciones a través de la tecnología...
+        </p>
+        <br />
 
-            <button id="downloadBtn" class="about_btn">Download CV</button>
+        <button id="downloadBtn" class="about_btn">Download CV</button>
 
-            <script>
-                document.getElementById('downloadBtn').addEventListener('click', function () {
-                    window.open('https://drive.google.com/file/d/16kCg0tOBKmcj3Zp8NE6DafUZjQYY1A28/view?usp=sharing', '_blank');
-                });
-            </script>
-
-        </div>
-        <div class="about_photo">
-            <img src="./img/ratv.svg" alt="" width="400" height="300">
-        </div>
+        <script>
+          document
+            .getElementById("downloadBtn")
+            .addEventListener("click", function () {
+              window.open(
+                "https://drive.google.com/file/d/16kCg0tOBKmcj3Zp8NE6DafUZjQYY1A28/view?usp=sharing",
+                "_blank",
+              );
+            });
+        </script>
+      </div>
+      <div class="about_photo">
+        <img src="./img/ratv.svg" alt="" width="400" height="300" />
+      </div>
     </section>
     <section id="tecnologias" class="tecnologias">
-        <h1 class="tecnologias_section">Algunas tecnologías con las que <span>Trabajo</span></h1>
-        <div class="card_tec">
-            <div class="tecnologias_card">
-                <img src="./img/erp2.png" alt="" width="200px" height="150px">
-                <h3>Gestión y Procesos</h3>
-            </div>
-            <div class="tecnologias_card">
-                <img src="./img/analiticadatos.png" alt="" width="200px" height="150px">
-                <h3>Analítica de Datos</h3>
-            </div>
-            <div class="tecnologias_card">
-                <img src="./img/uiux.png" alt="" width="200px" height="150px">
-                <h3>Diseño Ux/Ui</h3>
-            </div>
-            <div class="tecnologias_card">
-                <img src="./img/backend.png" alt="" width="200px" height="150px">
-                <h3>Backend</h3>
-            </div>
-            <div class="tecnologias_card">
-                <img src="./img/developer.png" alt="" width="200px" height="150px">
-                <h3>FrontEnd</h3>
-            </div>
-
+      <h1 class="tecnologias_section">
+        Algunas tecnologías con las que <span>Trabajo</span>
+      </h1>
+      <div class="card_tec">
+        <div class="tecnologias_card">
+          <img src="./img/erp2.png" alt="" width="200px" height="150px" />
+          <h3>Gestión y Procesos</h3>
         </div>
-
+        <div class="tecnologias_card">
+          <img
+            src="./img/analiticadatos.png"
+            alt=""
+            width="200px"
+            height="150px"
+          />
+          <h3>Analítica de Datos</h3>
+        </div>
+        <div class="tecnologias_card">
+          <img src="./img/uiux.png" alt="" width="200px" height="150px" />
+          <h3>Diseño Ux/Ui</h3>
+        </div>
+        <div class="tecnologias_card">
+          <img src="./img/backend.png" alt="" width="200px" height="150px" />
+          <h3>Backend</h3>
+        </div>
+        <div class="tecnologias_card">
+          <img src="./img/developer.png" alt="" width="200px" height="150px" />
+          <h3>FrontEnd</h3>
+        </div>
+      </div>
     </section>
     <section id="portafolio" class="portafolio">
-        <h1 class="port_section"><span>Portafolio</span> Reciente</h1>
-        <div class="projects">
-            <a href="./paginas/PortalInteligenciaNegocios.html">
-                <div class="port_card">
-                    <img src="./img/Power BI.png" alt="" width="400px" height="350px">
-                    <div class="content">
-                        <h1>Inteligencia de Negocios</h1>
-                        <p>Una herramienta importante en estos timpos en las organizaciones, el manejar indicadores y
-                            dashboard nos ayudan a tener una visión rápidamente de mi organización, conoce algunos de
-                            mis proyectos...</p>
-                    </div>
-                </div>
-            </a>
+      <h1 class="port_section"><span>Portafolio</span> Reciente</h1>
+      <div class="projects">
+        <a href="./paginas/PortalInteligenciaNegocios.html">
+          <div class="port_card">
+            <img src="./img/Power BI.png" alt="" width="400px" height="350px" />
+            <div class="content">
+              <h1>Inteligencia de Negocios</h1>
+              <p>
+                Una herramienta importante en estos timpos en las
+                organizaciones, el manejar indicadores y dashboard nos ayudan a
+                tener una visión rápidamente de mi organización, conoce algunos
+                de mis proyectos...
+              </p>
+            </div>
+          </div>
+        </a>
 
-            <a href="./paginas/PortalERP.html">
-                <div class="port_card">
-                    <img src="./img/erp.png" alt="" width="400px" height="350px">
-                    <div class="content">
-                        <h1>Implementador ERP's</h1>
-                        <p>Desarrollo una metodología que asegura que tu implementación tenga el éxito deseado,
-                            brindando un escenario en donde la alta gerencia obtiene los indicadores deseados y los
-                            usuarios están felices...</p>
-                    </div>
-                </div>
-            </a>
+        <a href="./paginas/PortalERP.html">
+          <div class="port_card">
+            <img src="./img/erp.png" alt="" width="400px" height="350px" />
+            <div class="content">
+              <h1>Implementador ERP's</h1>
+              <p>
+                Desarrollo una metodología que asegura que tu implementación
+                tenga el éxito deseado, brindando un escenario en donde la alta
+                gerencia obtiene los indicadores deseados y los usuarios están
+                felices...
+              </p>
+            </div>
+          </div>
+        </a>
 
-            <a href="./paginas/PortalFullStack.html">
-                <div class="port_card">
-                    <img src="./img/developer.png" alt="" width="400px" height="350px">
-                    <div class="content">
-                        <h1>Desarrollo e Implementación <br>
-                            de Sistemas - Full Stack Developer</h1>
-                        <p>El conocer tecnologías de BackEnd y FrontEnd me permiten afrontar un proyecto integralmente
-                            complementando con el diseño, te invito a conocer mis últimos proyectos...</p>
-                    </div>
-                </div>
-            </a>
-
-
-        </div>
-
+        <a href="./paginas/PortalFullStack.html">
+          <div class="port_card">
+            <img
+              src="./img/developer.png"
+              alt=""
+              width="400px"
+              height="350px"
+            />
+            <div class="content">
+              <h1>
+                Desarrollo e Implementación <br />
+                de Sistemas - Full Stack Developer
+              </h1>
+              <p>
+                El conocer tecnologías de BackEnd y FrontEnd me permiten
+                afrontar un proyecto integralmente complementando con el diseño,
+                te invito a conocer mis últimos proyectos...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
     </section>
     <section id="experimentos" class="Experimentos">
-        <h1 class="exper_section"><span>Algunos </span> Experimentos</h1>
-        <div class="exper">
-
-            <div class="exper_card" id="1">
-                <a href="https://codepen.io/CreativeCoder111/pen/XWyjBab" target="_blank" rel="noopener noreferrer">
-                    <img src="./img/experimentos/experimento1.png" alt="" width="400px" height="350px">
-                    <div class="content">
-                        <h1>Carrucel CCS3 y JS</h1>
-                    </div>
-                </a>
+      <h1 class="exper_section"><span>Algunos </span> Experimentos</h1>
+      <div class="exper">
+        <div class="exper_card" id="1">
+          <a
+            href="https://codepen.io/CreativeCoder111/pen/XWyjBab"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="./img/experimentos/experimento1.png"
+              alt=""
+              width="400px"
+              height="350px"
+            />
+            <div class="content">
+              <h1>Carrucel CCS3 y JS</h1>
             </div>
-
-            <div class="exper_card" id="2">
-                <a href="https://www.figma.com/design/VqSfwfs8t9WPu819F6OFzI/Untitled?node-id=0-1&t=DVwkHo8mPk43pt0D-1"
-                    target="_blank" rel="noopener noreferrer">
-                    <img src="./img/experimentos/experimento5.png" alt="" width="400px" height="350px">
-                    <div class="content">
-                        <h1>Diseño Figma de Portal</h1>
-                        <h1>Portafolio Personal</h1>
-
-                    </div>
-                </a>
-            </div>
-
+          </a>
         </div>
 
+        <div class="exper_card" id="2">
+          <a
+            href="https://www.figma.com/design/VqSfwfs8t9WPu819F6OFzI/Untitled?node-id=0-1&t=DVwkHo8mPk43pt0D-1"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="./img/experimentos/experimento5.png"
+              alt=""
+              width="400px"
+              height="350px"
+            />
+            <div class="content">
+              <h1>Diseño Figma de Portal</h1>
+              <h1>Portafolio Personal</h1>
+            </div>
+          </a>
+        </div>
+      </div>
     </section>
 
     <div class="footer">
-        <p><i class="fa-solid fa-copyright"></i>Raúl Trelles. || All Right Reserved... </p>
+      <p>
+        <i class="fa-solid fa-copyright"></i>Raúl Trelles. || All Right
+        Reserved...
+      </p>
     </div>
 
     <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="modal-body">
-                <!-- El contenido del modal irá aquí, cambiará dinámicamente -->
-            </div>
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modal-body">
+          <!-- El contenido del modal irá aquí, cambiará dinámicamente -->
         </div>
+      </div>
     </div>
 
     <!-- Botón para minimizar/maximizar chat -->
-    <button class="chat-minimize-btn" id="chatMinimizeBtn" title="Cerrar/Minimizar chat">
-        <i class="fas fa-times"></i>
+    <button
+      class="chat-minimize-btn"
+      id="chatMinimizeBtn"
+      title="Cerrar/Minimizar chat"
+    >
+      <i class="fas fa-times"></i>
+    </button>
+
+    <!-- Botón para control de voz -->
+    <button
+      class="voice-control-btn"
+      id="voiceControlBtn"
+      title="Escuchar presentación"
+    >
+      <i class="fas fa-volume-up"></i>
     </button>
 
     <script src="./js/script.js"></script>
@@ -271,11 +331,11 @@
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2025/01/14/04/20250114041029-9C0WY3HO.js"></script>
 
-    <!-- CONTROL SIMPLE DEL CHATBOT -->
+    <!-- CONTROL DEL CHATBOT -->
     <script type="text/javascript">
-        // Inyectar estilos para permitir interacción con el chat
-        const chatStyle = document.createElement('style');
-        chatStyle.textContent = `
+      // Inyectar estilos para permitir interacción con el chat
+      const chatStyle = document.createElement("style");
+      chatStyle.textContent = `
             iframe.bpWebchat,
             iframe[class*="bp"],
             div#bp-widget,
@@ -284,129 +344,243 @@
                 cursor: auto !important;
             }
         `;
-        document.head.appendChild(chatStyle);
+      document.head.appendChild(chatStyle);
 
-        let chatClosed = false;
-        let chatOpened = false;
+      let chatClosed = false;
+      let chatOpened = false;
 
-        function getBotpressWidget() {
-            const selectors = [
-                'iframe.bpWebchat',
-                'iframe[class*="bp"]',
-                'div#bp-widget',
-                'div[class*="bp-webchat"]'
-            ];
-            for (const sel of selectors) {
-                const el = document.querySelector(sel);
-                if (el) return el;
-            }
-            return null;
+      function getBotpressWidget() {
+        const selectors = [
+          "iframe.bpWebchat",
+          'iframe[class*="bp"]',
+          "div#bp-widget",
+          'div[class*="bp-webchat"]',
+        ];
+        for (const sel of selectors) {
+          const el = document.querySelector(sel);
+          if (el) return el;
+        }
+        return null;
+      }
+
+      function toggleChatVisibility() {
+        const widget = getBotpressWidget();
+        if (!widget) {
+          console.log("❌ Widget no encontrado");
+          return;
         }
 
-        function toggleChatVisibility() {
-            const widget = getBotpressWidget();
-            if (!widget) {
-                console.log('❌ Widget no encontrado');
-                return;
-            }
-
-            if (chatClosed) {
-                // Mostrar chat
-                widget.style.display = 'block';
-                widget.style.visibility = 'visible';
-                widget.style.opacity = '1';
-                chatClosed = false;
-                document.getElementById('chatMinimizeBtn').innerHTML = '<i class="fas fa-times"></i>';
-                document.getElementById('chatMinimizeBtn').title = 'Cerrar/Minimizar chat';
-                console.log('👁️ Chat mostrado');
-            } else {
-                // Ocultar chat
-                widget.style.display = 'none';
-                widget.style.visibility = 'hidden';
-                widget.style.opacity = '0';
-                chatClosed = true;
-                document.getElementById('chatMinimizeBtn').innerHTML = '<i class="fas fa-chevron-up"></i>';
-                document.getElementById('chatMinimizeBtn').title = 'Abrir chat';
-                console.log('💤 Chat ocultado');
-            }
-        }
-
-        function openChatAuto() {
-            const widget = getBotpressWidget();
-            if (widget && !chatOpened) {
-                widget.style.display = 'block';
-                widget.style.visibility = 'visible';
-                widget.style.opacity = '1';
-                chatClosed = false;
-                chatOpened = true;
-                document.getElementById('chatMinimizeBtn').innerHTML = '<i class="fas fa-times"></i>';
-                console.log('🎉 Chat abierto automáticamente');
-            }
-        }
-
-        // Agregar listener al botón
-        function setupMinimizeButton() {
-            const btn = document.getElementById('chatMinimizeBtn');
-            if (btn) {
-                btn.addEventListener('click', toggleChatVisibility);
-                console.log('✅ Botón minimizar configurado');
-            }
-        }
-
-        // Mostrar botón cuando aparezca el widget y abrir después de 15 segundos
-        function monitorWidgetAppearance() {
-            const observer = new MutationObserver(() => {
-                const widget = getBotpressWidget();
-                const btn = document.getElementById('chatMinimizeBtn');
-                if (widget && btn) {
-                    if (!btn.classList.contains('show')) {
-                        btn.classList.add('show');
-                        console.log('✅ Botón minimizar mostrado (widget detectado)');
-                        // Abrir el chat automáticamente después de 15 segundos
-                        setTimeout(openChatAuto, 5000);
-                        observer.disconnect(); // Dejar de observar
-                    }
-                }
-            });
-            observer.observe(document.body, { childList: true, subtree: true });
-        }
-
-        // Inicializar
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                setupMinimizeButton();
-                monitorWidgetAppearance();
-            });
+        if (chatClosed) {
+          widget.style.display = "block";
+          widget.style.visibility = "visible";
+          widget.style.opacity = "1";
+          chatClosed = false;
+          document.getElementById("chatMinimizeBtn").innerHTML =
+            '<i class="fas fa-times"></i>';
+          document.getElementById("chatMinimizeBtn").title =
+            "Cerrar/Minimizar chat";
+          console.log("👁️ Chat mostrado");
         } else {
-            setupMinimizeButton();
-            monitorWidgetAppearance();
+          widget.style.display = "none";
+          widget.style.visibility = "hidden";
+          widget.style.opacity = "0";
+          chatClosed = true;
+          document.getElementById("chatMinimizeBtn").innerHTML =
+            '<i class="fas fa-chevron-up"></i>';
+          document.getElementById("chatMinimizeBtn").title = "Abrir chat";
+          console.log("💤 Chat ocultado");
         }
+      }
 
-        // Exponer para debugging
-        window.toggleChat = toggleChatVisibility;
-        window.debugWidget = getBotpressWidget;
-        window.openChatNow = openChatAuto;
-        console.log('🔧 Comandos: toggleChat(), debugWidget(), openChatNow()');
+      function openChatAuto() {
+        const widget = getBotpressWidget();
+        if (widget && !chatOpened) {
+          widget.style.display = "block";
+          widget.style.visibility = "visible";
+          widget.style.opacity = "1";
+          chatClosed = false;
+          chatOpened = true;
+          document.getElementById("chatMinimizeBtn").innerHTML =
+            '<i class="fas fa-times"></i>';
+          console.log("🎉 Chat abierto automáticamente");
+        }
+      }
 
-        // Manejar el menú responsive
-        document.addEventListener('DOMContentLoaded', () => {
-            const checkboxMenu = document.getElementById('check');
-            if (checkboxMenu) {
-                checkboxMenu.addEventListener('change', function () {
-                    const menuIcon = document.getElementById('menu-icon');
-                    const closeIcon = document.getElementById('close-icon');
-                    if (this.checked) {
-                        menuIcon.style.display = 'none';
-                        closeIcon.style.display = 'inline';
-                    } else {
-                        menuIcon.style.display = 'inline';
-                        closeIcon.style.display = 'none';
-                    }
-                });
+      function setupMinimizeButton() {
+        const btn = document.getElementById("chatMinimizeBtn");
+        if (btn) {
+          btn.addEventListener("click", toggleChatVisibility);
+          console.log("✅ Botón minimizar configurado");
+        }
+      }
+
+      function monitorWidgetAppearance() {
+        const observer = new MutationObserver(() => {
+          const widget = getBotpressWidget();
+          const btn = document.getElementById("chatMinimizeBtn");
+          if (widget && btn) {
+            if (!btn.classList.contains("show")) {
+              btn.classList.add("show");
+              console.log("✅ Botón minimizar mostrado (widget detectado)");
+              setTimeout(openChatAuto, 5000);
+              observer.disconnect();
             }
+          }
         });
+        observer.observe(document.body, { childList: true, subtree: true });
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", () => {
+          setupMinimizeButton();
+          monitorWidgetAppearance();
+        });
+      } else {
+        setupMinimizeButton();
+        monitorWidgetAppearance();
+      }
+
+      window.toggleChat = toggleChatVisibility;
+      window.debugWidget = getBotpressWidget;
+      window.openChatNow = openChatAuto;
+      console.log("🔧 Comandos: toggleChat(), debugWidget(), openChatNow()");
+
+      // Manejar el menú responsive
+      document.addEventListener("DOMContentLoaded", () => {
+        const checkboxMenu = document.getElementById("check");
+        if (checkboxMenu) {
+          checkboxMenu.addEventListener("change", function () {
+            const menuIcon = document.getElementById("menu-icon");
+            const closeIcon = document.getElementById("close-icon");
+            if (this.checked) {
+              menuIcon.style.display = "none";
+              closeIcon.style.display = "inline";
+            } else {
+              menuIcon.style.display = "inline";
+              closeIcon.style.display = "none";
+            }
+          });
+        }
+      });
     </script>
 
-</body>
+    <!-- SÍNTESIS DE VOZ PARA BIENVENIDA -->
+    <script>
+      (function () {
+        "use strict";
 
+        const mensajeCompleto = `
+    Hola, bienvenido al portafolio de Raúl Trelles.
+    Implemento soluciones que ayudan a generar valor y oportunidades en las organizaciones.
+    Cuento con más de 20 años de experiencia liderando proyectos de desarrollo e implementaciones de sistemas In House, CRM, ERP, SaaS y Analítica de Datos.
+    Te invito a explorar mi portafolio y conocer más sobre mí, o puedes preguntarle a mi asistente virtual sobre mi trayectoria. ¡Abre el chat y te espero en la conversación!
+`;
+
+        let utterance = null;
+        let isSpeaking = false;
+        const voiceControlBtn = document.getElementById("voiceControlBtn");
+
+        function speakMessage(text, callback) {
+          if (!window.speechSynthesis) {
+            console.warn("Síntesis de voz no soportada.");
+            if (callback) callback(false);
+            return;
+          }
+          window.speechSynthesis.cancel();
+
+          utterance = new SpeechSynthesisUtterance(text);
+          utterance.lang = "es-ES";
+          utterance.rate = 1.0;
+          utterance.pitch = 1.0;
+
+          const voices = window.speechSynthesis.getVoices();
+          const spanishVoice = voices.find((v) => v.lang.startsWith("es"));
+          if (spanishVoice) utterance.voice = spanishVoice;
+
+          utterance.onstart = function () {
+            isSpeaking = true;
+            voiceControlBtn.innerHTML = '<i class="fas fa-stop"></i>';
+            voiceControlBtn.title = "Detener presentación";
+          };
+
+          utterance.onend = function () {
+            isSpeaking = false;
+            voiceControlBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            voiceControlBtn.title = "Escuchar presentación";
+            if (callback) callback(true);
+          };
+
+          utterance.onerror = function (e) {
+            console.error("Error en síntesis:", e);
+            isSpeaking = false;
+            voiceControlBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            voiceControlBtn.title = "Escuchar presentación";
+            if (callback) callback(false);
+          };
+
+          window.speechSynthesis.speak(utterance);
+        }
+
+        function stopSpeaking() {
+          if (window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+          }
+          isSpeaking = false;
+          voiceControlBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+          voiceControlBtn.title = "Escuchar presentación";
+        }
+
+        function toggleVoice() {
+          if (isSpeaking) {
+            stopSpeaking();
+          } else {
+            speakMessage(mensajeCompleto);
+          }
+        }
+
+        function autoStart() {
+          if (isSpeaking) return;
+          const tryAuto = function () {
+            speakMessage(mensajeCompleto, function (success) {
+              if (!success) {
+                voiceControlBtn.style.display = "flex";
+                console.log("🔊 Autoplay bloqueado. Botón de voz visible.");
+              } else {
+                voiceControlBtn.style.display = "flex";
+                console.log("🔊 Presentación iniciada automáticamente.");
+              }
+            });
+          };
+
+          if (
+            window.speechSynthesis &&
+            window.speechSynthesis.getVoices().length > 0
+          ) {
+            tryAuto();
+          } else {
+            window.speechSynthesis.onvoiceschanged = function () {
+              tryAuto();
+              window.speechSynthesis.onvoiceschanged = null;
+            };
+          }
+        }
+
+        function initVoiceControl() {
+          if (!voiceControlBtn) {
+            console.warn("Botón de control de voz no encontrado.");
+            return;
+          }
+          voiceControlBtn.addEventListener("click", toggleVoice);
+          voiceControlBtn.style.display = "flex";
+          setTimeout(autoStart, 3000);
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initVoiceControl);
+        } else {
+          initVoiceControl();
+        }
+      })();
+    </script>
+  </body>
 </html>
