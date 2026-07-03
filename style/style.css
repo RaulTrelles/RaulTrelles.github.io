@@ -1003,7 +1003,7 @@ textarea {
 .voice-control-btn {
   position: fixed;
   bottom: 90px;
-  right: 20px;
+  right: 30px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -1031,10 +1031,100 @@ textarea {
 }
 @media (max-width: 768px) {
   .voice-control-btn {
-    bottom: 80px;
-    right: 15px;
+    bottom: 90px;
+    right: 30px;
     width: 45px;
     height: 45px;
     font-size: 20px;
+  }
+}
+
+/* ================ RESPONSIVE MÓVIL ================ */
+@media (max-width: 768px) {
+  .floating-controls {
+    right: 15px;
+    bottom: 20px;
+    gap: 10px;
+  }
+
+  .chat-minimize-btn,
+  .voice-control-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-controls {
+    right: 12px;
+    bottom: 15px;
+    gap: 8px;
+  }
+
+  .chat-minimize-btn,
+  .voice-control-btn {
+    width: 46px;
+    height: 46px;
+    font-size: 18px;
+  }
+}
+
+/* ================ POSICIONAR CHAT EN MÓVIL ================ */
+@media (max-width: 768px) {
+  /* Forzar el chat a la posición inferior derecha */
+  iframe.bpWebchat,
+  iframe[class*="bp"],
+  div#bp-widget,
+  div[class*="bp-webchat"] {
+    position: fixed !important;
+    bottom: 80px !important;
+    right: 15px !important;
+    top: auto !important;
+    left: auto !important;
+    width: 85vw !important;
+    max-width: 380px !important;
+    height: 200vh !important;
+    max-height: 550px !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+    z-index: 999998 !important;
+    transform: none !important;
+    border: none !important;
+    overflow: hidden !important;
+  }
+
+  .bp-webchat-container,
+  div[class*="bp-container"] {
+    position: fixed !important;
+    bottom: 80px !important;
+    right: 15px !important;
+    top: auto !important;
+    left: auto !important;
+    width: 85vw !important;
+    max-width: 380px !important;
+    height: 65vh !important;
+    max-height: 550px !important;
+    border-radius: 16px !important;
+    z-index: 999998 !important;
+    overflow: hidden !important;
+  }
+}
+
+@media (max-width: 480px) {
+  iframe.bpWebchat,
+  iframe[class*="bp"],
+  div#bp-widget,
+  div[class*="bp-webchat"],
+  .bp-webchat-container,
+  div[class*="bp-container"] {
+    bottom: 72px !important;
+    right: 10px !important;
+    width: 92vw !important;
+    max-width: 92vw !important;
+    height: 800vh !important;
+    max-height: 450px !important;
+    border-radius: 12px !important;
   }
 }
