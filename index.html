@@ -1,9 +1,12 @@
 <!doctype html>
 <html lang="es">
   <head>
+    <!-- ========== FAVICON ========== -->
+    <link rel="icon" type="image/x-icon" href="./img/favicon.ico" />
+    <link rel="icon" type="image/png" href="./img/favicon.png" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style/style.css?v=2.0" />
+    <link rel="stylesheet" href="./style/style.css?v=3.0" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -307,26 +310,38 @@
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2025/01/14/04/20250114041029-9C0WY3HO.js"></script>
 
-    <!-- ========== CONTROL DEL CHAT ========== -->
+    <!-- ========== CONTROL DEL CHAT - SIN BUCLES ========== -->
     <script>
       (function () {
         var chatBtn = document.getElementById("chatMinimizeBtn");
         var isOpen = false;
-        var chatIframe = null;
+        var bp = null;
+        var waitingForBotpress = false;
 
-        function findChatIframe() {
-          var iframes = document.querySelectorAll("iframe");
-          for (var i = 0; i < iframes.length; i++) {
-            var src = iframes[i].src || "";
+        function getBotpress() {
+          if (window.botpressInstance) return window.botpressInstance;
+          for (var key in window) {
             if (
-              src.indexOf("botpress") !== -1 ||
-              src.indexOf("webchat") !== -1 ||
-              iframes[i].className.indexOf("bp") !== -1
+              key.toLowerCase().indexOf("botpress") !== -1 &&
+              typeof window[key] === "object"
             ) {
-              return iframes[i];
+              if (window[key] && typeof window[key].open === "function") {
+                return window[key];
+              }
             }
           }
           return null;
+        }
+
+        function updateButtonIcon() {
+          if (!chatBtn) return;
+          if (isOpen) {
+            chatBtn.innerHTML = '<i class="fas fa-times"></i>';
+            chatBtn.title = "Cerrar chat";
+          } else {
+            chatBtn.innerHTML = '<i class="fas fa-comment-dots"></i>';
+            chatBtn.title = "Abrir chat";
+          }
         }
 
         function hideDefaultWidget() {
@@ -340,6 +355,10 @@
             'div[class*="bp-launcher"]',
             'div[class*="bp-fab"]',
             ".bp-fab",
+            ".bp-floating-button",
+            'div[class*="bp-floating"]',
+            ".bpWebchatWidget",
+            ".bpWidget",
           ];
 
           for (var i = 0; i < selectors.length; i++) {
@@ -361,48 +380,84 @@
           }
         }
 
-        function toggleChat() {
-          chatIframe = findChatIframe();
+        function openChat() {
+          try {
+            if (bp && typeof bp.open === "function") {
+              bp.open();
+              isOpen = true;
+              updateButtonIcon();
+              console.log("📨 Chat abierto");
+              setTimeout(hideDefaultWidget, 200);
+              return true;
+            } else if (
+              bp &&
+              bp.webchat &&
+              typeof bp.webchat.open === "function"
+            ) {
+              bp.webchat.open();
+              isOpen = true;
+              updateButtonIcon();
+              console.log("📨 Chat abierto (webchat)");
+              setTimeout(hideDefaultWidget, 200);
+              return true;
+            }
+          } catch (e) {
+            console.warn("Error al abrir chat:", e);
+          }
+          return false;
+        }
 
-          if (!chatIframe) {
-            console.log("⏳ Buscando iframe del chat...");
-            chatBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-            setTimeout(toggleChat, 1000);
-            return;
+        function closeChat() {
+          try {
+            if (bp && typeof bp.close === "function") {
+              bp.close();
+              isOpen = false;
+              updateButtonIcon();
+              console.log("💤 Chat cerrado");
+              return true;
+            } else if (
+              bp &&
+              bp.webchat &&
+              typeof bp.webchat.close === "function"
+            ) {
+              bp.webchat.close();
+              isOpen = false;
+              updateButtonIcon();
+              console.log("💤 Chat cerrado (webchat)");
+              return true;
+            }
+          } catch (e) {
+            console.warn("Error al cerrar chat:", e);
+          }
+          return false;
+        }
+
+        function toggleChat() {
+          if (!bp) {
+            bp = getBotpress();
+            if (!bp) {
+              console.log("⏳ Botpress no disponible, reintentando...");
+              if (!waitingForBotpress) {
+                waitingForBotpress = true;
+                setTimeout(function () {
+                  waitingForBotpress = false;
+                  bp = getBotpress();
+                  if (bp) {
+                    console.log("✅ Botpress encontrado");
+                    toggleChat();
+                  } else {
+                    console.warn("⚠️ Botpress no disponible");
+                  }
+                }, 1000);
+              }
+              return;
+            }
           }
 
           if (isOpen) {
-            chatIframe.style.display = "none";
-            chatIframe.style.visibility = "hidden";
-            chatIframe.style.opacity = "0";
-            chatIframe.style.pointerEvents = "none";
-            isOpen = false;
-            chatBtn.innerHTML = '<i class="fas fa-comment-dots"></i>';
-            chatBtn.title = "Abrir chat";
-            console.log("💤 Chat cerrado");
+            closeChat();
           } else {
-            chatIframe.style.display = "block";
-            chatIframe.style.visibility = "visible";
-            chatIframe.style.opacity = "1";
-            chatIframe.style.pointerEvents = "auto";
-            chatIframe.style.position = "fixed";
-            chatIframe.style.bottom = "80px";
-            chatIframe.style.right = "15px";
-            chatIframe.style.width = "85vw";
-            chatIframe.style.maxWidth = "400px";
-            chatIframe.style.height = "65vh";
-            chatIframe.style.maxHeight = "600px";
-            chatIframe.style.borderRadius = "16px";
-            chatIframe.style.boxShadow = "0 8px 32px rgba(0,0,0,0.4)";
-            chatIframe.style.zIndex = "999998";
-            chatIframe.style.border = "none";
-
-            isOpen = true;
-            chatBtn.innerHTML = '<i class="fas fa-times"></i>';
-            chatBtn.title = "Cerrar chat";
-            console.log("📨 Chat abierto");
-
-            setTimeout(hideDefaultWidget, 100);
+            openChat();
           }
         }
 
@@ -413,56 +468,49 @@
             toggleChat();
           });
           chatBtn.classList.add("show");
+          updateButtonIcon();
           console.log("✅ Botón configurado");
         }
 
-        var findInterval = setInterval(function () {
-          chatIframe = findChatIframe();
-          if (chatIframe) {
-            clearInterval(findInterval);
-            console.log("✅ Iframe del chat encontrado");
-
+        var attempts = 0;
+        var maxAttempts = 20;
+        var findBotpress = setInterval(function () {
+          attempts++;
+          bp = getBotpress();
+          if (bp) {
+            clearInterval(findBotpress);
+            console.log("✅ Botpress encontrado (intento " + attempts + ")");
             setTimeout(hideDefaultWidget, 100);
             setTimeout(hideDefaultWidget, 500);
             setTimeout(hideDefaultWidget, 1000);
-
             setTimeout(function () {
-              if (chatIframe) {
-                chatIframe.style.display = "block";
-                chatIframe.style.visibility = "visible";
-                chatIframe.style.opacity = "1";
-                chatIframe.style.position = "fixed";
-                chatIframe.style.bottom = "80px";
-                chatIframe.style.right = "15px";
-                chatIframe.style.width = "85vw";
-                chatIframe.style.maxWidth = "400px";
-                chatIframe.style.height = "65vh";
-                chatIframe.style.maxHeight = "600px";
-                chatIframe.style.borderRadius = "16px";
-                chatIframe.style.boxShadow = "0 8px 32px rgba(0,0,0,0.4)";
-                chatIframe.style.zIndex = "999998";
-                chatIframe.style.border = "none";
-                isOpen = true;
-                chatBtn.innerHTML = '<i class="fas fa-times"></i>';
-                chatBtn.title = "Cerrar chat";
+              if (!isOpen) {
+                openChat();
                 console.log("📨 Chat abierto automáticamente");
-                setTimeout(hideDefaultWidget, 100);
               }
             }, 2000);
+          } else if (attempts >= maxAttempts) {
+            clearInterval(findBotpress);
+            console.warn(
+              "⚠️ No se encontró Botpress después de " +
+                maxAttempts +
+                " intentos",
+            );
           }
         }, 500);
 
         var observer = new MutationObserver(function () {
           hideDefaultWidget();
-          if (!chatIframe) {
-            chatIframe = findChatIframe();
-          }
         });
         observer.observe(document.body, { childList: true, subtree: true });
 
         window.toggleChat = toggleChat;
-        window.findChatIframe = findChatIframe;
-        console.log("🔧 Comandos: toggleChat(), findChatIframe()");
+        window.openChat = openChat;
+        window.closeChat = closeChat;
+        window.getBotpress = getBotpress;
+        console.log(
+          "🔧 Comandos: toggleChat(), openChat(), closeChat(), getBotpress()",
+        );
       })();
     </script>
 
