@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="./style/style.css?v=2.0" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -297,7 +297,7 @@
         <i class="fas fa-volume-up"></i>
       </button>
       <button class="chat-minimize-btn" id="chatMinimizeBtn" title="Abrir chat">
-        <i class="fas fa-comment"></i>
+        <i class="fas fa-comment-dots"></i>
       </button>
     </div>
 
@@ -307,15 +307,13 @@
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2025/01/14/04/20250114041029-9C0WY3HO.js"></script>
 
-    <!-- ========== CONTROL DEL CHAT - VERSIÓN SIMPLE Y EFECTIVA ========== -->
+    <!-- ========== CONTROL DEL CHAT ========== -->
     <script>
-      // ========== CONTROL DEL CHAT - VERSIÓN MEJORADA ==========
       (function () {
         var chatBtn = document.getElementById("chatMinimizeBtn");
         var isOpen = false;
         var chatIframe = null;
 
-        // Función para encontrar el iframe del chat
         function findChatIframe() {
           var iframes = document.querySelectorAll("iframe");
           for (var i = 0; i < iframes.length; i++) {
@@ -331,7 +329,6 @@
           return null;
         }
 
-        // Función para ocultar el widget por defecto
         function hideDefaultWidget() {
           var selectors = [
             ".bp-widget-webchat",
@@ -364,7 +361,6 @@
           }
         }
 
-        // Función principal para abrir/cerrar el chat
         function toggleChat() {
           chatIframe = findChatIframe();
 
@@ -376,7 +372,6 @@
           }
 
           if (isOpen) {
-            // CERRAR CHAT
             chatIframe.style.display = "none";
             chatIframe.style.visibility = "hidden";
             chatIframe.style.opacity = "0";
@@ -386,7 +381,6 @@
             chatBtn.title = "Abrir chat";
             console.log("💤 Chat cerrado");
           } else {
-            // ABRIR CHAT
             chatIframe.style.display = "block";
             chatIframe.style.visibility = "visible";
             chatIframe.style.opacity = "1";
@@ -408,12 +402,10 @@
             chatBtn.title = "Cerrar chat";
             console.log("📨 Chat abierto");
 
-            // Ocultar widget por defecto
             setTimeout(hideDefaultWidget, 100);
           }
         }
 
-        // Configurar el botón
         if (chatBtn) {
           chatBtn.addEventListener("click", function (e) {
             e.stopPropagation();
@@ -424,19 +416,16 @@
           console.log("✅ Botón configurado");
         }
 
-        // Buscar el iframe periódicamente
         var findInterval = setInterval(function () {
           chatIframe = findChatIframe();
           if (chatIframe) {
             clearInterval(findInterval);
             console.log("✅ Iframe del chat encontrado");
 
-            // Ocultar widget por defecto
             setTimeout(hideDefaultWidget, 100);
             setTimeout(hideDefaultWidget, 500);
             setTimeout(hideDefaultWidget, 1000);
 
-            // Abrir chat automáticamente después de 2 segundos
             setTimeout(function () {
               if (chatIframe) {
                 chatIframe.style.display = "block";
@@ -463,7 +452,6 @@
           }
         }, 500);
 
-        // Observer para ocultar el widget si aparece después
         var observer = new MutationObserver(function () {
           hideDefaultWidget();
           if (!chatIframe) {
@@ -472,7 +460,6 @@
         });
         observer.observe(document.body, { childList: true, subtree: true });
 
-        // Exponer funciones
         window.toggleChat = toggleChat;
         window.findChatIframe = findChatIframe;
         console.log("🔧 Comandos: toggleChat(), findChatIframe()");
