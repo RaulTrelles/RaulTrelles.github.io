@@ -34,36 +34,14 @@
         hostUrl: "https://cdn.botpress.cloud/webchat/v2.2",
         clientId: "9c0wy3ho",
         layout: {
-          initialOpen: true,
-          isOpen: true,
+          initialOpen: false,
+          isOpen: false,
         },
         hideWidget: false,
         showConversationsButton: false,
         onLoad: function (bp) {
-          console.log("🔵 Botpress cargado, API disponible");
+          console.log("🔵 Botpress cargado");
           window.botpressInstance = bp;
-          setTimeout(function () {
-            console.log("🔄 Forzando apertura del chat...");
-            if (typeof bp.open === "function") {
-              bp.open();
-              console.log("✅ Chat abierto usando bp.open()");
-            } else if (
-              bp.webchat &&
-              typeof bp.webchat.sendEvent === "function"
-            ) {
-              bp.webchat.sendEvent({ type: "show" });
-              console.log("✅ Chat abierto usando sendEvent");
-            } else {
-              console.log("⚠️ Usando método alternativo");
-              try {
-                if (bp.config) {
-                  bp.config.layout.isOpen = true;
-                }
-              } catch (e) {
-                console.log("Error:", e);
-              }
-            }
-          }, 1000);
         },
       };
     </script>
@@ -72,6 +50,7 @@
   </head>
 
   <body>
+    <!-- ========== NAVEGACIÓN ========== -->
     <nav>
       <input type="checkbox" class="checkbox" id="check" />
       <h1 class="nav_head">Raúl</h1>
@@ -83,13 +62,13 @@
         <li><a href="#experimentos">Experimentos</a></li>
         <a href="./paginas/contactame.html" class="contact_btn">Contactame</a>
       </ul>
-
       <label for="check" class="checkbtn">
         <i class="fas fa-bars" id="menu-icon"></i>
         <i class="fas fa-times" id="close-icon" style="display: none"></i>
       </label>
     </nav>
 
+    <!-- ========== HOME ========== -->
     <section id="home" class="home">
       <img src="./img/ratv.svg" alt="" width="550px" height="450px" />
       <div class="description">
@@ -98,7 +77,7 @@
         <p>
           Un apasionado por la tecnología, disfruto implementando soluciones que
           ayuden a generar valor, ahorro y oportunidades en las organizaciones,
-          haciendo uso de la tecnología .
+          haciendo uso de la tecnología.
         </p>
         <div class="font">
           <i class="fa-brands fa-instagram icon-disabled"></i>
@@ -111,9 +90,7 @@
             <i class="fa-brands fa-linkedin-in"></i>
           </a>
         </div>
-
         <button id="downloadBtnabout" class="form_btn">Portafolio...</button>
-
         <script>
           document
             .getElementById("downloadBtnabout")
@@ -123,6 +100,8 @@
         </script>
       </div>
     </section>
+
+    <!-- ========== ABOUT ========== -->
     <section id="about" class="about">
       <div class="about_section">
         <h1>Acerca <span>de mi</span></h1>
@@ -143,9 +122,7 @@
           oportunidades en las organizaciones a través de la tecnología...
         </p>
         <br />
-
         <button id="downloadBtn" class="about_btn">Download CV</button>
-
         <script>
           document
             .getElementById("downloadBtn")
@@ -161,6 +138,8 @@
         <img src="./img/ratv.svg" alt="" width="400" height="300" />
       </div>
     </section>
+
+    <!-- ========== TECNOLOGÍAS ========== -->
     <section id="tecnologias" class="tecnologias">
       <h1 class="tecnologias_section">
         Algunas tecnologías con las que <span>Trabajo</span>
@@ -193,6 +172,8 @@
         </div>
       </div>
     </section>
+
+    <!-- ========== PORTAFOLIO ========== -->
     <section id="portafolio" class="portafolio">
       <h1 class="port_section"><span>Portafolio</span> Reciente</h1>
       <div class="projects">
@@ -202,7 +183,7 @@
             <div class="content">
               <h1>Inteligencia de Negocios</h1>
               <p>
-                Una herramienta importante en estos timpos en las
+                Una herramienta importante en estos tiempos en las
                 organizaciones, el manejar indicadores y dashboard nos ayudan a
                 tener una visión rápidamente de mi organización, conoce algunos
                 de mis proyectos...
@@ -210,7 +191,6 @@
             </div>
           </div>
         </a>
-
         <a href="./paginas/PortalERP.html">
           <div class="port_card">
             <img src="./img/erp.png" alt="" width="400px" height="350px" />
@@ -225,7 +205,6 @@
             </div>
           </div>
         </a>
-
         <a href="./paginas/PortalFullStack.html">
           <div class="port_card">
             <img
@@ -249,6 +228,8 @@
         </a>
       </div>
     </section>
+
+    <!-- ========== EXPERIMENTOS ========== -->
     <section id="experimentos" class="Experimentos">
       <h1 class="exper_section"><span>Algunos </span> Experimentos</h1>
       <div class="exper">
@@ -269,7 +250,6 @@
             </div>
           </a>
         </div>
-
         <div class="exper_card" id="2">
           <a
             href="https://www.figma.com/design/VqSfwfs8t9WPu819F6OFzI/Untitled?node-id=0-1&t=DVwkHo8mPk43pt0D-1"
@@ -291,6 +271,7 @@
       </div>
     </section>
 
+    <!-- ========== FOOTER ========== -->
     <div class="footer">
       <p>
         <i class="fa-solid fa-copyright"></i>Raúl Trelles. || All Right
@@ -298,49 +279,60 @@
       </p>
     </div>
 
+    <!-- ========== MODAL ========== -->
     <div id="modal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <div id="modal-body">
-          <!-- El contenido del modal irá aquí, cambiará dinámicamente -->
-        </div>
+        <div id="modal-body"></div>
       </div>
     </div>
 
-    <!-- Botón para minimizar/maximizar chat -->
-    <button
-      class="chat-minimize-btn"
-      id="chatMinimizeBtn"
-      title="Cerrar/Minimizar chat"
-    >
-      <i class="fas fa-times"></i>
-    </button>
-
-    <!-- Botón para control de voz -->
-    <button
-      class="voice-control-btn"
-      id="voiceControlBtn"
-      title="Escuchar presentación"
-    >
-      <i class="fas fa-volume-up"></i>
-    </button>
+    <!-- ========== BOTONES FLOTANTES ========== -->
+    <div class="floating-controls">
+      <button
+        class="voice-control-btn"
+        id="voiceControlBtn"
+        title="Escuchar presentación"
+      >
+        <i class="fas fa-volume-up"></i>
+      </button>
+      <button class="chat-minimize-btn" id="chatMinimizeBtn" title="Abrir chat">
+        <i class="fas fa-comment"></i>
+      </button>
+    </div>
 
     <script src="./js/script.js"></script>
 
-    <!-- Cargar Botpress -->
+    <!-- ========== CARGAR BOTPRESS ========== -->
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2025/01/14/04/20250114041029-9C0WY3HO.js"></script>
 
-    <!-- ========== OCULTAR WIDGET POR DEFECTO DE BOTPRESS ========== -->
+    <!-- ========== CONTROL DEL CHAT - VERSIÓN SIMPLE Y EFECTIVA ========== -->
     <script>
       (function () {
-        var ocultado = false;
+        var chatBtn = document.getElementById("chatMinimizeBtn");
+        var isOpen = false;
+        var chatIframe = null;
 
-        function hideBotpressWidget() {
-          if (ocultado) return;
+        // Función para encontrar el iframe del chat
+        function findChatIframe() {
+          var iframes = document.querySelectorAll("iframe");
+          for (var i = 0; i < iframes.length; i++) {
+            var src = iframes[i].src || "";
+            if (
+              src.indexOf("botpress") !== -1 ||
+              src.indexOf("webchat") !== -1 ||
+              iframes[i].className.indexOf("bp") !== -1
+            ) {
+              return iframes[i];
+            }
+          }
+          return null;
+        }
 
-          // Selectores del widget
-          var selectores = [
+        // Función para ocultar el widget por defecto
+        function hideDefaultWidget() {
+          var selectors = [
             ".bp-widget-webchat",
             ".bp-widget",
             ".bpFab",
@@ -350,362 +342,199 @@
             'div[class*="bp-launcher"]',
             'div[class*="bp-fab"]',
             ".bp-fab",
-            ".bp-floating-button",
-            'div[class*="bp-floating"]',
-            ".bpWebchatWidget",
-            ".bpWidget",
           ];
 
-          var encontrado = false;
-
-          // Buscar y ocultar
-          for (var i = 0; i < selectores.length; i++) {
-            var elementos = document.querySelectorAll(selectores[i]);
-            if (elementos.length > 0) {
-              encontrado = true;
-              for (var j = 0; j < elementos.length; j++) {
-                elementos[j].style.cssText =
-                  "display:none !important;visibility:hidden !important;opacity:0 !important;width:0 !important;height:0 !important;pointer-events:none !important;position:absolute !important;top:-9999px !important;left:-9999px !important;";
+          for (var i = 0; i < selectors.length; i++) {
+            var elements = document.querySelectorAll(selectors[i]);
+            for (var j = 0; j < elements.length; j++) {
+              var el = elements[j];
+              if (el.id !== "chatMinimizeBtn" && el.id !== "voiceControlBtn") {
+                el.style.display = "none";
+                el.style.visibility = "hidden";
+                el.style.opacity = "0";
+                el.style.width = "0";
+                el.style.height = "0";
+                el.style.pointerEvents = "none";
+                el.style.position = "absolute";
+                el.style.top = "-9999px";
+                el.style.left = "-9999px";
               }
             }
-          }
-
-          // Buscar elementos con clases relacionadas
-          var todos = document.querySelectorAll("*");
-          for (var k = 0; k < todos.length; k++) {
-            var el = todos[k];
-            if (el.className && typeof el.className === "string") {
-              var cls = el.className.toLowerCase();
-              if (
-                cls.indexOf("bp-widget") !== -1 ||
-                cls.indexOf("bp-fab") !== -1 ||
-                cls.indexOf("bp-launcher") !== -1 ||
-                cls.indexOf("bp-webchat") !== -1 ||
-                cls.indexOf("bp-floating") !== -1 ||
-                cls.indexOf("bpFab") !== -1
-              ) {
-                encontrado = true;
-                el.style.cssText =
-                  "display:none !important;visibility:hidden !important;opacity:0 !important;width:0 !important;height:0 !important;pointer-events:none !important;position:absolute !important;top:-9999px !important;left:-9999px !important;";
-              }
-            }
-          }
-
-          if (encontrado) {
-            ocultado = true;
-            console.log("✅ Widget de Botpress ocultado");
           }
         }
 
-        // Ejecutar solo 3 veces con delays
-        setTimeout(hideBotpressWidget, 500);
-        setTimeout(hideBotpressWidget, 1500);
-        setTimeout(hideBotpressWidget, 3000);
+        // Función principal para abrir/cerrar el chat
+        function toggleChat() {
+          chatIframe = findChatIframe();
 
-        // Observer que NO causa bucles
+          if (!chatIframe) {
+            console.log("⏳ Buscando iframe del chat...");
+            chatBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            setTimeout(toggleChat, 1000);
+            return;
+          }
+
+          if (isOpen) {
+            // CERRAR CHAT
+            chatIframe.style.display = "none";
+            chatIframe.style.visibility = "hidden";
+            chatIframe.style.opacity = "0";
+            chatIframe.style.pointerEvents = "none";
+            isOpen = false;
+            chatBtn.innerHTML = '<i class="fas fa-comment"></i>';
+            chatBtn.title = "Abrir chat";
+            console.log("💤 Chat cerrado");
+          } else {
+            // ABRIR CHAT
+            chatIframe.style.display = "block";
+            chatIframe.style.visibility = "visible";
+            chatIframe.style.opacity = "1";
+            chatIframe.style.pointerEvents = "auto";
+            chatIframe.style.position = "fixed";
+            chatIframe.style.bottom = "80px";
+            chatIframe.style.right = "15px";
+            chatIframe.style.width = "85vw";
+            chatIframe.style.maxWidth = "400px";
+            chatIframe.style.height = "65vh";
+            chatIframe.style.maxHeight = "600px";
+            chatIframe.style.borderRadius = "16px";
+            chatIframe.style.boxShadow = "0 8px 32px rgba(0,0,0,0.4)";
+            chatIframe.style.zIndex = "999998";
+            chatIframe.style.border = "none";
+
+            isOpen = true;
+            chatBtn.innerHTML = '<i class="fas fa-times"></i>';
+            chatBtn.title = "Cerrar chat";
+            console.log("📨 Chat abierto");
+
+            // Ocultar widget por defecto
+            setTimeout(hideDefaultWidget, 100);
+          }
+        }
+
+        // Configurar el botón
+        if (chatBtn) {
+          chatBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            toggleChat();
+          });
+          chatBtn.classList.add("show");
+          console.log("✅ Botón configurado");
+        }
+
+        // Buscar el iframe periódicamente
+        var findInterval = setInterval(function () {
+          chatIframe = findChatIframe();
+          if (chatIframe) {
+            clearInterval(findInterval);
+            console.log("✅ Iframe del chat encontrado");
+
+            // Ocultar widget por defecto
+            setTimeout(hideDefaultWidget, 100);
+            setTimeout(hideDefaultWidget, 500);
+            setTimeout(hideDefaultWidget, 1000);
+
+            // Abrir chat automáticamente después de 2 segundos
+            setTimeout(function () {
+              if (chatIframe) {
+                chatIframe.style.display = "block";
+                chatIframe.style.visibility = "visible";
+                chatIframe.style.opacity = "1";
+                chatIframe.style.position = "fixed";
+                chatIframe.style.bottom = "80px";
+                chatIframe.style.right = "15px";
+                chatIframe.style.width = "85vw";
+                chatIframe.style.maxWidth = "400px";
+                chatIframe.style.height = "65vh";
+                chatIframe.style.maxHeight = "600px";
+                chatIframe.style.borderRadius = "16px";
+                chatIframe.style.boxShadow = "0 8px 32px rgba(0,0,0,0.4)";
+                chatIframe.style.zIndex = "999998";
+                chatIframe.style.border = "none";
+                isOpen = true;
+                chatBtn.innerHTML = '<i class="fas fa-times"></i>';
+                chatBtn.title = "Cerrar chat";
+                console.log("📨 Chat abierto automáticamente");
+                setTimeout(hideDefaultWidget, 100);
+              }
+            }, 2000);
+          }
+        }, 500);
+
+        // Observer para ocultar el widget si aparece después
         var observer = new MutationObserver(function () {
-          if (!ocultado) {
-            hideBotpressWidget();
-          }
-        });
-
-        observer.observe(document.body, {
-          childList: true,
-          subtree: true,
-          attributes: false,
-        });
-
-        console.log("🔍 Observador de widget activado");
-      })();
-    </script>
-
-    <!-- CONTROL DEL CHATBOT -->
-    <script type="text/javascript">
-      // Inyectar estilos para permitir interacción con el chat
-      const chatStyle = document.createElement("style");
-      chatStyle.textContent = `
-            iframe.bpWebchat,
-            iframe[class*="bp"],
-            div#bp-widget,
-            div[class*="bp-webchat"] {
-                pointer-events: auto !important;
-                cursor: auto !important;
-            }
-        `;
-      document.head.appendChild(chatStyle);
-
-      let chatClosed = false;
-      let chatOpened = false;
-
-      function getBotpressWidget() {
-        const selectors = [
-          "iframe.bpWebchat",
-          'iframe[class*="bp"]',
-          "div#bp-widget",
-          'div[class*="bp-webchat"]',
-        ];
-        for (const sel of selectors) {
-          const el = document.querySelector(sel);
-          if (el) return el;
-        }
-        return null;
-      }
-
-      function toggleChatVisibility() {
-        const widget = getBotpressWidget();
-        if (!widget) {
-          console.log("❌ Widget no encontrado");
-          return;
-        }
-
-        if (chatClosed) {
-          widget.style.display = "block";
-          widget.style.visibility = "visible";
-          widget.style.opacity = "1";
-          chatClosed = false;
-          document.getElementById("chatMinimizeBtn").innerHTML =
-            '<i class="fas fa-times"></i>';
-          document.getElementById("chatMinimizeBtn").title =
-            "Cerrar/Minimizar chat";
-          console.log("👁️ Chat mostrado");
-        } else {
-          widget.style.display = "none";
-          widget.style.visibility = "hidden";
-          widget.style.opacity = "0";
-          chatClosed = true;
-          document.getElementById("chatMinimizeBtn").innerHTML =
-            '<i class="fas fa-chevron-up"></i>';
-          document.getElementById("chatMinimizeBtn").title = "Abrir chat";
-          console.log("💤 Chat ocultado");
-        }
-      }
-
-      function openChatAuto() {
-        const widget = getBotpressWidget();
-        if (widget && !chatOpened) {
-          widget.style.display = "block";
-          widget.style.visibility = "visible";
-          widget.style.opacity = "1";
-          chatClosed = false;
-          chatOpened = true;
-          document.getElementById("chatMinimizeBtn").innerHTML =
-            '<i class="fas fa-times"></i>';
-          console.log("🎉 Chat abierto automáticamente");
-        }
-      }
-
-      function setupMinimizeButton() {
-        const btn = document.getElementById("chatMinimizeBtn");
-        if (btn) {
-          btn.addEventListener("click", toggleChatVisibility);
-          console.log("✅ Botón minimizar configurado");
-        }
-      }
-
-      function monitorWidgetAppearance() {
-        const observer = new MutationObserver(() => {
-          const widget = getBotpressWidget();
-          const btn = document.getElementById("chatMinimizeBtn");
-          if (widget && btn) {
-            if (!btn.classList.contains("show")) {
-              btn.classList.add("show");
-              console.log("✅ Botón minimizar mostrado (widget detectado)");
-              setTimeout(openChatAuto, 5000);
-              observer.disconnect();
-            }
+          hideDefaultWidget();
+          // También buscar el iframe si no lo tenemos
+          if (!chatIframe) {
+            chatIframe = findChatIframe();
           }
         });
         observer.observe(document.body, { childList: true, subtree: true });
-      }
 
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", () => {
-          setupMinimizeButton();
-          monitorWidgetAppearance();
-        });
-      } else {
-        setupMinimizeButton();
-        monitorWidgetAppearance();
-      }
-
-      window.toggleChat = toggleChatVisibility;
-      window.debugWidget = getBotpressWidget;
-      window.openChatNow = openChatAuto;
-      console.log("🔧 Comandos: toggleChat(), debugWidget(), openChatNow()");
-
-      // Manejar el menú responsive
-      document.addEventListener("DOMContentLoaded", () => {
-        const checkboxMenu = document.getElementById("check");
-        if (checkboxMenu) {
-          checkboxMenu.addEventListener("change", function () {
-            const menuIcon = document.getElementById("menu-icon");
-            const closeIcon = document.getElementById("close-icon");
-            if (this.checked) {
-              menuIcon.style.display = "none";
-              closeIcon.style.display = "inline";
-            } else {
-              menuIcon.style.display = "inline";
-              closeIcon.style.display = "none";
-            }
-          });
-        }
-      });
+        // Exponer funciones
+        window.toggleChat = toggleChat;
+        window.findChatIframe = findChatIframe;
+        console.log("🔧 Comandos: toggleChat(), findChatIframe()");
+      })();
     </script>
 
-    <!-- SÍNTESIS DE VOZ PARA BIENVENIDA CON AUTOPLAY -->
+    <!-- ========== SÍNTESIS DE VOZ ========== -->
     <script>
       (function () {
-        "use strict";
+        var mensaje =
+          "Hola, bienvenido al portafolio de Raúl Trelles. Implemento soluciones que ayudan a generar valor y oportunidades en las organizaciones. Cuento con más de 20 años de experiencia liderando proyectos de desarrollo e implementaciones de sistemas In House, CRM, ERP, SaaS y Analítica de Datos. Te invito a explorar mi portafolio y conocer más sobre mí.";
+        var btn = document.getElementById("voiceControlBtn");
+        var speaking = false;
+        var utterance = null;
 
-        const mensajeCompleto = `
-    Hola, bienvenido al portafolio de Raúl Trelles.
-    Implemento soluciones que ayudan a generar valor y oportunidades en las organizaciones.
-    Cuento con más de 20 años de experiencia liderando proyectos de desarrollo e implementaciones de sistemas In House, CRM, ERP, SaaS y Analítica de Datos.
-    Te invito a explorar mi portafolio y conocer más sobre mí, o puedes preguntarle a mi asistente virtual sobre mi trayectoria. ¡Abre el chat y te espero en la conversación!
-`;
-
-        let utterance = null;
-        let isSpeaking = false;
-        let autoPlayAttempted = false;
-        const voiceControlBtn = document.getElementById("voiceControlBtn");
-
-        // Función para hablar
-        function speakMessage(text, callback) {
-          if (!window.speechSynthesis) {
-            console.warn("Síntesis de voz no soportada.");
-            if (callback) callback(false);
+        function speak() {
+          if (!window.speechSynthesis) return;
+          if (speaking) {
+            window.speechSynthesis.cancel();
+            speaking = false;
+            btn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            btn.classList.remove("speaking");
             return;
           }
-
-          // Cancelar cualquier voz anterior
           window.speechSynthesis.cancel();
-
-          utterance = new SpeechSynthesisUtterance(text);
+          utterance = new SpeechSynthesisUtterance(mensaje);
           utterance.lang = "es-ES";
           utterance.rate = 1.0;
-          utterance.pitch = 1.0;
-
-          // Seleccionar voz en español
-          const voices = window.speechSynthesis.getVoices();
-          const spanishVoice = voices.find((v) => v.lang.startsWith("es"));
-          if (spanishVoice) utterance.voice = spanishVoice;
-
           utterance.onstart = function () {
-            isSpeaking = true;
-            voiceControlBtn.innerHTML = '<i class="fas fa-stop"></i>';
-            voiceControlBtn.title = "Detener presentación";
-            voiceControlBtn.style.backgroundColor = "#dc3545"; // rojo
+            speaking = true;
+            btn.innerHTML = '<i class="fas fa-stop"></i>';
+            btn.classList.add("speaking");
           };
-
           utterance.onend = function () {
-            isSpeaking = false;
-            voiceControlBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-            voiceControlBtn.title = "Escuchar presentación";
-            voiceControlBtn.style.backgroundColor = "#007bff"; // azul original
-            if (callback) callback(true);
+            speaking = false;
+            btn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            btn.classList.remove("speaking");
           };
-
           utterance.onerror = function (e) {
-            // Solo silenciar el error 'not-allowed' (autoplay bloqueado)
-            if (e.error === "not-allowed") {
-              console.log(
-                "🔇 Autoplay bloqueado por el navegador. El usuario debe iniciar manualmente.",
-              );
-              // Mostrar el botón si no está visible
-              voiceControlBtn.style.display = "flex";
-            } else {
-              console.error("Error en síntesis:", e);
+            if (e.error !== "not-allowed") {
+              console.log("Error:", e);
             }
-
-            isSpeaking = false;
-            voiceControlBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-            voiceControlBtn.title = "Escuchar presentación";
-            voiceControlBtn.style.backgroundColor = "#007bff";
-            if (callback) callback(false);
+            speaking = false;
+            btn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            btn.classList.remove("speaking");
           };
-
           window.speechSynthesis.speak(utterance);
         }
 
-        // Función para detener
-        function stopSpeaking() {
-          if (window.speechSynthesis) {
-            window.speechSynthesis.cancel();
-          }
-          isSpeaking = false;
-          voiceControlBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-          voiceControlBtn.title = "Escuchar presentación";
-          voiceControlBtn.style.backgroundColor = "#007bff";
-        }
-
-        // Alternar entre hablar y detener
-        function toggleVoice() {
-          if (isSpeaking) {
-            stopSpeaking();
-          } else {
-            speakMessage(mensajeCompleto);
-          }
-        }
-
-        // Intentar autoplay al cargar la página
-        function attemptAutoPlay() {
-          if (autoPlayAttempted) return;
-          autoPlayAttempted = true;
-
-          // Verificar si las voces están cargadas
-          const trySpeak = function () {
-            speakMessage(mensajeCompleto, function (success) {
-              if (success) {
-                console.log("🔊 Autoplay exitoso");
-                // El botón ya está visible, pero aseguramos que se vea
-                voiceControlBtn.style.display = "flex";
-              } else {
-                // El error ya fue manejado en onerror
-                console.log(
-                  "⏳ Esperando interacción del usuario para iniciar voz",
-                );
-              }
-            });
-          };
-
-          if (
-            window.speechSynthesis &&
-            window.speechSynthesis.getVoices().length > 0
-          ) {
-            trySpeak();
-          } else {
-            window.speechSynthesis.onvoiceschanged = function () {
-              trySpeak();
-              window.speechSynthesis.onvoiceschanged = null;
-            };
-          }
-        }
-
-        // Inicializar el botón de voz
-        function initVoiceControl() {
-          if (!voiceControlBtn) {
-            console.warn("Botón de control de voz no encontrado.");
-            return;
-          }
-
-          // Configurar evento de clic
-          voiceControlBtn.addEventListener("click", function (e) {
-            e.stopPropagation();
-            toggleVoice();
-          });
-
-          // Mostrar el botón siempre (visible)
-          voiceControlBtn.style.display = "flex";
-
-          // Intentar autoplay después de 1 segundo (para asegurar que todo esté cargado)
-          setTimeout(attemptAutoPlay, 1500);
-        }
-
-        // Inicializar cuando el DOM esté listo
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", initVoiceControl);
-        } else {
-          initVoiceControl();
+        if (btn) {
+          btn.addEventListener("click", speak);
+          setTimeout(function () {
+            var voices = window.speechSynthesis.getVoices();
+            if (voices.length > 0) {
+              speak();
+            } else {
+              window.speechSynthesis.onvoiceschanged = function () {
+                speak();
+                window.speechSynthesis.onvoiceschanged = null;
+              };
+            }
+          }, 2000);
         }
       })();
     </script>
