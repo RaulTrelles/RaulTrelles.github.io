@@ -999,129 +999,313 @@ h1.exper_section span {
 }
 
 /* ***************************************** contact section ******************************* */
-.form {
-  width: 100%;
-  text-align: center;
+.contact-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 20px 60px;
+  background: radial-gradient(circle, rgba(255, 152, 0, 0) 100%);
 }
 
-.form h1 {
-  margin: 10px 20px 40px 0px;
-  text-align: center;
-  color: white;
-  font-size: 50px;
-  padding-top: 80px;
-}
-.form h1 span {
-  color: var(--main-color);
+.contact-container {
+  max-width: 600px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 50px 40px;
+  border: 1px solid rgba(255, 152, 0, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
-.form input,
-textarea {
-  width: 100%;
-  max-width: 550px;
-  margin: 10px auto;
-  padding: 15px;
-  background-color: rgb(63, 63, 63);
-  font-size: 18px;
+.contact-container h1 {
+  text-align: center;
+  font-size: 2.5rem;
   color: white;
+  margin-bottom: 10px;
+}
+
+.contact-container h1 span {
+  color: var(--main-color, #ff7700);
+}
+
+.contact-container .subtitle {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+}
+
+/* ========== BOTONES DE CONTACTO RÁPIDO ========== */
+.quick-contact {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 35px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.quick-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 25px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
   border: none;
-  border-radius: 5px;
-}
-
-.form .form_btn {
-  padding: 5px 50px;
-  font-size: 20px;
-  background-color: var(--main-color);
-  margin: 1.5rem auto;
-  border-radius: 10px;
-  box-shadow: 0px 0px 20px var(--main-color);
   cursor: pointer;
-  border: none;
-  transition: 0.3s ease;
 }
 
-.form .form_btn:hover {
-  background: transparent;
-  border: 2px solid var(--main-color);
+.quick-btn i {
+  font-size: 1.2rem;
+}
+
+.quick-btn.whatsapp {
+  background: #25d366;
   color: white;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
 }
 
-@media (max-width: 820px) {
-  .form input,
-  textarea {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .form .form_btn {
-    width: 100%;
-    max-width: 300px;
-    font-size: 18px;
-    max-width: 100%;
-  }
+.quick-btn.whatsapp:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
 }
 
-*::selection {
-  background-color: var(--main-color);
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-  background-color: rgb(80, 46, 13);
-  margin: 10% auto;
-  padding: 30px;
-  border: 1px solid var(--main-color);
-  width: 90%;
-  max-width: 700px;
-  border-radius: 10px;
+.quick-btn.email {
+  background: #ea4335;
   color: white;
+  box-shadow: 0 4px 15px rgba(234, 67, 53, 0.3);
+}
+
+.quick-btn.email:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(234, 67, 53, 0.5);
+}
+
+.quick-btn.linkedin {
+  background: #0077b5;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 119, 181, 0.3);
+}
+
+.quick-btn.linkedin:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 25px rgba(0, 119, 181, 0.5);
+}
+
+/* ========== FORMULARIO ========== */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
   position: relative;
 }
 
-.close {
+.form-group i {
   position: absolute;
-  top: 5px;
-  right: 5px;
-  color: #aaa;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--main-color, #ff7700);
+  font-size: 1.1rem;
+  opacity: 0.7;
 }
 
-.close:hover,
-.close:focus {
-  color: var(--main-color);
-  text-decoration: none;
-  cursor: pointer;
+.form-group i.fa-message {
+  top: 22px;
+  transform: none;
 }
 
-.icon-disabled {
-  color: gray;
-  opacity: 0.5;
-  pointer-events: none;
-  cursor: not-allowed;
-}
-
-.footer {
-  background-color: black;
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 15px 18px 15px 50px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
   color: white;
-  padding: 20px;
-  font-size: 15px;
-  text-align: center;
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-group textarea {
+  padding-top: 18px;
+  min-height: 130px;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--main-color, #ff7700);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(255, 152, 0, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.form-group .error-message {
+  color: #ff6b6b;
+  font-size: 0.8rem;
+  margin-top: 5px;
+  display: none;
+}
+
+.form-group.error input,
+.form-group.error textarea {
+  border-color: #ff6b6b;
+}
+
+.form-group.error .error-message {
+  display: block;
+}
+
+/* ========== BOTÓN ENVIAR ========== */
+.submit-btn {
+  padding: 16px 35px;
+  background: linear-gradient(135deg, var(--main-color, #ff7700), #ff5500);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 5px;
+  box-shadow: 0 4px 20px rgba(255, 119, 0, 0.3);
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 35px rgba(255, 119, 0, 0.5);
+}
+
+.submit-btn:active {
+  transform: scale(0.97);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submit-btn .spinner {
+  display: none;
+  animation: spin 1s linear infinite;
+}
+
+.submit-btn.loading .spinner {
+  display: inline-block;
+}
+
+.submit-btn.loading .btn-text {
+  display: none;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========== TOAST NOTIFICACIÓN ========== */
+.toast {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  padding: 18px 30px;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+  z-index: 99999;
+  transform: translateX(120%);
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 90%;
+}
+
+.toast.show {
+  transform: translateX(0);
+}
+
+.toast.success {
+  background: linear-gradient(135deg, #00b894, #00a381);
+}
+
+.toast.error {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+}
+
+.toast i {
+  font-size: 1.5rem;
+}
+
+/* ========== RESPONSIVE CONTACTO ========== */
+@media (max-width: 768px) {
+  .contact-container {
+    padding: 30px 20px;
+  }
+
+  .contact-container h1 {
+    font-size: 2rem;
+  }
+
+  .quick-contact {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .quick-btn {
+    justify-content: center;
+    padding: 14px 20px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 14px 16px 14px 45px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-container {
+    padding: 25px 15px;
+  }
+
+  .contact-container h1 {
+    font-size: 1.7rem;
+  }
+
+  .toast {
+    right: 15px;
+    left: 15px;
+    font-size: 0.85rem;
+    padding: 14px 20px;
+  }
 }
 
 /* ================ RESPONSIVE PARA BOTONES FLOTANTES ================ */

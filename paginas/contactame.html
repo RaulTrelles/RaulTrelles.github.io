@@ -9,322 +9,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     />
     <title>Contactame | Raúl Trelles</title>
-
-    <style>
-      /* ========== ESTILOS EXCLUSIVOS PARA CONTACTO ========== */
-      .contact-page {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 120px 20px 60px;
-        background: radial-gradient(circle, rgba(255, 152, 0, 0) 100%);
-      }
-
-      .contact-container {
-        max-width: 600px;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        padding: 50px 40px;
-        border: 1px solid rgba(255, 152, 0, 0.2);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-      }
-
-      .contact-container h1 {
-        text-align: center;
-        font-size: 2.5rem;
-        color: white;
-        margin-bottom: 10px;
-      }
-
-      .contact-container h1 span {
-        color: var(--main-color, #ff7700);
-      }
-
-      .contact-container .subtitle {
-        text-align: center;
-        color: #aaa;
-        margin-bottom: 30px;
-        font-size: 0.95rem;
-      }
-
-      /* ========== BOTONES DE CONTACTO RÁPIDO ========== */
-      .quick-contact {
-        display: flex;
-        gap: 15px;
-        margin-bottom: 35px;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-
-      .quick-btn {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 12px 25px;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 0.95rem;
-        transition: all 0.3s ease;
-        border: none;
-        cursor: pointer;
-      }
-
-      .quick-btn i {
-        font-size: 1.2rem;
-      }
-
-      .quick-btn.whatsapp {
-        background: #25d366;
-        color: white;
-        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-      }
-
-      .quick-btn.whatsapp:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
-      }
-
-      .quick-btn.email {
-        background: #ea4335;
-        color: white;
-        box-shadow: 0 4px 15px rgba(234, 67, 53, 0.3);
-      }
-
-      .quick-btn.email:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 25px rgba(234, 67, 53, 0.5);
-      }
-
-      .quick-btn.linkedin {
-        background: #0077b5;
-        color: white;
-        box-shadow: 0 4px 15px rgba(0, 119, 181, 0.3);
-      }
-
-      .quick-btn.linkedin:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 6px 25px rgba(0, 119, 181, 0.5);
-      }
-
-      /* ========== FORMULARIO ========== */
-      .contact-form {
-        display: flex;
-        flex-direction: column;
-        gap: 18px;
-      }
-
-      .form-group {
-        position: relative;
-      }
-
-      .form-group i {
-        position: absolute;
-        left: 18px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--main-color, #ff7700);
-        font-size: 1.1rem;
-        opacity: 0.7;
-      }
-
-      .form-group i.fa-message {
-        top: 22px;
-        transform: none;
-      }
-
-      .form-group input,
-      .form-group textarea {
-        width: 100%;
-        padding: 15px 18px 15px 50px;
-        background: rgba(255, 255, 255, 0.07);
-        border: 2px solid rgba(255, 255, 255, 0.1);
-        border-radius: 12px;
-        color: white;
-        font-size: 1rem;
-        font-family: "Montserrat", sans-serif;
-        transition: all 0.3s ease;
-        box-sizing: border-box;
-      }
-
-      .form-group textarea {
-        padding-top: 18px;
-        min-height: 130px;
-        resize: vertical;
-      }
-
-      .form-group input:focus,
-      .form-group textarea:focus {
-        outline: none;
-        border-color: var(--main-color, #ff7700);
-        background: rgba(255, 255, 255, 0.1);
-        box-shadow: 0 0 20px rgba(255, 152, 0, 0.1);
-      }
-
-      .form-group input::placeholder,
-      .form-group textarea::placeholder {
-        color: rgba(255, 255, 255, 0.4);
-      }
-
-      .form-group .error-message {
-        color: #ff6b6b;
-        font-size: 0.8rem;
-        margin-top: 5px;
-        display: none;
-      }
-
-      .form-group.error input,
-      .form-group.error textarea {
-        border-color: #ff6b6b;
-      }
-
-      .form-group.error .error-message {
-        display: block;
-      }
-
-      /* ========== BOTÓN ENVIAR ========== */
-      .submit-btn {
-        padding: 16px 35px;
-        background: linear-gradient(
-          135deg,
-          var(--main-color, #ff7700),
-          #ff5500
-        );
-        color: white;
-        border: none;
-        border-radius: 12px;
-        font-size: 1.1rem;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        margin-top: 5px;
-        box-shadow: 0 4px 20px rgba(255, 119, 0, 0.3);
-      }
-
-      .submit-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 35px rgba(255, 119, 0, 0.5);
-      }
-
-      .submit-btn:active {
-        transform: scale(0.97);
-      }
-
-      .submit-btn:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-        transform: none;
-      }
-
-      .submit-btn .spinner {
-        display: none;
-        animation: spin 1s linear infinite;
-      }
-
-      .submit-btn.loading .spinner {
-        display: inline-block;
-      }
-
-      .submit-btn.loading .btn-text {
-        display: none;
-      }
-
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      /* ========== TOAST NOTIFICACIÓN ========== */
-      .toast {
-        position: fixed;
-        top: 30px;
-        right: 30px;
-        padding: 18px 30px;
-        border-radius: 12px;
-        color: white;
-        font-weight: 600;
-        font-size: 0.95rem;
-        z-index: 99999;
-        transform: translateX(120%);
-        transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        max-width: 90%;
-      }
-
-      .toast.show {
-        transform: translateX(0);
-      }
-
-      .toast.success {
-        background: linear-gradient(135deg, #00b894, #00a381);
-      }
-
-      .toast.error {
-        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-      }
-
-      .toast i {
-        font-size: 1.5rem;
-      }
-
-      /* ========== RESPONSIVE ========== */
-      @media (max-width: 768px) {
-        .contact-container {
-          padding: 30px 20px;
-        }
-
-        .contact-container h1 {
-          font-size: 2rem;
-        }
-
-        .quick-contact {
-          flex-direction: column;
-          align-items: stretch;
-        }
-
-        .quick-btn {
-          justify-content: center;
-          padding: 14px 20px;
-        }
-
-        .form-group input,
-        .form-group textarea {
-          padding: 14px 16px 14px 45px;
-          font-size: 0.95rem;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .contact-container {
-          padding: 25px 15px;
-        }
-
-        .contact-container h1 {
-          font-size: 1.7rem;
-        }
-
-        .toast {
-          right: 15px;
-          left: 15px;
-          font-size: 0.85rem;
-          padding: 14px 20px;
-        }
-      }
-    </style>
   </head>
 
   <body>
@@ -361,7 +45,6 @@
           >
             <i class="fab fa-whatsapp"></i> WhatsApp
           </a>
-
           <a
             href="https://www.linkedin.com/in/raultrelles/"
             target="_blank"
@@ -371,9 +54,7 @@
           </a>
         </div>
 
-        <!-- ========================================================== -->
-        <!-- FORMULARIO CON ENVÍO AJAX (SIN REDIRECCIÓN)                -->
-        <!-- ========================================================== -->
+        <!-- Formulario con AJAX -->
         <form id="contact-form" class="contact-form">
           <div class="form-group">
             <i class="fas fa-user"></i>
@@ -438,11 +119,9 @@
       <span id="toastMessage">Mensaje enviado correctamente</span>
     </div>
 
-    <!-- ========== SCRIPT PRINCIPAL ========== -->
+    <!-- ========== SCRIPT ========== -->
     <script>
-      // ============================================================
-      // FUNCIÓN PARA MOSTRAR TOAST NOTIFICACIÓN
-      // ============================================================
+      // Función para mostrar toast
       function showToast(message, type) {
         const toast = document.getElementById("toast");
         const toastMessage = document.getElementById("toastMessage");
@@ -465,9 +144,7 @@
         }, 6000);
       }
 
-      // ============================================================
-      // ENVÍO DEL FORMULARIO CON AJAX (SIN REDIRECCIÓN)
-      // ============================================================
+      // Envío AJAX
       document
         .getElementById("contact-form")
         .addEventListener("submit", async function (e) {
@@ -475,13 +152,11 @@
 
           const submitBtn = document.getElementById("submitBtn");
 
-          // Obtener valores
           const name = document.getElementById("name").value.trim();
           const email = document.getElementById("email").value.trim();
           const phone = document.getElementById("phone").value.trim();
           const message = document.getElementById("message").value.trim();
 
-          // Validación
           let isValid = true;
 
           if (!name) {
@@ -525,11 +200,9 @@
             return;
           }
 
-          // Mostrar loading
           submitBtn.classList.add("loading");
           submitBtn.disabled = true;
 
-          // Preparar datos para formsubmit.co
           const formData = new FormData();
           formData.append("name", name);
           formData.append("email", email);
@@ -580,9 +253,7 @@
           }
         });
 
-      // ============================================================
-      // MENÚ RESPONSIVE
-      // ============================================================
+      // Menú responsive
       document.addEventListener("DOMContentLoaded", function () {
         const checkbox = document.getElementById("check");
         const menuIcon = document.getElementById("menu-icon");
