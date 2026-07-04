@@ -309,6 +309,7 @@
 
     <!-- ========== CONTROL DEL CHAT - VERSIÓN SIMPLE Y EFECTIVA ========== -->
     <script>
+      // ========== CONTROL DEL CHAT - VERSIÓN MEJORADA ==========
       (function () {
         var chatBtn = document.getElementById("chatMinimizeBtn");
         var isOpen = false;
@@ -381,7 +382,7 @@
             chatIframe.style.opacity = "0";
             chatIframe.style.pointerEvents = "none";
             isOpen = false;
-            chatBtn.innerHTML = '<i class="fas fa-comment"></i>';
+            chatBtn.innerHTML = '<i class="fas fa-comment-dots"></i>';
             chatBtn.title = "Abrir chat";
             console.log("💤 Chat cerrado");
           } else {
@@ -465,7 +466,6 @@
         // Observer para ocultar el widget si aparece después
         var observer = new MutationObserver(function () {
           hideDefaultWidget();
-          // También buscar el iframe si no lo tenemos
           if (!chatIframe) {
             chatIframe = findChatIframe();
           }
