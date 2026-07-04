@@ -47,25 +47,6 @@
       document.cookie = "key=value; SameSite=None; Secure";
     </script>
 
-    <!-- CONFIGURACIÓN BOTPRESS -->
-    <script>
-      window.botpressWebChatInit = {
-        botId: "9c0wy3ho",
-        hostUrl: "https://cdn.botpress.cloud/webchat/v2.2",
-        clientId: "9c0wy3ho",
-        layout: {
-          initialOpen: false,
-          isOpen: false,
-        },
-        hideWidget: false,
-        showConversationsButton: false,
-        onLoad: function (bp) {
-          console.log("🔵 Botpress cargado");
-          window.botpressInstance = bp;
-        },
-      };
-    </script>
-
     <title>Portafolio Personal</title>
   </head>
 
@@ -321,219 +302,243 @@
       </button>
     </div>
 
+    <!-- ========== VENTANA DE CHAT PERSONALIZADA ========== -->
+    <div id="custom-chat-window" style="display: none">
+      <div id="custom-chat-header">
+        <span><i class="fas fa-user-tie"></i>Asistente Virtual</span>
+        <button id="custom-chat-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div id="custom-chat-messages">
+        <div class="chat-message bot">
+          <div class="message-content">
+            Hola, soy el asistente virtual de Raúl Trelles. Pregúntame sobre su
+            experiencia profesional, proyectos o habilidades técnicas.
+          </div>
+        </div>
+      </div>
+      <div id="custom-chat-input-area">
+        <input
+          type="text"
+          id="custom-chat-input"
+          placeholder="Escribe tu pregunta..."
+        />
+        <button id="custom-chat-send">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+      <div id="custom-chat-typing" style="display: none">
+        <span>Raúl Bot está escribiendo...</span>
+      </div>
+    </div>
+
     <script src="./js/script.js"></script>
 
-    <!-- ========== CARGAR BOTPRESS ========== -->
-    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-    <script src="https://files.bpcontent.cloud/2025/01/14/04/20250114041029-9C0WY3HO.js"></script>
-
-    <!-- ========== CONTROL DEL CHAT - SIN BUCLES ========== -->
+    <!-- ========== CONTROL DEL CHAT PERSONALIZADO ========== -->
     <script>
       (function () {
-        var chatBtn = document.getElementById("chatMinimizeBtn");
-        var isOpen = false;
-        var bp = null;
-        var waitingForBotpress = false;
+        const chatBtn = document.getElementById("chatMinimizeBtn");
+        const chatWindow = document.getElementById("custom-chat-window");
+        const closeBtn = document.getElementById("custom-chat-close");
+        const messagesContainer = document.getElementById(
+          "custom-chat-messages",
+        );
+        const inputField = document.getElementById("custom-chat-input");
+        const sendBtn = document.getElementById("custom-chat-send");
+        const typingIndicator = document.getElementById("custom-chat-typing");
 
-        function getBotpress() {
-          if (window.botpressInstance) return window.botpressInstance;
-          for (var key in window) {
-            if (
-              key.toLowerCase().indexOf("botpress") !== -1 &&
-              typeof window[key] === "object"
-            ) {
-              if (window[key] && typeof window[key].open === "function") {
-                return window[key];
-              }
-            }
-          }
-          return null;
-        }
+        let isOpen = false;
+        let conversationId = null;
+        let isWaiting = false;
 
-        function updateButtonIcon() {
-          if (!chatBtn) return;
-          if (isOpen) {
-            chatBtn.innerHTML = '<i class="fas fa-times"></i>';
-            chatBtn.title = "Cerrar chat";
-          } else {
-            chatBtn.innerHTML = '<i class="fas fa-comment-dots"></i>';
-            chatBtn.title = "Abrir chat";
-          }
-        }
+        // Configuración de Dify API
+        const API_KEY = "app-sS8Rt9Dz9B9N3UtaZr8JexG0";
+        const API_URL = "https://api.dify.ai/v1/chat-messages";
 
-        function hideDefaultWidget() {
-          var selectors = [
-            ".bp-widget-webchat",
-            ".bp-widget",
-            ".bpFab",
-            ".bp-launcher",
-            ".bpWebchatLauncher",
-            'button[class*="bp-launcher"]',
-            'div[class*="bp-launcher"]',
-            'div[class*="bp-fab"]',
-            ".bp-fab",
-            ".bp-floating-button",
-            'div[class*="bp-floating"]',
-            ".bpWebchatWidget",
-            ".bpWidget",
-          ];
-
-          for (var i = 0; i < selectors.length; i++) {
-            var elements = document.querySelectorAll(selectors[i]);
-            for (var j = 0; j < elements.length; j++) {
-              var el = elements[j];
-              if (el.id !== "chatMinimizeBtn" && el.id !== "voiceControlBtn") {
-                el.style.display = "none";
-                el.style.visibility = "hidden";
-                el.style.opacity = "0";
-                el.style.width = "0";
-                el.style.height = "0";
-                el.style.pointerEvents = "none";
-                el.style.position = "absolute";
-                el.style.top = "-9999px";
-                el.style.left = "-9999px";
-              }
-            }
-          }
-        }
-
-        function openChat() {
-          try {
-            if (bp && typeof bp.open === "function") {
-              bp.open();
-              isOpen = true;
-              updateButtonIcon();
-              console.log("📨 Chat abierto");
-              setTimeout(hideDefaultWidget, 200);
-              return true;
-            } else if (
-              bp &&
-              bp.webchat &&
-              typeof bp.webchat.open === "function"
-            ) {
-              bp.webchat.open();
-              isOpen = true;
-              updateButtonIcon();
-              console.log("📨 Chat abierto (webchat)");
-              setTimeout(hideDefaultWidget, 200);
-              return true;
-            }
-          } catch (e) {
-            console.warn("Error al abrir chat:", e);
-          }
-          return false;
-        }
-
-        function closeChat() {
-          try {
-            if (bp && typeof bp.close === "function") {
-              bp.close();
-              isOpen = false;
-              updateButtonIcon();
-              console.log("💤 Chat cerrado");
-              return true;
-            } else if (
-              bp &&
-              bp.webchat &&
-              typeof bp.webchat.close === "function"
-            ) {
-              bp.webchat.close();
-              isOpen = false;
-              updateButtonIcon();
-              console.log("💤 Chat cerrado (webchat)");
-              return true;
-            }
-          } catch (e) {
-            console.warn("Error al cerrar chat:", e);
-          }
-          return false;
-        }
-
+        // Función para abrir/cerrar el chat
         function toggleChat() {
-          if (!bp) {
-            bp = getBotpress();
-            if (!bp) {
-              console.log("⏳ Botpress no disponible, reintentando...");
-              if (!waitingForBotpress) {
-                waitingForBotpress = true;
-                setTimeout(function () {
-                  waitingForBotpress = false;
-                  bp = getBotpress();
-                  if (bp) {
-                    console.log("✅ Botpress encontrado");
-                    toggleChat();
-                  } else {
-                    console.warn("⚠️ Botpress no disponible");
-                  }
-                }, 1000);
-              }
-              return;
-            }
-          }
-
           if (isOpen) {
-            closeChat();
+            chatWindow.style.display = "none";
+            isOpen = false;
+            chatBtn.innerHTML = '<i class="fas fa-comment-dots"></i>';
+            chatBtn.title = "Abrir chat (CV)";
           } else {
-            openChat();
+            chatWindow.style.display = "flex";
+            isOpen = true;
+            chatBtn.innerHTML = '<i class="fas fa-times"></i>';
+            chatBtn.title = "Cerrar chat (CV)";
+            // Enfocar el input
+            setTimeout(() => inputField.focus(), 300);
           }
         }
 
-        if (chatBtn) {
-          chatBtn.addEventListener("click", function (e) {
-            e.stopPropagation();
-            e.preventDefault();
-            toggleChat();
-          });
-          chatBtn.classList.add("show");
-          updateButtonIcon();
-          console.log("✅ Botón configurado");
+        // Cerrar chat desde la X
+        closeBtn.addEventListener("click", toggleChat);
+
+        // Botón del chat
+        chatBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          e.preventDefault();
+          toggleChat();
+        });
+        chatBtn.classList.add("show");
+        chatBtn.innerHTML = '<i class="fas fa-comment-dots"></i>';
+        chatBtn.title = "Abrir chat (CV)";
+
+        // Agregar mensaje al chat
+        function addMessage(text, isUser = false) {
+          const div = document.createElement("div");
+          div.className = `chat-message ${isUser ? "user" : "bot"}`;
+          div.innerHTML = `<div class="message-content">${text}</div>`;
+          messagesContainer.appendChild(div);
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
-        var attempts = 0;
-        var maxAttempts = 20;
-        var findBotpress = setInterval(function () {
-          attempts++;
-          bp = getBotpress();
-          if (bp) {
-            clearInterval(findBotpress);
-            console.log("✅ Botpress encontrado (intento " + attempts + ")");
-            setTimeout(hideDefaultWidget, 100);
-            setTimeout(hideDefaultWidget, 500);
-            setTimeout(hideDefaultWidget, 1000);
-            setTimeout(function () {
-              if (!isOpen) {
-                openChat();
-                console.log("📨 Chat abierto automáticamente");
+        // Mostrar indicador de escritura
+        function showTyping(show) {
+          typingIndicator.style.display = show ? "flex" : "none";
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // Enviar mensaje a la API de Dify
+        async function sendMessage(query) {
+          if (isWaiting) return;
+          if (!query.trim()) return;
+
+          // Agregar mensaje del usuario
+          addMessage(query, true);
+          inputField.value = "";
+          inputField.disabled = true;
+          sendBtn.disabled = true;
+          isWaiting = true;
+
+          // Mostrar indicador de escritura
+          showTyping(true);
+
+          try {
+            const response = await fetch(API_URL, {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${API_KEY}`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                inputs: {},
+                query: query,
+                response_mode: "streaming",
+                conversation_id: conversationId || "",
+                user: "web-user-" + Date.now(),
+              }),
+            });
+
+            if (!response.ok) {
+              throw new Error(
+                `Error ${response.status}: ${response.statusText}`,
+              );
+            }
+
+            // Leer el stream SSE
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+            let buffer = "";
+            let botReply = "";
+            let isFirstChunk = true;
+
+            // Ocultar indicador de escritura
+            showTyping(false);
+
+            while (true) {
+              const { done, value } = await reader.read();
+              if (done) break;
+
+              buffer += decoder.decode(value, { stream: true });
+              const lines = buffer.split("\n");
+              buffer = lines.pop() || "";
+
+              for (const line of lines) {
+                if (line.startsWith("data: ")) {
+                  const jsonStr = line.substring(6);
+                  try {
+                    const data = JSON.parse(jsonStr);
+                    if (data.event === "message") {
+                      // Guardar conversation_id para mantener contexto
+                      if (data.conversation_id) {
+                        conversationId = data.conversation_id;
+                      }
+                      // Acumular respuesta
+                      if (data.answer) {
+                        botReply += data.answer;
+                        if (isFirstChunk) {
+                          // Crear el mensaje del bot con el primer chunk
+                          addMessage(botReply, false);
+                          isFirstChunk = false;
+                        } else {
+                          // Actualizar el último mensaje del bot
+                          const lastMsg = messagesContainer.querySelector(
+                            ".chat-message.bot:last-child .message-content",
+                          );
+                          if (lastMsg) {
+                            lastMsg.textContent = botReply;
+                          }
+                        }
+                        messagesContainer.scrollTop =
+                          messagesContainer.scrollHeight;
+                      }
+                    } else if (data.event === "message_end") {
+                      // Mensaje completo
+                      console.log("✅ Mensaje completado");
+                    } else if (data.event === "error") {
+                      console.error("❌ Error de Dify:", data.message);
+                      showTyping(false);
+                      addMessage(
+                        "❌ Error: " + (data.message || "Intenta de nuevo."),
+                        false,
+                      );
+                      isWaiting = false;
+                      inputField.disabled = false;
+                      sendBtn.disabled = false;
+                      return;
+                    }
+                  } catch (e) {
+                    console.warn("Error al parsear JSON:", e);
+                  }
+                }
               }
-            }, 2000);
-          } else if (attempts >= maxAttempts) {
-            clearInterval(findBotpress);
-            console.warn(
-              "⚠️ No se encontró Botpress después de " +
-                maxAttempts +
-                " intentos",
+            }
+          } catch (error) {
+            console.error("❌ Error en la solicitud:", error);
+            showTyping(false);
+            addMessage(
+              "❌ Error de conexión. Por favor intenta de nuevo.",
+              false,
             );
           }
-        }, 500);
 
-        var observer = new MutationObserver(function () {
-          hideDefaultWidget();
+          isWaiting = false;
+          inputField.disabled = false;
+          sendBtn.disabled = false;
+          inputField.focus();
+        }
+
+        // Evento de envío
+        sendBtn.addEventListener("click", () => {
+          sendMessage(inputField.value);
         });
-        observer.observe(document.body, { childList: true, subtree: true });
 
+        inputField.addEventListener("keypress", (e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            sendMessage(inputField.value);
+          }
+        });
+
+        // Exponer función para debugging
         window.toggleChat = toggleChat;
-        window.openChat = openChat;
-        window.closeChat = closeChat;
-        window.getBotpress = getBotpress;
-        console.log(
-          "🔧 Comandos: toggleChat(), openChat(), closeChat(), getBotpress()",
-        );
+        console.log("🔧 Chat personalizado listo. Comando: toggleChat()");
       })();
     </script>
 
-    <!-- ========== SÍNTESIS DE VOZ - MASCULINA AUTOMÁTICA ========== -->
+    <!-- ========== SÍNTESIS DE VOZ ========== -->
     <script>
-      // ========== SÍNTESIS DE VOZ - MASCULINA FORZADA (PITCH EXTREMO) ==========
       (function () {
         var mensaje =
           "Hola, bienvenido al portafolio de Raúl Trelles. Implemento soluciones que ayudan a generar valor y oportunidades en las organizaciones. Cuento con más de 20 años de experiencia liderando proyectos de desarrollo e implementaciones de sistemas In House, CRM, ERP, SaaS y Analítica de Datos. Te invito a explorar mi portafolio y conocer más sobre mí.";
@@ -557,16 +562,10 @@
           utterance = new SpeechSynthesisUtterance(mensaje);
           utterance.lang = "es-ES";
           utterance.rate = 0.9;
+          utterance.pitch = 0.3;
 
-          // ===== CLAVE: PITCH MUY BAJO PARA VOZ MASCULINA =====
-          utterance.pitch = 0.3; // 0.3 = muy grave (masculino)
-          // Valores: 0.1 = extremadamente grave, 0.3 = grave masculino,
-          //          0.5 = masculino suave, 1.0 = normal, 2.0 = agudo (femenino)
-
-          // Si tienes una voz seleccionada, usarla
           if (!selectedVoice) {
             var voices = window.speechSynthesis.getVoices();
-            // Buscar cualquier voz en español
             selectedVoice = voices.find(function (v) {
               return v.lang && v.lang.startsWith("es");
             });
