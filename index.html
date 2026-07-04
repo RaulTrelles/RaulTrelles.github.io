@@ -1,22 +1,32 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <!-- ========== DESACTIVAR CACHÉ PARA PRUEBAS ========== -->
-    <meta
-      http-equiv="Cache-Control"
-      content="no-cache, no-store, must-revalidate"
-    />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <!-- ========== FAVICON ========== -->
-    <link rel="icon" type="image/x-icon" href="./img/favicon.ico" />
-    <link rel="icon" type="image/png" href="./img/favicon.png" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style/style.css?v=3.0" />
+    <link rel="stylesheet" href="./style/style.css?v=4.0" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+
+    <!-- ========== FAVICON ========== -->
+    <link rel="icon" type="image/x-icon" href="./img/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./img/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./img/favicon-16x16.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./img/apple-touch-icon.png"
     />
 
     <!-- Google tag (gtag.js) -->
@@ -521,17 +531,20 @@
       })();
     </script>
 
-    <!-- ========== SÍNTESIS DE VOZ ========== -->
+    <!-- ========== SÍNTESIS DE VOZ - MASCULINA AUTOMÁTICA ========== -->
     <script>
+      // ========== SÍNTESIS DE VOZ - MASCULINA FORZADA (PITCH EXTREMO) ==========
       (function () {
         var mensaje =
           "Hola, bienvenido al portafolio de Raúl Trelles. Implemento soluciones que ayudan a generar valor y oportunidades en las organizaciones. Cuento con más de 20 años de experiencia liderando proyectos de desarrollo e implementaciones de sistemas In House, CRM, ERP, SaaS y Analítica de Datos. Te invito a explorar mi portafolio y conocer más sobre mí.";
         var btn = document.getElementById("voiceControlBtn");
         var speaking = false;
         var utterance = null;
+        var selectedVoice = null;
 
         function speak() {
           if (!window.speechSynthesis) return;
+
           if (speaking) {
             window.speechSynthesis.cancel();
             speaking = false;
@@ -539,10 +552,36 @@
             btn.classList.remove("speaking");
             return;
           }
+
           window.speechSynthesis.cancel();
           utterance = new SpeechSynthesisUtterance(mensaje);
           utterance.lang = "es-ES";
-          utterance.rate = 1.0;
+          utterance.rate = 0.9;
+
+          // ===== CLAVE: PITCH MUY BAJO PARA VOZ MASCULINA =====
+          utterance.pitch = 0.3; // 0.3 = muy grave (masculino)
+          // Valores: 0.1 = extremadamente grave, 0.3 = grave masculino,
+          //          0.5 = masculino suave, 1.0 = normal, 2.0 = agudo (femenino)
+
+          // Si tienes una voz seleccionada, usarla
+          if (!selectedVoice) {
+            var voices = window.speechSynthesis.getVoices();
+            // Buscar cualquier voz en español
+            selectedVoice = voices.find(function (v) {
+              return v.lang && v.lang.startsWith("es");
+            });
+          }
+
+          if (selectedVoice) {
+            utterance.voice = selectedVoice;
+            console.log(
+              "🔊 Usando voz:",
+              selectedVoice.name,
+              "con pitch:",
+              utterance.pitch,
+            );
+          }
+
           utterance.onstart = function () {
             speaking = true;
             btn.innerHTML = '<i class="fas fa-stop"></i>';
@@ -554,9 +593,7 @@
             btn.classList.remove("speaking");
           };
           utterance.onerror = function (e) {
-            if (e.error !== "not-allowed") {
-              console.log("Error:", e);
-            }
+            if (e.error !== "not-allowed") console.log("Error:", e);
             speaking = false;
             btn.innerHTML = '<i class="fas fa-volume-up"></i>';
             btn.classList.remove("speaking");
@@ -566,17 +603,31 @@
 
         if (btn) {
           btn.addEventListener("click", speak);
-          setTimeout(function () {
+          function loadVoices() {
             var voices = window.speechSynthesis.getVoices();
             if (voices.length > 0) {
+              selectedVoice = voices.find(function (v) {
+                return v.lang && v.lang.startsWith("es");
+              });
+              if (selectedVoice) {
+                console.log("🔊 Voz en español:", selectedVoice.name);
+              } else {
+                selectedVoice = voices[0];
+                console.log(
+                  "🔊 Usando voz por defecto:",
+                  selectedVoice ? selectedVoice.name : "ninguna",
+                );
+              }
               speak();
             } else {
-              window.speechSynthesis.onvoiceschanged = function () {
-                speak();
-                window.speechSynthesis.onvoiceschanged = null;
-              };
+              setTimeout(loadVoices, 500);
             }
-          }, 2000);
+          }
+          setTimeout(loadVoices, 1000);
+          window.speechSynthesis.onvoiceschanged = function () {
+            loadVoices();
+            window.speechSynthesis.onvoiceschanged = null;
+          };
         }
       })();
     </script>

@@ -1,92 +1,605 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <title>Portafolio Personal</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <title>Contactame | Raúl Trelles</title>
+
+    <style>
+      /* ========== ESTILOS EXCLUSIVOS PARA CONTACTO ========== */
+      .contact-page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 120px 20px 60px;
+        background: radial-gradient(circle, rgba(255, 152, 0, 0) 100%);
+      }
+
+      .contact-container {
+        max-width: 600px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 50px 40px;
+        border: 1px solid rgba(255, 152, 0, 0.2);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      }
+
+      .contact-container h1 {
+        text-align: center;
+        font-size: 2.5rem;
+        color: white;
+        margin-bottom: 10px;
+      }
+
+      .contact-container h1 span {
+        color: var(--main-color, #ff7700);
+      }
+
+      .contact-container .subtitle {
+        text-align: center;
+        color: #aaa;
+        margin-bottom: 30px;
+        font-size: 0.95rem;
+      }
+
+      /* ========== BOTONES DE CONTACTO RÁPIDO ========== */
+      .quick-contact {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 35px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .quick-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 25px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+      }
+
+      .quick-btn i {
+        font-size: 1.2rem;
+      }
+
+      .quick-btn.whatsapp {
+        background: #25d366;
+        color: white;
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+      }
+
+      .quick-btn.whatsapp:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+      }
+
+      .quick-btn.email {
+        background: #ea4335;
+        color: white;
+        box-shadow: 0 4px 15px rgba(234, 67, 53, 0.3);
+      }
+
+      .quick-btn.email:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 25px rgba(234, 67, 53, 0.5);
+      }
+
+      .quick-btn.linkedin {
+        background: #0077b5;
+        color: white;
+        box-shadow: 0 4px 15px rgba(0, 119, 181, 0.3);
+      }
+
+      .quick-btn.linkedin:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 25px rgba(0, 119, 181, 0.5);
+      }
+
+      /* ========== FORMULARIO ========== */
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .form-group {
+        position: relative;
+      }
+
+      .form-group i {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--main-color, #ff7700);
+        font-size: 1.1rem;
+        opacity: 0.7;
+      }
+
+      .form-group i.fa-message {
+        top: 22px;
+        transform: none;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 15px 18px 15px 50px;
+        background: rgba(255, 255, 255, 0.07);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        color: white;
+        font-size: 1rem;
+        font-family: "Montserrat", sans-serif;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+      }
+
+      .form-group textarea {
+        padding-top: 18px;
+        min-height: 130px;
+        resize: vertical;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--main-color, #ff7700);
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 20px rgba(255, 152, 0, 0.1);
+      }
+
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      .form-group .error-message {
+        color: #ff6b6b;
+        font-size: 0.8rem;
+        margin-top: 5px;
+        display: none;
+      }
+
+      .form-group.error input,
+      .form-group.error textarea {
+        border-color: #ff6b6b;
+      }
+
+      .form-group.error .error-message {
+        display: block;
+      }
+
+      /* ========== BOTÓN ENVIAR ========== */
+      .submit-btn {
+        padding: 16px 35px;
+        background: linear-gradient(
+          135deg,
+          var(--main-color, #ff7700),
+          #ff5500
+        );
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 5px;
+        box-shadow: 0 4px 20px rgba(255, 119, 0, 0.3);
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 35px rgba(255, 119, 0, 0.5);
+      }
+
+      .submit-btn:active {
+        transform: scale(0.97);
+      }
+
+      .submit-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .submit-btn .spinner {
+        display: none;
+        animation: spin 1s linear infinite;
+      }
+
+      .submit-btn.loading .spinner {
+        display: inline-block;
+      }
+
+      .submit-btn.loading .btn-text {
+        display: none;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ========== TOAST NOTIFICACIÓN ========== */
+      .toast {
+        position: fixed;
+        top: 30px;
+        right: 30px;
+        padding: 18px 30px;
+        border-radius: 12px;
+        color: white;
+        font-weight: 600;
+        font-size: 0.95rem;
+        z-index: 99999;
+        transform: translateX(120%);
+        transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        max-width: 90%;
+      }
+
+      .toast.show {
+        transform: translateX(0);
+      }
+
+      .toast.success {
+        background: linear-gradient(135deg, #00b894, #00a381);
+      }
+
+      .toast.error {
+        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+      }
+
+      .toast i {
+        font-size: 1.5rem;
+      }
+
+      /* ========== RESPONSIVE ========== */
+      @media (max-width: 768px) {
+        .contact-container {
+          padding: 30px 20px;
+        }
+
+        .contact-container h1 {
+          font-size: 2rem;
+        }
+
+        .quick-contact {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .quick-btn {
+          justify-content: center;
+          padding: 14px 20px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+          padding: 14px 16px 14px 45px;
+          font-size: 0.95rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .contact-container {
+          padding: 25px 15px;
+        }
+
+        .contact-container h1 {
+          font-size: 1.7rem;
+        }
+
+        .toast {
+          right: 15px;
+          left: 15px;
+          font-size: 0.85rem;
+          padding: 14px 20px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ========== NAVEGACIÓN ========== -->
     <nav>
-        <input type="checkbox" class="checkbox" id="check">
-        <h1 class="nav_head">Raúl</h1>
-        <ul>
-            <li><a href="../index.html">Inicio</a></li>
-            <li><a href="../index.html#about">Acerca de</a></li>
-            <!-- <li><a href="#service">Servicios</a></li>  -->
-            <li><a href="../index.html#tecnologias">Tecnologías</a></li>
-            <li><a href="../index.html#portafolio">Portafolio</a></li>
-
-            <a href="./contactame.html" class="contact_btn">Contactame</a>
-        </ul>
-
-        <label for="check" class="checkbtn">
-            <i class="fas fa-bars"></i>
-        </label>
+      <input type="checkbox" class="checkbox" id="check" />
+      <h1 class="nav_head">Raúl</h1>
+      <ul>
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="../index.html#about">Acerca de</a></li>
+        <li><a href="../index.html#tecnologias">Tecnologías</a></li>
+        <li><a href="../index.html#portafolio">Portafolio</a></li>
+        <li><a href="../index.html#experimentos">Experimentos</a></li>
+        <a href="./contactame.html" class="contact_btn">Contactame</a>
+      </ul>
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars" id="menu-icon"></i>
+        <i class="fas fa-times" id="close-icon" style="display: none"></i>
+      </label>
     </nav>
 
+    <!-- ========== CONTACTO ========== -->
+    <section class="contact-page">
+      <div class="contact-container">
+        <h1><span>Contactame</span></h1>
+        <p class="subtitle">¿Tienes un proyecto en mente? ¡Hablemos!</p>
 
-    <section id="contact" class="contact">
-        <div class="form">
-            <h1><span>Contactame</span></h1>
-            <form id="contact-form">
-                <input type="text" id="name" placeholder="Ingrese su nombre" required> <br>
-                <input type="email" id="email" placeholder="Ingrese su email" required> <br>
-                <input type="number" id="phone" placeholder="Ingrese su número de Celular" required> <br>
-                <textarea id="message" cols="20" rows="6" placeholder="Ingrese su Mensaje" required></textarea> <br>
-                <button type="submit" class="form_btn">Enviar</button>
-            </form>
+        <!-- Botones de contacto rápido -->
+        <div class="quick-contact">
+          <a
+            href="https://wa.me/51926896030?text=Hola%20Raúl,%20me%20interesa%20contactarte%20para%20un%20proyecto"
+            target="_blank"
+            class="quick-btn whatsapp"
+          >
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/raultrelles/"
+            target="_blank"
+            class="quick-btn linkedin"
+          >
+            <i class="fab fa-linkedin-in"></i> LinkedIn
+          </a>
         </div>
+
+        <!-- ========================================================== -->
+        <!-- FORMULARIO CON ENVÍO AJAX (SIN REDIRECCIÓN)                -->
+        <!-- ========================================================== -->
+        <form id="contact-form" class="contact-form">
+          <div class="form-group">
+            <i class="fas fa-user"></i>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Nombre completo"
+              required
+            />
+            <div class="error-message">Por favor ingresa tu nombre</div>
+          </div>
+
+          <div class="form-group">
+            <i class="fas fa-envelope"></i>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Correo electrónico"
+              required
+            />
+            <div class="error-message">Por favor ingresa un correo válido</div>
+          </div>
+
+          <div class="form-group">
+            <i class="fas fa-phone"></i>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Número de teléfono"
+            />
+            <div class="error-message">Por favor ingresa un número válido</div>
+          </div>
+
+          <div class="form-group">
+            <i class="fas fa-message"></i>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              placeholder="¿En qué puedo ayudarte?"
+              required
+            ></textarea>
+            <div class="error-message">Por favor ingresa tu mensaje</div>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <span class="btn-text"
+              ><i class="fas fa-paper-plane"></i> Enviar mensaje</span
+            >
+            <i class="fas fa-spinner spinner"></i>
+          </button>
+        </form>
+      </div>
     </section>
-    
-    
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/6278516bb0d10b6f3e713476/1g2ivs3n6';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
+
+    <!-- ========== TOAST NOTIFICACIÓN ========== -->
+    <div class="toast" id="toast">
+      <i class="fas fa-check-circle"></i>
+      <span id="toastMessage">Mensaje enviado correctamente</span>
+    </div>
+
+    <!-- ========== SCRIPT PRINCIPAL ========== -->
+    <script>
+      // ============================================================
+      // FUNCIÓN PARA MOSTRAR TOAST NOTIFICACIÓN
+      // ============================================================
+      function showToast(message, type) {
+        const toast = document.getElementById("toast");
+        const toastMessage = document.getElementById("toastMessage");
+        const icon = toast.querySelector("i");
+
+        toastMessage.textContent = message;
+        toast.className = "toast " + type;
+
+        if (type === "success") {
+          icon.className = "fas fa-check-circle";
+        } else {
+          icon.className = "fas fa-exclamation-circle";
+        }
+
+        toast.classList.add("show");
+
+        clearTimeout(toast.timeout);
+        toast.timeout = setTimeout(function () {
+          toast.classList.remove("show");
+        }, 6000);
+      }
+
+      // ============================================================
+      // ENVÍO DEL FORMULARIO CON AJAX (SIN REDIRECCIÓN)
+      // ============================================================
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const submitBtn = document.getElementById("submitBtn");
+
+          // Obtener valores
+          const name = document.getElementById("name").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const phone = document.getElementById("phone").value.trim();
+          const message = document.getElementById("message").value.trim();
+
+          // Validación
+          let isValid = true;
+
+          if (!name) {
+            document
+              .getElementById("name")
+              .parentElement.classList.add("error");
+            isValid = false;
+          } else {
+            document
+              .getElementById("name")
+              .parentElement.classList.remove("error");
+          }
+
+          if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            document
+              .getElementById("email")
+              .parentElement.classList.add("error");
+            isValid = false;
+          } else {
+            document
+              .getElementById("email")
+              .parentElement.classList.remove("error");
+          }
+
+          if (!message) {
+            document
+              .getElementById("message")
+              .parentElement.classList.add("error");
+            isValid = false;
+          } else {
+            document
+              .getElementById("message")
+              .parentElement.classList.remove("error");
+          }
+
+          if (!isValid) {
+            showToast(
+              "Por favor completa todos los campos requeridos correctamente",
+              "error",
+            );
+            return;
+          }
+
+          // Mostrar loading
+          submitBtn.classList.add("loading");
+          submitBtn.disabled = true;
+
+          // Preparar datos para formsubmit.co
+          const formData = new FormData();
+          formData.append("name", name);
+          formData.append("email", email);
+          formData.append("phone", phone || "No especificado");
+          formData.append("message", message);
+          formData.append("_captcha", "false");
+          formData.append("_template", "table");
+          formData.append("_subject", "Nuevo mensaje desde tu Portafolio");
+          formData.append(
+            "_autoresponse",
+            "Gracias por contactarme. Responderé a tu mensaje lo antes posible.",
+          );
+
+          try {
+            const response = await fetch(
+              "https://formsubmit.co/ajax/raul.trelles@gmail.com",
+              {
+                method: "POST",
+                body: formData,
+              },
+            );
+
+            const data = await response.json();
+
+            if (response.ok) {
+              console.log("✅ Correo enviado:", data);
+              showToast(
+                "¡Mensaje enviado correctamente! Te responderé lo antes posible.",
+                "success",
+              );
+              document.getElementById("contact-form").reset();
+            } else {
+              console.error("❌ Error:", data);
+              showToast(
+                "Error: " + (data.message || "Intenta de nuevo más tarde."),
+                "error",
+              );
+            }
+          } catch (error) {
+            console.error("❌ Error de conexión:", error);
+            showToast(
+              "Error de conexión. Por favor verifica tu internet e intenta de nuevo.",
+              "error",
+            );
+          } finally {
+            submitBtn.classList.remove("loading");
+            submitBtn.disabled = false;
+          }
+        });
+
+      // ============================================================
+      // MENÚ RESPONSIVE
+      // ============================================================
+      document.addEventListener("DOMContentLoaded", function () {
+        const checkbox = document.getElementById("check");
+        const menuIcon = document.getElementById("menu-icon");
+        const closeIcon = document.getElementById("close-icon");
+
+        if (checkbox && menuIcon && closeIcon) {
+          checkbox.addEventListener("change", function () {
+            if (this.checked) {
+              menuIcon.style.display = "none";
+              closeIcon.style.display = "inline";
+            } else {
+              menuIcon.style.display = "inline";
+              closeIcon.style.display = "none";
+            }
+          });
+        }
+      });
     </script>
-    <!--End of Tawk.to Script-->
-
-    
-<!--      envio de correo desde la páguina -->
-
-<script type="text/javascript">
-    (function() {
-        emailjs.init("7kOlWNhTdSmV3AjRT");  // Coloca aquí tu User ID de EmailJS
-    })();
-
-    document.getElementById('contact-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        // Recoge los datos del formulario
-        var templateParams = {
-            from_name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            phone_number: document.getElementById('phone').value,
-            message: document.getElementById('message').value
-        };
-
-        // Envía el correo usando EmailJS
-        emailjs.send('service_nxbvx2e', 'template_tlz40ym', templateParams)
-            .then(function(response) {
-               alert('Correo enviado correctamente!', response.status, response.text);
-            }, function(error) {
-               alert('Error al enviar el correo', error);
-            });
-    });
-</script>
-
-<!-- Incluye el script de EmailJS -->
-<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-
-
-</body>
+  </body>
 </html>
