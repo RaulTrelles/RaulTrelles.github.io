@@ -43,11 +43,11 @@ body {
 /* ================ CONTENEDOR DE BOTONES FLOTANTES ================ */
 .floating-controls {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 50px;
+  right: 40px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 40px;
   z-index: 9999999;
   pointer-events: none;
 }
@@ -155,7 +155,7 @@ body {
   top: -50%;
   left: -50%;
   width: 200%;
-  height: 200%;
+  height: 300%;
   background: radial-gradient(
     circle,
     rgba(255, 255, 255, 0.2) 0%,
@@ -1313,7 +1313,7 @@ h1.exper_section span {
   .floating-controls {
     bottom: 25px;
     right: 20px;
-    gap: 10px;
+    gap: 50px;
   }
 
   .chat-minimize-btn,
@@ -1342,6 +1342,7 @@ h1.exper_section span {
 #custom-chat-window {
   position: fixed;
   bottom: 80px;
+
   right: 15px;
   width: 380px;
   max-width: 90vw;
@@ -1421,6 +1422,7 @@ h1.exper_section span {
 
 .chat-message .message-content {
   padding: 8px 12px;
+  text-align: left;
 }
 
 .chat-message {
@@ -1454,6 +1456,7 @@ h1.exper_section span {
 .chat-message.bot .message-content {
   background: rgba(255, 255, 255, 0.07);
   color: #e0e0e0;
+  text-align: left;
   border-bottom-left-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.05);
 }

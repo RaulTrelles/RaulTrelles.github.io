@@ -10,7 +10,7 @@
     <meta http-equiv="Expires" content="0" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style/style.css?v=4.0" />
+    <link rel="stylesheet" href="./style/style.css?v=4.1" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -55,6 +55,73 @@
     </script>
 
     <title>Portafolio Personal</title>
+
+    <!-- ========== ESTILOS BÁSICOS PARA EL MODAL (por si el CSS externo falla) ========== -->
+    <style>
+      /* Estilos mínimos para el modal, en caso de que style.css no se cargue */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+      .modal-content {
+        background-color: #1a1a2e;
+        margin: 10% auto;
+        padding: 30px;
+        border: 1px solid #ff7700;
+        border-radius: 16px;
+        width: 80%;
+        max-width: 700px;
+        color: white;
+        position: relative;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+      .close:hover {
+        color: #ff7700;
+      }
+      .tecnologias_card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 15px 20px;
+        border-radius: 12px;
+        text-align: center;
+        min-width: 100px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s;
+      }
+      .tecnologias_card:hover {
+        transform: translateY(-5px);
+        border-color: #ff7700;
+      }
+      .tecnologias_card i {
+        font-size: 2.5rem;
+        color: #ff7700;
+        display: block;
+        margin-bottom: 10px;
+      }
+      .tecnologias_card h3 {
+        font-size: 1rem;
+        margin: 5px 0;
+        color: #fff;
+      }
+    </style>
   </head>
 
   <body>
@@ -318,7 +385,7 @@
       <div id="custom-chat-messages">
         <div class="chat-message bot">
           <div class="message-content">
-            Hola, soy el asistente virtual de Raúl Trelles. Pregúntame sobre su
+            Soy el asistente virtual de Raúl Trelles. Pregúntame sobre su
             experiencia profesional, proyectos o habilidades técnicas.
           </div>
         </div>
@@ -338,7 +405,123 @@
       </div>
     </div>
 
+    <!-- ========== SCRIPTS ========== -->
     <script src="./js/script.js"></script>
+
+    <!-- ========== MODAL PARA TECNOLOGÍAS (con depuración) ========== -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Seleccionamos el modal y el botón de cierre
+        const modal = document.getElementById("modal");
+        const closeModalBtn = document.querySelector(".close");
+        const modalBody = document.getElementById("modal-body");
+
+        if (!modal || !closeModalBtn || !modalBody) {
+          console.error("❌ Modal o sus elementos no encontrados");
+          return;
+        }
+
+        console.log("✅ Modal encontrado");
+
+        // Función para mostrar el modal con contenido dinámico
+        function showModal(content) {
+          modalBody.innerHTML = content;
+          modal.style.display = "block";
+          console.log("✅ Modal mostrado");
+        }
+
+        // Cerrar el modal con la "x"
+        closeModalBtn.onclick = function () {
+          modal.style.display = "none";
+          console.log("✅ Modal cerrado");
+        };
+
+        // Cerrar el modal al hacer clic fuera del contenido
+        window.onclick = function (event) {
+          if (event.target === modal) {
+            modal.style.display = "none";
+            console.log("✅ Modal cerrado (clic fuera)");
+          }
+        };
+
+        // Añadir el evento click a las tarjetas
+        const cards = document.querySelectorAll(".tecnologias_card");
+        console.log(`🔍 Encontradas ${cards.length} tarjetas`);
+
+        if (cards.length === 0) {
+          console.warn(
+            "⚠️ No se encontraron tarjetas con clase 'tecnologias_card'",
+          );
+        }
+
+        cards.forEach((card, index) => {
+          card.addEventListener("click", function (e) {
+            e.stopPropagation();
+            console.log(`🖱️ Clic en tarjeta ${index}`);
+
+            let content = "";
+
+            switch (index) {
+              case 0:
+                content = `
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+                  <div class="tecnologias_card"><i class="fa-solid fa-diagram-project"></i><h3>Bonita</h3></div>
+                  <div class="tecnologias_card"><i class="fa-solid fa-user-tie"></i><h3>Bizagi</h3></div>
+                  <div class="tecnologias_card"><i class="fa-brands fa-trello"></i><h3>Trello</h3></div>
+                  <div class="tecnologias_card"><i class="fa-brands fa-jira"></i><h3>Jira</h3></div>
+                  <div class="tecnologias_card"><i class="fa-brands fa-windows"></i><h3>Microsoft Project</h3></div>
+                </div>
+                `;
+                break;
+              case 1:
+                content = `
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+                  <div class="tecnologias_card"><i class="fa-brands fa-python"></i><h3>Python</h3></div>
+                  <div class="tecnologias_card"><i class="fa-solid fa-database"></i><h3>SQL</h3></div>
+                  <div class="tecnologias_card"><i class="fa-brands fa-r-project"></i><h3>R</h3></div>
+                  <div class="tecnologias_card"><i class="fa-brands fa-windows"></i><h3>Power BI</h3></div>
+                </div>
+                `;
+                break;
+              case 2:
+                content = `
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+                  <div class="tecnologias_card"><i class="fa-brands fa-figma"></i><h3>Figma</h3></div>
+                  <div class="tecnologias_card"><i class="fa-brands fa-html5"></i><h3>HTML</h3></div>
+                  <div class="tecnologias_card"><i class="fa-brands fa-css3"></i><h3>CSS3</h3></div>
+                  <div class="tecnologias_card"><i class="fa-brands fa-js"></i><h3>JavaScript</h3></div>
+                </div>
+                `;
+                break;
+              case 3:
+                content = `
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+                  <div class="tecnologias_card"><i class="fa-brands fa-node-js"></i><h3>NodeJS</h3></div>
+                  <div class="tecnologias_card"><i class="fa-brands fa-python"></i><h3>Python<br>FastApi</h3></div>
+                  <div class="tecnologias_card"><i class="fa-solid fa-database"></i><h3>SQL Server<br>Oracle<br>Postgres<br>MySql</h3></div>
+                </div>
+                `;
+                break;
+              case 4:
+                content = `
+                <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+                  <div class="tecnologias_card"><i class="fa-brands fa-flutter"></i><h3>Flutter</h3></div>
+                  <div class="tecnologias_card"><i class="fa-brands fa-python"></i><h3>Python<br>Reflex</h3></div>
+                  <div class="tecnologias_card"><i class="fa-brands fa-html5"></i><h3>HTML</h3></div>
+                  <div class="tecnologias_card"><i class="fa-brands fa-css3"></i><h3>CSS3</h3></div>
+                  <div class="tecnologias_card"><i class="fa-brands fa-js"></i><h3>JavaScript</h3></div>
+                </div>
+                `;
+                break;
+              default:
+                content = `<p>No hay contenido disponible</p>`;
+            }
+
+            showModal(content);
+          });
+        });
+      });
+    </script>
 
     <!-- ========== CONTROL DEL CHAT PERSONALIZADO ========== -->
     <script>
@@ -373,15 +556,12 @@
             isOpen = true;
             chatBtn.innerHTML = '<i class="fas fa-times"></i>';
             chatBtn.title = "Cerrar chat (CV)";
-            // Enfocar el input
             setTimeout(() => inputField.focus(), 300);
           }
         }
 
-        // Cerrar chat desde la X
         closeBtn.addEventListener("click", toggleChat);
 
-        // Botón del chat
         chatBtn.addEventListener("click", function (e) {
           e.stopPropagation();
           e.preventDefault();
@@ -391,7 +571,6 @@
         chatBtn.innerHTML = '<i class="fas fa-comment-dots"></i>';
         chatBtn.title = "Abrir chat (CV)";
 
-        // Agregar mensaje al chat
         function addMessage(text, isUser = false) {
           const div = document.createElement("div");
           div.className = `chat-message ${isUser ? "user" : "bot"}`;
@@ -400,25 +579,21 @@
           messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
-        // Mostrar indicador de escritura
         function showTyping(show) {
           typingIndicator.style.display = show ? "flex" : "none";
           messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
-        // Enviar mensaje a la API de Dify
         async function sendMessage(query) {
           if (isWaiting) return;
           if (!query.trim()) return;
 
-          // Agregar mensaje del usuario
           addMessage(query, true);
           inputField.value = "";
           inputField.disabled = true;
           sendBtn.disabled = true;
           isWaiting = true;
 
-          // Mostrar indicador de escritura
           showTyping(true);
 
           try {
@@ -443,14 +618,12 @@
               );
             }
 
-            // Leer el stream SSE
             const reader = response.body.getReader();
             const decoder = new TextDecoder();
             let buffer = "";
             let botReply = "";
             let isFirstChunk = true;
 
-            // Ocultar indicador de escritura
             showTyping(false);
 
             while (true) {
@@ -467,19 +640,15 @@
                   try {
                     const data = JSON.parse(jsonStr);
                     if (data.event === "message") {
-                      // Guardar conversation_id para mantener contexto
                       if (data.conversation_id) {
                         conversationId = data.conversation_id;
                       }
-                      // Acumular respuesta
                       if (data.answer) {
                         botReply += data.answer;
                         if (isFirstChunk) {
-                          // Crear el mensaje del bot con el primer chunk
                           addMessage(botReply, false);
                           isFirstChunk = false;
                         } else {
-                          // Actualizar el último mensaje del bot
                           const lastMsg = messagesContainer.querySelector(
                             ".chat-message.bot:last-child .message-content",
                           );
@@ -491,7 +660,6 @@
                           messagesContainer.scrollHeight;
                       }
                     } else if (data.event === "message_end") {
-                      // Mensaje completo
                       console.log("✅ Mensaje completado");
                     } else if (data.event === "error") {
                       console.error("❌ Error de Dify:", data.message);
@@ -526,7 +694,6 @@
           inputField.focus();
         }
 
-        // Evento de envío
         sendBtn.addEventListener("click", () => {
           sendMessage(inputField.value);
         });
@@ -538,7 +705,6 @@
           }
         });
 
-        // Exponer función para debugging
         window.toggleChat = toggleChat;
         console.log("🔧 Chat personalizado listo. Comando: toggleChat()");
       })();
@@ -635,6 +801,116 @@
             window.speechSynthesis.onvoiceschanged = null;
           };
         }
+      })();
+    </script>
+
+    <!-- ========== EFECTO CURSOR TRAIL (DESACTIVADO POR DEFECTO) ========== -->
+    <script>
+      (function () {
+        const ENABLE_CURSOR_TRAIL = false;
+
+        if (!ENABLE_CURSOR_TRAIL) {
+          console.log(
+            "Efecto de cursor desactivado (ENABLE_CURSOR_TRAIL=false)",
+          );
+          return;
+        }
+
+        let mouseX = 0,
+          mouseY = 0;
+        let particles = [];
+
+        const customCursor = document.createElement("div");
+        customCursor.className = "custom-cursor";
+        document.body.appendChild(customCursor);
+
+        class Particle {
+          constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.targetX = mouseX;
+            this.targetY = mouseY;
+            this.size = Math.random() * 8 + 4;
+            this.life = 1;
+            this.decay = Math.random() * 0.02 + 0.015;
+            this.velocity = {
+              x: (Math.random() - 0.5) * 2,
+              y: (Math.random() - 0.5) * 2,
+            };
+            this.element = document.createElement("div");
+            this.element.className = "cursor-particle";
+            this.element.style.width = this.size + "px";
+            this.element.style.height = this.size + "px";
+            this.element.style.left = this.x + "px";
+            this.element.style.top = this.y + "px";
+            document.body.appendChild(this.element);
+          }
+
+          update() {
+            const dx = this.targetX - this.x;
+            const dy = this.targetY - this.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance > 1) {
+              const angle = Math.atan2(dy, dx);
+              this.velocity.x += Math.cos(angle) * 0.15;
+              this.velocity.y += Math.sin(angle) * 0.15;
+            }
+
+            this.x += this.velocity.x;
+            this.y += this.velocity.y;
+            this.velocity.x *= 0.92;
+            this.velocity.y *= 0.92;
+            this.life -= this.decay;
+            this.life = Math.max(0, this.life);
+
+            this.element.style.left = this.x + "px";
+            this.element.style.top = this.y + "px";
+            this.element.style.opacity = this.life;
+          }
+
+          isDead() {
+            return this.life <= 0;
+          }
+
+          remove() {
+            if (this.element && this.element.parentNode) {
+              this.element.parentNode.removeChild(this.element);
+            }
+          }
+        }
+
+        document.addEventListener("mousemove", (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+          customCursor.style.left = mouseX + "px";
+          customCursor.style.top = mouseY + "px";
+
+          if (Math.random() > 0.3) {
+            particles.push(new Particle(mouseX, mouseY));
+          }
+        });
+
+        document.addEventListener("mouseleave", () => {
+          customCursor.style.opacity = "0";
+        });
+
+        document.addEventListener("mouseenter", () => {
+          customCursor.style.opacity = "1";
+        });
+
+        function animate() {
+          for (let i = particles.length - 1; i >= 0; i--) {
+            particles[i].update();
+            if (particles[i].isDead()) {
+              particles[i].remove();
+              particles.splice(i, 1);
+            }
+          }
+          requestAnimationFrame(animate);
+        }
+
+        animate();
       })();
     </script>
   </body>
